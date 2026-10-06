@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 480" font-family="'Comic Sans MS','Segoe Print',cursive,sans-serif">
+  <!-- W13-L03 数据翻倍，步数变几倍（原创插图，教学法致谢 Grokking Algorithms） -->
+  <text x="380" y="36" text-anchor="middle" font-size="26" fill="#222">数据翻倍，步数变几倍？</text>
+  <text x="380" y="60" text-anchor="middle" font-size="14" fill="#888">横轴：数据量 →　纵轴：步数 ↑</text>
+
+  <!-- 坐标轴（手绘抖动感） -->
+  <path d="M110,100 L108,395" stroke="#222" stroke-width="3" stroke-linecap="round"/>
+  <path d="M104,390 L560,392 L558,388" stroke="#222" stroke-width="3" fill="none" stroke-linecap="round"/>
+  <text x="92" y="108" font-size="13" fill="#222">步数</text>
+  <text x="552" y="416" font-size="13" fill="#222">数据量</text>
+
+  <!-- O(log n) 砍半：趴着的猫（橙） -->
+  <path d="M112,180 C200,192 320,210 420,222 C480,228 520,232 552,235" stroke="#e8862e" stroke-width="4" fill="none" stroke-linecap="round"/>
+  <!-- 趴猫 doodle -->
+  <g transform="translate(470,190)">
+    <ellipse cx="0" cy="14" rx="26" ry="12" fill="#fff" stroke="#e8862e" stroke-width="3"/>
+    <circle cx="-20" cy="-6" r="10" fill="#fff" stroke="#e8862e" stroke-width="3"/>
+    <path d="M-27,-13 l-3,-8 l7,4 z M-14,-14 l3,-8 l-6,5 z" fill="#e8862e"/>
+    <path d="M-23,-6 q2,2 4,0 M-17,-6 q2,2 4,0" stroke="#e8862e" stroke-width="1.5" fill="none"/>
+    <path d="M14,16 l16,2 M14,11 l17,-4" stroke="#e8862e" stroke-width="3" stroke-linecap="round"/>
+  </g>
+  <text x="150" y="172" font-size="16" fill="#e8862e" font-weight="bold">砍半 · 二分查找 O(log n)</text>
+  <text x="150" y="192" font-size="12" fill="#e8862e">翻倍只加 1 步：7 → 8</text>
+
+  <!-- O(n) 跟着涨：走的猫（黑直线） -->
+  <path d="M110,388 L548,150" stroke="#222" stroke-width="3" stroke-linecap="round"/>
+  <!-- 走路猫 doodle -->
+  <g transform="translate(400,238)">
+    <circle cx="0" cy="0" r="11" fill="#fff" stroke="#222" stroke-width="3"/>
+    <path d="M-7,-8 l-2,-9 l7,5 z M4,-9 l3,-8 l-6,6 z" fill="#222"/>
+    <ellipse cx="2" cy="20" rx="24" ry="11" fill="#fff" stroke="#222" stroke-width="3"/>
+    <path d="M-4,28 l-4,10 M8,28 l6,9" stroke="#222" stroke-width="3" stroke-linecap="round"/>
+  </g>
+  <text x="170" y="330" font-size="16" fill="#222" font-weight="bold">跟着涨 · 逐个搜 O(n)</text>
+  <text x="170" y="348" font-size="12" fill="#555">翻倍就翻倍：100 → 200</text>
+
+  <!-- O(n^2) 平方涨：炸毛的猫（灰，最陡） -->
+  <path d="M110,386 C300,380 420,330 480,230 C505,190 520,140 528,96" stroke="#999" stroke-width="4" fill="none" stroke-linecap="round" stroke-dasharray="10 6"/>
+  <!-- 炸毛猫 doodle -->
+  <g transform="translate(500,120)">
+    <circle cx="0" cy="0" r="12" fill="#fff" stroke="#999" stroke-width="3"/>
+    <path d="M-12,-6 l-8,-6 l6,0 l-4,-8 l8,6 M8,-8 l9,-5 l-3,6 l9,-1 l-8,6" stroke="#999" stroke-width="3" fill="none" stroke-linecap="round"/>
+    <circle cx="-4" cy="-2" r="1.5" fill="#999"/><circle cx="3" cy="-2" r="1.5" fill="#999"/>
+    <path d="M-3,4 q3,3 6,0" stroke="#999" stroke-width="1.5" fill="none"/>
+  </g>
+  <text x="330" y="120" font-size="16" fill="#777" font-weight="bold">平方涨 · 嵌套循环 O(n²)</text>
+  <text x="330" y="138" font-size="12" fill="#999">翻倍变 4 倍：10000 → 40000</text>
+
+  <!-- 底部对比 -->
+  <g font-size="13">
+    <text x="110" y="448" fill="#e8862e">100 万数据：砍半 20 步</text>
+    <text x="290" y="448" fill="#222">跟着涨 100 万步</text>
+    <text x="450" y="448" fill="#999">平方涨 一万亿步 💥</text>
+  </g>
+  <text x="380" y="472" text-anchor="middle" font-size="11" fill="#ccc">插图原创（沙坑 course-algo）· 教学法致谢《算法图解/Grokking Algorithms》Ch1</text>
+</svg>

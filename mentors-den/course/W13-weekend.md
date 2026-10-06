@@ -1,0 +1,142 @@
+# W13-weekend · 词典寻宝赛 + 读程序挑战
+
+> 用时：60-90 分钟 · 难度：⭐⭐⭐⭐ · 前置：W13 三课
+
+---
+
+## 一、本周武功盘点（3 分钟）
+
+- 二分查找：有序 + 能跳中间 → 每次砍一半，7 次搞定 100 格
+- `binary_search` 函数：low / high / mid 三兄弟 + `//` 整除 + `mid ± 1`
+- 快慢尺：数据翻倍，步数翻倍（跟着涨）/ 只加 1（砍半）/ 翻 4 倍（平方涨）
+
+今天两件事：**A 一场正经比赛** + **B 一种新题型**（读别人的程序，猜它干什么）。
+
+## 二、项目 A：部族名册寻宝赛（35 分钟）
+
+> 📁 项目存 `~/learning-homework/<你的学员名>/homework/`，新建 `roster_race.py`。
+
+场景：四大部族的联合名册（第一步先造一份**有序**的大名单），族长报出一只猫的名字，看谁最快找到它在第几 位。
+
+**第 1 步 · 造名册（5 分钟）**
+
+```python
+import random
+
+def make_roster(n):
+    """造一份 n 只猫的有序名册：名字由 cat + 编号 组成"""
+    names = ["cat" + str(i) for i in range(1, n + 1)]   # W06 列表推导预备版
+    return names                                          # cat1, cat2, ... 天生有序
+
+roster = make_roster(1000)
+```
+
+**第 2 步 · 两名选手同场竞技（15 分钟）**
+
+把 W13-L02 的两个函数搬进来（这次**自己默写**，不许翻笔记——这是周末项目的规矩），然后：
+
+```python
+target = random.choice(roster)          # 族长随机点名
+
+slow_steps = slow_search(target, roster)
+fast_steps = binary_search(target, roster)
+print(f"目标 {target}：逐格搜 {slow_steps} 步，二分 {fast_steps} 步")
+```
+
+**第 3 步 · 全场大奖赛（15 分钟）**
+
+随机点 100 次名，两名选手各记总步数：
+
+```python
+slow_total, fast_total = 0, 0
+for i in range(100):
+    target = random.choice(roster)
+    slow_total += slow_search(target, roster)
+    fast_total += binary_search(target, roster)
+print(f"100 场总步数：逐格 {slow_total} 步 vs 二分 {fast_total} 步")
+```
+
+**验收提问（mentor 会问）：**
+
+1. 逐格的平均步数大约是多少？（提示：随机点名，平均走到名单一半偏后的位置）
+2. 二分的步数为什么几乎不波动？
+3. 名册从 1000 扩到 8000，两位选手的总步数各怎么变？（先用翻倍问题预测，再实测）
+
+## 三、项目 B：读程序挑战——新题型登场（25 分钟）
+
+从今天起，周末项目多一种题型：**读一段别人写好的程序，推理它的输出**。不运行，先猜，再验证。这是检验"真懂还是假懂"的试金石（也是很多编程能力测评的标准题型）。
+
+### 第 1 题 · 它在干什么？
+
+```python
+def mystery(numbers):
+    low, high = 0, len(numbers) - 1
+    while low <= high:
+        mid = (low + high) // 2
+        if numbers[mid] == 7:
+            return mid
+        elif numbers[mid] < 7:
+            low = mid + 1
+        else:
+            high = mid - 1
+    return -1
+
+print(mystery([1, 3, 5, 7, 9, 11, 13]))
+```
+
+先答三个小问（写在注释里）：① 它找的是什么？② 返回的数字是什么意思？③ 输出是几？
+
+### 第 2 题 · 一步一追踪
+
+```python
+x, y = 1, 100
+steps = 0
+while x < y:
+    x = x * 2
+    steps = steps + 1
+print(steps)
+```
+
+输出是几？这段程序和本周哪个概念是"一体两面"？（提示：反着数一遍 2 的连乘）
+
+### 第 3 题 · 找茬题
+
+下面的二分查找有**一处 bug**，会导致某个目标永远找不到。找出它，说清什么情况下翻车：
+
+```python
+def buggy_search(name, roster):
+    low, high = 0, len(roster) - 1
+    while low < high:                    # ← 盯着这行和正常版比
+        mid = (low + high) // 2
+        if roster[mid] == name:
+            return mid
+        elif roster[mid] < name:
+            low = mid
+        else:
+            high = mid
+    return -1
+```
+
+### 验证方式
+
+三题全部**先笔答再运行**。运行结果和笔答一致才算过关；不一致的话，错在哪一步，回头补哪一步。
+
+## 四、讲给家人听（15 分钟，本周最重要的一环）
+
+本周验收有一道**口头题**，讲给家里人听（爸妈、爷爷奶奶、AI 分身都行）：
+
+> "为什么在 100 万个东西里找一个，最多只要问 20 次？"
+
+规则：不许说"就是二分查找"这种术语甩锅，要用**自己的比方**（雪原、词典、猜数字都行）把家里人讲到点头为止。家人没听懂 = 重讲，换比方。
+
+讲完让听的人签个名（或录一段 30 秒的语音），写进作业文件最后一行。
+
+## 五、自查清单
+
+- [ ] 项目 A 跑通 100 场大奖赛，三个验收提问答得出
+- [ ] 默写 `binary_search` 一次成功（没翻笔记）
+- [ ] 读程序三题全部"先笔答后验证"，笔答全对或搞懂了错在哪
+- [ ] 口头题完成，家人点头 + 签名
+- [ ] 🚀 加速挑战：把项目 A 的名册扩到 100 万，两位选手再赛一场（先预测二分总步数会不会超过 2000，再实测）
+
+> 📚 配套阅读：《算法图解》第 1 章整章（含章末练习，喜欢挑战的同学可以试试 1.1-1.4 题）
