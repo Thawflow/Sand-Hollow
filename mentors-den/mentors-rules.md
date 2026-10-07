@@ -140,7 +140,7 @@ v1 即日生效（14:00 首课前）；v1.8 起改为**单签 + chatroom review*
 | 能力层 | 工具 | 用途 |
 |---|---|---|
 | **课表** | tpg-hq Worker + PG KV `/learning/*` | 课程内容存储 + 发布；admin 平台管理 |
-| **公开站点** | GitHub Pages `Thawflow/learning-homework` → `learning.thawflow.com` | 学员看到的学习首页 |
+| **公开站点** | GitHub Pages `Thawflow/Sand-Hollow` → `learning.thawflow.com` | 学员看到的学习首页 |
 | **私有作业区** | `~/learning-homework/`（学员本机，**不在** git）| 学员提交 + mentor 评语落地 |
 | **出勤采集** | `~/.openclaw/sandbox-practice/tracker.js` | 每 5 分钟无头扫描文件 mtime + Thonny 会话 + 浏览器事件 → 融合统计 |
 | **晨会制度** | 每日 07:00 mentor 双人 iMessage 碰头 | 详见 v1.5 ⑪ |
@@ -148,9 +148,9 @@ v1 即日生效（14:00 首课前）；v1.8 起改为**单签 + chatroom review*
 
 ## 一、首次搭环境（必做一次）
 
-1. **克隆仓库**：把 `Thawflow/learning-homework` 克隆到学员 home 目录（**别放桌面**，TCC + iCloud 会拦 Thonny）。
+1. **克隆仓库**：把 `Thawflow/Sand-Hollow` 克隆到学员 home 目录（**别放桌面**，TCC + iCloud 会拦 Thonny）。
    ```bash
-   cd ~ && git clone git@github-thawflow:Thawflow/learning-homework.git
+   cd ~ && git clone git@github-thawflow:Thawflow/Sand-Hollow.git
    ```
 2. **建学员私有区**：在 `learning-homework/thawpaw/` 下建 `homework/` 和 `reviews/` 两个子目录。
 3. **配置 .gitignore**：确保 `thawpaw/` 整个不进 git（保护作业 + 评语隐私）。

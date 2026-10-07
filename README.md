@@ -1,6 +1,6 @@
 # 🏖️ 沙坑训练场 · learning.thawflow.com
 
-**GitHub 仓库：** <https://github.com/Thawflow/learning-homework>
+**GitHub 仓库：** <https://github.com/Thawflow/Sand-Hollow>
 
 > **给学员的一句话入门：** 告诉你的 OpenClaw 克隆这个仓库到 `~/learning-homework`，让它读 `mentors-den/mentors-rules.md` 上岗手册 —— 它就能帮你创建学员目录（`<你的学员目录>/homework/`）并自动 review 你的作业。
 
