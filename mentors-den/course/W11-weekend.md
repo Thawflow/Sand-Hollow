@@ -1,114 +1,138 @@
-# W11-weekend · 打磨 + 家人对战赛
+# W11-weekend · 宠物图鉴 v1：完整版
 
-> 用时：60-90 分钟 · 难度：⭐⭐⭐ · 前置：W11 三课
+> 用时：60-90 分钟 · 难度：⭐⭐⭐ · 前置：W10 三课
 
 ---
 
 ## 一、本周武功盘点（3 分钟）
 
-- W11-L01：random 模块（randint / choice / shuffle / sample）
-- W11-L02：石头剪刀布（多局 + 计分 + emoji）
-- W11-L03：文字 RPG 战斗（玩家 + 敌人 + 升级）
+- W10-L01：字典基础（增删改查 + 遍历）
+- W10-L02：嵌套（字典套字典 / 字典套列表）
+- W10-L03：实战宠物图鉴（4 个核心函数）
 
-今天：打磨 + 邀请家人对战。
+今天把宠物图鉴升级到「**完整版**」——能搜索、能加技能、能战斗、保存到文件。
 
-## 二、打磨清单（30 分钟）
+## 二、项目：完整版图鉴（60 分钟）
 
-### 打磨 1：菜单清晰
+> 📁 项目存 `~/learning-homework/<你的学员名>/homework/`，新建 `pet_codex_v1.py`。
 
-```python
-def main():
-    print("=== Game Menu ===")
-    print("1. Single battle")
-    print("2. Tournament (5 battles)")
-    print("3. Quit")
-
-    choice = input("> ").strip()
-    if choice == "1":
-        play_round()
-    elif choice == "2":
-        play_tournament()
-    elif choice == "3":
-        print("Bye!")
-```
-
-### 打磨 2：清晰反馈
-
-每一步都要 print 让玩家知道发生了什么：
-
-```python
-# Before:
-enemy["hp"] -= dmg
-
-# After:
-old_hp = enemy["hp"]
-enemy["hp"] -= dmg
-print(f"You hit {enemy['name']} for {dmg}! ({old_hp} -> {enemy['hp']})")
-```
-
-### 打磨 3：保存战绩
+### 完整代码
 
 ```python
 import json
 import os
 
-STATS_FILE = "rpg_stats.json"
+CODE_FILE = "pet_codex.json"
 
-def save_stats(stats):
-    with open(STATS_FILE, "w") as f:
-        json.dump(stats, f)
-
-def load_stats():
-    if os.path.exists(STATS_FILE):
-        with open(STATS_FILE) as f:
+def load_codex():
+    if os.path.exists(CODE_FILE):
+        with open(CODE_FILE) as f:
             return json.load(f)
-    return {"wins": 0, "losses": 0, "highest_level": 1}
+    return {}
+
+def save_codex(codex):
+    with open(CODE_FILE, "w") as f:
+        json.dump(codex, f, indent=2)
+    print("Saved!")
+
+def show_pet(codex, name):
+    if name not in codex:
+        print(f"{name} not in codex")
+        return
+    pet = codex[name]
+    print(f"\n=== {name} ===")
+    print(f"Species: {pet['species']}")
+    stats = pet["stats"]
+    print(f"HP: {stats['hp']}  ATK: {stats['attack']}  DEF: {stats['defense']}")
+    print(f"Skills: {', '.join(pet['skills']) if pet['skills'] else '(none)'}")
+
+def add_pet(codex, name, species, hp, attack, defense):
+    if name in codex:
+        print(f"{name} already exists")
+        return
+    codex[name] = {
+        "species": species,
+        "stats": {"hp": hp, "attack": attack, "defense": defense},
+        "skills": [],
+    }
+    print(f"Added {name}!")
+
+def add_skill(codex, name, skill):
+    if name not in codex:
+        print(f"{name} not in codex")
+        return
+    if skill in codex[name]["skills"]:
+        print(f"{name} already knows {skill}")
+        return
+    codex[name]["skills"].append(skill)
+    print(f"{name} learned {skill}!")
+
+def search_by_species(codex, species):
+    print(f"\n=== {species}s ===")
+    found = False
+    for name in codex:
+        if codex[name]["species"] == species:
+            print(f"- {name}")
+            found = True
+    if not found:
+        print("(none)")
+
+def list_all(codex):
+    print("\n=== All Pets ===")
+    for name in codex:
+        pet = codex[name]
+        print(f"- {name} ({pet['species']}): HP {pet['stats']['hp']}")
+
+def main():
+    codex = load_codex()
+
+    while True:
+        print("\n(show/add/skill/search/list/save/quit)")
+        action = input("> ").strip().lower()
+
+        if action == "show":
+            name = input("Pet name: ")
+            show_pet(codex, name)
+        elif action == "add":
+            name = input("Name: ")
+            species = input("Species: ")
+            hp = int(input("HP: "))
+            atk = int(input("Attack: "))
+            df = int(input("Defense: "))
+            add_pet(codex, name, species, hp, atk, df)
+        elif action == "skill":
+            name = input("Pet name: ")
+            skill = input("Skill: ")
+            add_skill(codex, name, skill)
+        elif action == "search":
+            species = input("Species to search: ")
+            search_by_species(codex, species)
+        elif action == "list":
+            list_all(codex)
+        elif action == "save":
+            save_codex(codex)
+        elif action == "quit":
+            save_codex(codex)
+            break
+        else:
+            print("Unknown action")
+
+main()
 ```
 
-### 打磨 4：随机事件
+## 三、验收标准（自助验收）
 
-战斗间隙可触发随机事件：
+- [ ] 完整代码跑通，能加宠物 / 加技能 / 搜索 / 列出
+- [ ] 重启程序后数据还在（save + load）
+- [ ] 至少加 3 只宠物 + 给它们分别加 2 个技能
+- [ ] 给家人 / 朋友演示一遍
 
-```python
-def random_event(player):
-    roll = random.random()
-    if roll < 0.3:
-        print("You found a herb! +30 HP")
-        player["hp"] = min(player["max_hp"], player["hp"] + 30)
-    elif roll < 0.4:
-        print("You tripped! -10 HP")
-        player["hp"] = max(1, player["hp"] - 10)
-    # 60% chance of nothing
-```
+## 四、W10 全周自查
 
-## 三、家人对战赛（30 分钟）
+- [ ] L01：字典基础（增删改查）
+- [ ] L02：嵌套（字典套字典 / 列表）
+- [ ] L03：实战图鉴
+- [ ] 周末：完整版图鉴能加能查能存
+- [ ] 我能给家人解释「字典 = 名字找东西」
 
-### 流程
-
-1. 给家人演示你的 RPG 战斗，让他们玩 1-2 局
-2. 听他们反馈：哪里卡？哪里好？
-3. 改一轮（同样只改细节，不重写）
-
-### 常见反馈
-
-- 「我看不懂能选什么」 → 加选项提示
-- 「战斗太短不过瘾」 → 加更多敌人 / 加 boss
-- 「死了想重来」 → 加重玩机制
-- 「想升级但不知道规则」 → 加 help 命令
-
-## 四、验收标准（自助验收）
-
-- [ ] 打磨清单至少做 2 项
-- [ ] 至少 2 个真人玩过
-- [ ] 反馈改一轮（至少 3 处）
-- [ ] 玩家能完整通关 + 升级
-
-## 五、W11 全周自查
-
-- [ ] L01：random 模块四件套
-- [ ] L02：石头剪刀布
-- [ ] L03：文字 RPG 战斗
-- [ ] 周末：打磨 + 2 真人测试 + 改一轮
-- [ ] 我能给家人完整玩一局 RPG
-
-W11 毕业 🎮 → 进入 W12「🏆 毕业项目 🎓」。自选主题，从设计图到作品，100+ 行代码，向家人展示。
+W10 毕业 📚 → 进入 W11「随机与游戏」。W03-weekend 已经借过 `random.randint`，W11 正式学 random 模块 + 实战石头剪刀布 + 文字 RPG 战斗。

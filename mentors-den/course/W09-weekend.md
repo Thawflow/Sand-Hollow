@@ -1,127 +1,178 @@
-# W09-weekend · 用 turtle 画一幅完整的画（签名！）
+# W09-weekend · 词典寻宝赛 + 读程序挑战
 
-> 用时：60-90 分钟 · 难度：⭐⭐⭐ · 前置：W09 三课
+> 用时：60-90 分钟 · 难度：⭐⭐⭐⭐ · 前置：W09 三课
 
 ---
 
 ## 一、本周武功盘点（3 分钟）
 
-- W09-L01：forward / left / right + 正多边形
-- W09-L02：pencolor / fillcolor / pensize + 填充
-- W09-L03：循环画图（多边形族 / 雪花 / 螺旋）
+- 二分查找：有序 + 能跳中间 → 每次砍一半，7 次搞定 100 格
+- `binary_search` 函数：low / high / mid 三兄弟 + `//` 整除 + `mid ± 1`
+- 快慢尺：数据翻倍，步数翻倍（跟着涨）/ 只加 1（砍半）/ 翻 4 倍（平方涨）
 
-今天画一幅**完整的画**——能签上名字、给家人看那种。
+今天两件事：**A 一场正经比赛** + **B 一种新题型**（读别人的程序，猜它干什么）。
 
-## 二、项目：自由创作（60 分钟）
+## 二、项目 A：部族名册寻宝赛（35 分钟）
 
-> 📁 项目存 `~/learning-homework/<你的学员名>/homework/`，新建 `my_art.py`。
+> 📁 项目存 `~/learning-homework/<你的学员名>/homework/`，新建 `roster_race.py`。
 
-任选一题（也可自己设计）：
+场景：四大部族的联合名册（第一步先造一份**有序**的大名单），族长报出一只猫的名字，看谁最快找到它在第几 位。
 
-### 选项 A：彩色曼陀罗
+**第 1 步 · 造名册（5 分钟）**
 
 ```python
-import turtle
 import random
 
-t = turtle.Turtle()
-t.speed(0)
-t.pensize(2)
+def make_roster(n):
+    """造一份 n 只猫的有序名册：名字由 cat + 编号 组成"""
+    names = ["cat" + str(i) for i in range(1, n + 1)]   # W06 列表推导预备版
+    return names                                          # cat1, cat2, ... 天生有序
 
-colors = ["red", "orange", "yellow", "green", "blue", "purple", "pink"]
-
-# Draw 12 petals
-for petal in range(12):
-    t.pencolor(random.choice(colors))
-    t.fillcolor(random.choice(colors))
-    t.begin_fill()
-    for i in range(3):
-        t.forward(80)
-        t.left(120)
-    t.end_fill()
-    t.left(30)
-
-turtle.done()
+roster = make_roster(1000)
 ```
 
-### 选项 B：星空
+**第 2 步 · 两名选手同场竞技（15 分钟）**
+
+把 W13-L02 的两个函数搬进来（这次**自己默写**，不许翻笔记——这是周末项目的规矩），然后：
 
 ```python
-import turtle
-import random
+target = random.choice(roster)          # 族长随机点名
 
-t = turtle.Turtle()
-t.speed(0)
-t.penup()
-
-# 100 random stars
-for star in range(100):
-    x = random.randint(-200, 200)
-    y = random.randint(-200, 200)
-    size = random.randint(2, 8)
-    color = random.choice(["white", "yellow", "lightyellow", "lightblue"])
-
-    t.goto(x, y)
-    t.pendown()
-    t.pencolor(color)
-    t.dot(size)  # small filled circle
-    t.penup()
-
-# Moon
-t.goto(150, 150)
-t.pendown()
-t.fillcolor("lightyellow")
-t.begin_fill()
-t.circle(40)
-t.end_fill()
-
-turtle.done()
+slow_steps = slow_search(target, roster)
+fast_steps = binary_search(target, roster)
+print(f"目标 {target}：逐格搜 {slow_steps} 步，二分 {fast_steps} 步")
 ```
 
-### 选项 C：自定义（推荐）
+**第 3 步 · 全场大奖赛（15 分钟）**
 
-画你想画的东西：
-
-- 一只卡通动物（猫/狗/鱼）
-- 一棵树（树干 + 树叶圆圈）
-- 一辆汽车（矩形 + 圆形轮子）
-- 一栋房子 + 花园 + 太阳
-- 你名字的首字母装饰版
-
-## 三、签名（5 分钟）
-
-画完给作品签上名字：
+随机点 100 次名，两名选手各记总步数：
 
 ```python
-import turtle
-# ... your drawing ...
-
-# Signature
-t.penup()
-t.goto(-200, -250)
-t.pendown()
-t.pencolor("black")
-t.write("By [your name], Sep 2026", font=("Arial", 12, "normal"))
-
-turtle.done()
+slow_total, fast_total = 0, 0
+for i in range(100):
+    target = random.choice(roster)
+    slow_total += slow_search(target, roster)
+    fast_total += binary_search(target, roster)
+print(f"100 场总步数：逐格 {slow_total} 步 vs 二分 {fast_total} 步")
 ```
 
-`t.write()` 是 turtle 的「写字」功能，可以写 ASCII 文字（中文需要换字体）。
+**验收提问（mentor 会问）：**
 
-## 四、验收标准（自助验收）
+1. 逐格的平均步数大约是多少？（提示：随机点名，平均走到名单一半偏后的位置）
+2. 二分的步数为什么几乎不波动？
+3. 名册从 1000 扩到 8000，两位选手的总步数各怎么变？（先用翻倍问题预测，再实测）
 
-- [ ] 画作能完整跑通，无报错
-- [ ] 至少用了 3 种颜色（线条或填充）
-- [ ] 用到循环画图（不只是画静态形状）
-- [ ] 签名落档
-- [ ] 给家人 / 朋友看过，至少 1 人说「好看」
+## 三、项目 B：读程序挑战——新题型登场（25 分钟）
 
-## 五、W09 全周自查
+从今天起，周末项目多一种题型：**读一段别人写好的程序，推理它的输出**。不运行，先猜，再验证。这是检验"真懂还是假懂"的试金石（也是很多编程能力测评的标准题型）。
 
-- [ ] L01：forward / left / right + 正方形
-- [ ] L02：pencolor / fillcolor + 填充
-- [ ] L03：循环画图（多边形 / 雪花 / 螺旋）
-- [ ] 周末：画了一幅完整画作 + 签名
-- [ ] 我能给家人解释「turtle = 程序画画的小海龟」
+### 第 1 题 · 它在干什么？
 
-W09 毕业 🎨 → 进入 W10「字典：名字 → 东西的魔法地图」。W06 学的列表用索引 `[0]`、`[1]`，字典用「名字」找东西——像查电话簿。
+```python
+def mystery(numbers):
+    low, high = 0, len(numbers) - 1
+    while low <= high:
+        mid = (low + high) // 2
+        if numbers[mid] == 7:
+            return mid
+        elif numbers[mid] < 7:
+            low = mid + 1
+        else:
+            high = mid - 1
+    return -1
+
+print(mystery([1, 3, 5, 7, 9, 11, 13]))
+```
+
+先答三个小问（写在注释里）：① 它找的是什么？② 返回的数字是什么意思？③ 输出是几？
+
+### 第 2 题 · 一步一追踪
+
+```python
+x, y = 1, 100
+steps = 0
+while x < y:
+    x = x * 2
+    steps = steps + 1
+print(steps)
+```
+
+输出是几？这段程序和本周哪个概念是"一体两面"？（提示：反着数一遍 2 的连乘）
+
+### 第 3 题 · 找茬题
+
+下面的二分查找有**一处 bug**，会导致某个目标永远找不到。找出它，说清什么情况下翻车：
+
+```python
+def buggy_search(name, roster):
+    low, high = 0, len(roster) - 1
+    while low < high:                    # ← 盯着这行和正常版比
+        mid = (low + high) // 2
+        if roster[mid] == name:
+            return mid
+        elif roster[mid] < name:
+            low = mid
+        else:
+            high = mid
+    return -1
+```
+
+### 验证方式
+
+三题全部**先笔答再运行**。运行结果和笔答一致才算过关；不一致的话，错在哪一步，回头补哪一步。
+
+## 四、讲给家人听（15 分钟，本周最重要的一环）
+
+本周验收有一道**口头题**，讲给家里人听（爸妈、爷爷奶奶、AI 分身都行）：
+
+> "为什么在 100 万个东西里找一个，最多只要问 20 次？"
+
+规则：不许说"就是二分查找"这种术语甩锅，要用**自己的比方**（雪原、词典、猜数字都行）把家里人讲到点头为止。家人没听懂 = 重讲，换比方。
+
+讲完让听的人签个名（或录一段 30 秒的语音），写进作业文件最后一行。
+
+## 五、🤖 AI 常识胶囊 · 第 4 颗：开源 vs 闭源 + 1 分钟小演讲（约 5 分钟）
+
+本周口头题讲给家人听，胶囊也升级一颗"面试真题"级——2026 年清华附 AI 营面试真考过：
+
+> 面试官：未来五年，你更看好**开源**还是**闭源**？
+
+先懂词：
+
+- **开源**：代码公开，人人能看、能改、能自己搭（DeepSeek 的模型、手机的安卓系统）
+- **闭源**：只给你用，不给看内部（很多收费软件、部分商业 AI）
+
+没有标准答案，考的是**你怎么想**。用「**观点一句 + 理由两句 + 例子一句**」的 1 分钟结构，讲给家人听，请他们当面试官。
+
+**⚔️ 判一判**
+
+1. 开源软件就是免费的、没人管的软件。
+2. DeepSeek 的模型是开源的。
+
+**答案**：1 ✗（开源有"许可证"规矩、有社区维护，"开放"≠"随便拿"；很多开源软件由很厉害的团队维护）；2 ✓（DeepSeek 把模型公开了，全世界的人都能下载研究——这正是它出名的原因之一）。
+
+## 六、👀 C++ 认脸时刻（1 分钟 · 只看不敲）
+
+今天大奖赛"记总步数"的累加器，C++ 版：
+
+```cpp
+int steps[5] = {7, 8, 7, 9, 7};    // 二分 5 局各用几步
+int total = 0;
+for (int i = 0; i < 5; i = i + 1)
+    total = total + steps[i];       // 累加器模式（W04 的老朋友）
+```
+
+- **认脸①**：`int steps[5] = {…}`——数组（列表的 C++ 亲戚）可以带"出厂设置"
+- **认脸②**：`steps[i]` 下标从 **0** 开始数——和 Python 一样，两边通用
+- **认脸③**：整数 ÷ 整数自动整除：`38 / 5` 得 `7`，不是 `7.6`
+
+## 七、自查清单
+
+- [ ] 项目 A 跑通 100 场大奖赛，三个验收提问答得出
+- [ ] 默写 `binary_search` 一次成功（没翻笔记）
+- [ ] 读程序三题全部"先笔答后验证"，笔答全对或搞懂了错在哪
+- [ ] 口头题完成，家人点头 + 签名
+- [ ] 🚀 加速挑战：把项目 A 的名册扩到 100 万，两位选手再赛一场（先预测二分总步数会不会超过 2000，再实测）
+- [ ] 🤖 AI 胶囊第 4 颗拿下：判断题 2 道全对 + 1 分钟"开源 vs 闭源"小演讲完成（家人当了一次面试官）
+
+> 📚 配套阅读：《算法图解》第 1 章整章（含章末练习，喜欢挑战的同学可以试试 1.1-1.4 题）

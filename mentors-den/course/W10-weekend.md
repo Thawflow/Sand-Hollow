@@ -1,138 +1,127 @@
-# W10-weekend · 宠物图鉴 v1：完整版
+# W10-weekend · 用 turtle 画一幅完整的画（签名！）
 
-> 用时：60-90 分钟 · 难度：⭐⭐⭐ · 前置：W10 三课
+> 用时：60-90 分钟 · 难度：⭐⭐⭐ · 前置：W09 三课
 
 ---
 
 ## 一、本周武功盘点（3 分钟）
 
-- W10-L01：字典基础（增删改查 + 遍历）
-- W10-L02：嵌套（字典套字典 / 字典套列表）
-- W10-L03：实战宠物图鉴（4 个核心函数）
+- W09-L01：forward / left / right + 正多边形
+- W09-L02：pencolor / fillcolor / pensize + 填充
+- W09-L03：循环画图（多边形族 / 雪花 / 螺旋）
 
-今天把宠物图鉴升级到「**完整版**」——能搜索、能加技能、能战斗、保存到文件。
+今天画一幅**完整的画**——能签上名字、给家人看那种。
 
-## 二、项目：完整版图鉴（60 分钟）
+## 二、项目：自由创作（60 分钟）
 
-> 📁 项目存 `~/learning-homework/<你的学员名>/homework/`，新建 `pet_codex_v1.py`。
+> 📁 项目存 `~/learning-homework/<你的学员名>/homework/`，新建 `my_art.py`。
 
-### 完整代码
+任选一题（也可自己设计）：
+
+### 选项 A：彩色曼陀罗
 
 ```python
-import json
-import os
+import turtle
+import random
 
-CODE_FILE = "pet_codex.json"
+t = turtle.Turtle()
+t.speed(0)
+t.pensize(2)
 
-def load_codex():
-    if os.path.exists(CODE_FILE):
-        with open(CODE_FILE) as f:
-            return json.load(f)
-    return {}
+colors = ["red", "orange", "yellow", "green", "blue", "purple", "pink"]
 
-def save_codex(codex):
-    with open(CODE_FILE, "w") as f:
-        json.dump(codex, f, indent=2)
-    print("Saved!")
+# Draw 12 petals
+for petal in range(12):
+    t.pencolor(random.choice(colors))
+    t.fillcolor(random.choice(colors))
+    t.begin_fill()
+    for i in range(3):
+        t.forward(80)
+        t.left(120)
+    t.end_fill()
+    t.left(30)
 
-def show_pet(codex, name):
-    if name not in codex:
-        print(f"{name} not in codex")
-        return
-    pet = codex[name]
-    print(f"\n=== {name} ===")
-    print(f"Species: {pet['species']}")
-    stats = pet["stats"]
-    print(f"HP: {stats['hp']}  ATK: {stats['attack']}  DEF: {stats['defense']}")
-    print(f"Skills: {', '.join(pet['skills']) if pet['skills'] else '(none)'}")
-
-def add_pet(codex, name, species, hp, attack, defense):
-    if name in codex:
-        print(f"{name} already exists")
-        return
-    codex[name] = {
-        "species": species,
-        "stats": {"hp": hp, "attack": attack, "defense": defense},
-        "skills": [],
-    }
-    print(f"Added {name}!")
-
-def add_skill(codex, name, skill):
-    if name not in codex:
-        print(f"{name} not in codex")
-        return
-    if skill in codex[name]["skills"]:
-        print(f"{name} already knows {skill}")
-        return
-    codex[name]["skills"].append(skill)
-    print(f"{name} learned {skill}!")
-
-def search_by_species(codex, species):
-    print(f"\n=== {species}s ===")
-    found = False
-    for name in codex:
-        if codex[name]["species"] == species:
-            print(f"- {name}")
-            found = True
-    if not found:
-        print("(none)")
-
-def list_all(codex):
-    print("\n=== All Pets ===")
-    for name in codex:
-        pet = codex[name]
-        print(f"- {name} ({pet['species']}): HP {pet['stats']['hp']}")
-
-def main():
-    codex = load_codex()
-
-    while True:
-        print("\n(show/add/skill/search/list/save/quit)")
-        action = input("> ").strip().lower()
-
-        if action == "show":
-            name = input("Pet name: ")
-            show_pet(codex, name)
-        elif action == "add":
-            name = input("Name: ")
-            species = input("Species: ")
-            hp = int(input("HP: "))
-            atk = int(input("Attack: "))
-            df = int(input("Defense: "))
-            add_pet(codex, name, species, hp, atk, df)
-        elif action == "skill":
-            name = input("Pet name: ")
-            skill = input("Skill: ")
-            add_skill(codex, name, skill)
-        elif action == "search":
-            species = input("Species to search: ")
-            search_by_species(codex, species)
-        elif action == "list":
-            list_all(codex)
-        elif action == "save":
-            save_codex(codex)
-        elif action == "quit":
-            save_codex(codex)
-            break
-        else:
-            print("Unknown action")
-
-main()
+turtle.done()
 ```
 
-## 三、验收标准（自助验收）
+### 选项 B：星空
 
-- [ ] 完整代码跑通，能加宠物 / 加技能 / 搜索 / 列出
-- [ ] 重启程序后数据还在（save + load）
-- [ ] 至少加 3 只宠物 + 给它们分别加 2 个技能
-- [ ] 给家人 / 朋友演示一遍
+```python
+import turtle
+import random
 
-## 四、W10 全周自查
+t = turtle.Turtle()
+t.speed(0)
+t.penup()
 
-- [ ] L01：字典基础（增删改查）
-- [ ] L02：嵌套（字典套字典 / 列表）
-- [ ] L03：实战图鉴
-- [ ] 周末：完整版图鉴能加能查能存
-- [ ] 我能给家人解释「字典 = 名字找东西」
+# 100 random stars
+for star in range(100):
+    x = random.randint(-200, 200)
+    y = random.randint(-200, 200)
+    size = random.randint(2, 8)
+    color = random.choice(["white", "yellow", "lightyellow", "lightblue"])
 
-W10 毕业 📚 → 进入 W11「随机与游戏」。W03-weekend 已经借过 `random.randint`，W11 正式学 random 模块 + 实战石头剪刀布 + 文字 RPG 战斗。
+    t.goto(x, y)
+    t.pendown()
+    t.pencolor(color)
+    t.dot(size)  # small filled circle
+    t.penup()
+
+# Moon
+t.goto(150, 150)
+t.pendown()
+t.fillcolor("lightyellow")
+t.begin_fill()
+t.circle(40)
+t.end_fill()
+
+turtle.done()
+```
+
+### 选项 C：自定义（推荐）
+
+画你想画的东西：
+
+- 一只卡通动物（猫/狗/鱼）
+- 一棵树（树干 + 树叶圆圈）
+- 一辆汽车（矩形 + 圆形轮子）
+- 一栋房子 + 花园 + 太阳
+- 你名字的首字母装饰版
+
+## 三、签名（5 分钟）
+
+画完给作品签上名字：
+
+```python
+import turtle
+# ... your drawing ...
+
+# Signature
+t.penup()
+t.goto(-200, -250)
+t.pendown()
+t.pencolor("black")
+t.write("By [your name], Sep 2026", font=("Arial", 12, "normal"))
+
+turtle.done()
+```
+
+`t.write()` 是 turtle 的「写字」功能，可以写 ASCII 文字（中文需要换字体）。
+
+## 四、验收标准（自助验收）
+
+- [ ] 画作能完整跑通，无报错
+- [ ] 至少用了 3 种颜色（线条或填充）
+- [ ] 用到循环画图（不只是画静态形状）
+- [ ] 签名落档
+- [ ] 给家人 / 朋友看过，至少 1 人说「好看」
+
+## 五、W09 全周自查
+
+- [ ] L01：forward / left / right + 正方形
+- [ ] L02：pencolor / fillcolor + 填充
+- [ ] L03：循环画图（多边形 / 雪花 / 螺旋）
+- [ ] 周末：画了一幅完整画作 + 签名
+- [ ] 我能给家人解释「turtle = 程序画画的小海龟」
+
+W09 毕业 🎨 → 进入 W10「字典：名字 → 东西的魔法地图」。W06 学的列表用索引 `[0]`、`[1]`，字典用「名字」找东西——像查电话簿。

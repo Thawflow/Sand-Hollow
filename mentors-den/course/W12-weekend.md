@@ -1,89 +1,114 @@
-# W12-weekend · 🎓 毕业展
+# W12-weekend · 打磨 + 家人对战赛
 
-> 用时：60-120 分钟 · 难度：⭐⭐⭐⭐ · 前置：W12 三课
+> 用时：60-90 分钟 · 难度：⭐⭐⭐ · 前置：W11 三课
 
 ---
 
-## 一、本周回顾（3 分钟）
+## 一、本周武功盘点（3 分钟）
 
-- W12-L01：选题 + 设计图
-- W12-L02：逐块实现 + 跑通
-- W12-L03：作品说明 + 家族展示
+- W11-L01：random 模块（randint / choice / shuffle / sample）
+- W11-L02：石头剪刀布（多局 + 计分 + emoji）
+- W11-L03：文字 RPG 战斗（玩家 + 敌人 + 升级）
 
-今天是毕业展——**正式向家人完整演示 + 庆祝**。
+今天：打磨 + 邀请家人对战。
 
-## 二、毕业展流程（60 分钟）
+## 二、打磨清单（30 分钟）
 
-### 第一段：5 分钟自我介绍 + 项目概述
+### 打磨 1：菜单清晰
 
-讲三件事：
+```python
+def main():
+    print("=== Game Menu ===")
+    print("1. Single battle")
+    print("2. Tournament (5 battles)")
+    print("3. Quit")
 
-1. 这是什么（功能 + 解决的问题）
-2. 我怎么做的（设计图 → 逐块 → 跑通）
-3. 我学到了什么（最大收获 + 还想改进）
+    choice = input("> ").strip()
+    if choice == "1":
+        play_round()
+    elif choice == "2":
+        play_tournament()
+    elif choice == "3":
+        print("Bye!")
+```
 
-### 第二段：10 分钟现场演示
+### 打磨 2：清晰反馈
 
-完整跑一遍项目：
+每一步都要 print 让玩家知道发生了什么：
 
-- 启动 → 主菜单 → 核心功能 → 保存 → 退出 → 重启看加载
-- **故意出错一次**（如输入无效值），展示程序怎么应对
-- **展示一个亮点**（最让你自豪的部分）
+```python
+# Before:
+enemy["hp"] -= dmg
 
-### 第三段：5 分钟家人上手
+# After:
+old_hp = enemy["hp"]
+enemy["hp"] -= dmg
+print(f"You hit {enemy['name']} for {dmg}! ({old_hp} -> {enemy['hp']})")
+```
 
-让家人自己试一遍，看他们能不能独立完成一个核心任务。
+### 打磨 3：保存战绩
 
-### 第四段：10 分钟反馈 + 改进
+```python
+import json
+import os
 
-让家人说：
+STATS_FILE = "rpg_stats.json"
 
-- 哪里不清楚？
-- 哪里做得好？
-- 哪里想改？
+def save_stats(stats):
+    with open(STATS_FILE, "w") as f:
+        json.dump(stats, f)
 
-**当场改 2-3 处**，展示你能「听完即改」。
+def load_stats():
+    if os.path.exists(STATS_FILE):
+        with open(STATS_FILE) as f:
+            return json.load(f)
+    return {"wins": 0, "losses": 0, "highest_level": 1}
+```
 
-### 第五段：5 分钟庆祝 🎉
+### 打磨 4：随机事件
 
-毕业了！给自己和家人一个庆祝仪式：
+战斗间隙可触发随机事件：
 
-- 拍一张你和家人的合影
-- 把作品 git commit 一笔：「毕业项目 v1.0」
-- 写一句话给未来的自己（保存到 `life/`）
+```python
+def random_event(player):
+    roll = random.random()
+    if roll < 0.3:
+        print("You found a herb! +30 HP")
+        player["hp"] = min(player["max_hp"], player["hp"] + 30)
+    elif roll < 0.4:
+        print("You tripped! -10 HP")
+        player["hp"] = max(1, player["hp"] - 10)
+    # 60% chance of nothing
+```
 
-## 三、毕业标准（自助验收）
+## 三、家人对战赛（30 分钟）
 
-- [ ] 项目 100+ 行代码（不算注释和空行）
-- [ ] 项目能跑通，零崩溃
-- [ ] README 完整 + 演示成功
-- [ ] 至少 2 个家人看过
-- [ ] 反馈改了一轮
-- [ ] git commit 落档毕业版本
+### 流程
 
-## 四、W12 + 12 周全周自查
+1. 给家人演示你的 RPG 战斗，让他们玩 1-2 局
+2. 听他们反馈：哪里卡？哪里好？
+3. 改一轮（同样只改细节，不重写）
 
-- [ ] W12 毕业项目 100+ 行 + 跑通 + 家人演示
-- [ ] 12 周课程全部完成（W01-W12）
-- [ ] 我能给完全不懂编程的人讲清我的项目
-- [ ] 我知道接下来想学什么（Web？游戏？数据分析？）
+### 常见反馈
 
-## 五、🎓 毕业赠言
+- 「我看不懂能选什么」 → 加选项提示
+- 「战斗太短不过瘾」 → 加更多敌人 / 加 boss
+- 「死了想重来」 → 加重玩机制
+- 「想升级但不知道规则」 → 加 help 命令
 
-12 周前你连 print 都不会，现在你能做一个完整作品给别人用。这中间的每个 print、每个 for、每个 bug、每个 fix，都是你自己的。
+## 四、验收标准（自助验收）
 
-Python 是个工具，但**学会「拆解问题 → 写代码 → 测试 → 改进」这套思维**，比 Python 本身更重要。
+- [ ] 打磨清单至少做 2 项
+- [ ] 至少 2 个真人玩过
+- [ ] 反馈改一轮（至少 3 处）
+- [ ] 玩家能完整通关 + 升级
 
-接下来你可以选：
+## 五、W11 全周自查
 
-- **Web 开发**（Flask / Django）—— 做网站
-- **数据分析**（pandas）—— 处理 Excel / 数据
-- **游戏开发**（Pygame）—— 做真游戏
-- **AI / 机器学习**（scikit-learn）—— 让程序学
-- **自动化脚本**—— 解放双手
+- [ ] L01：random 模块四件套
+- [ ] L02：石头剪刀布
+- [ ] L03：文字 RPG 战斗
+- [ ] 周末：打磨 + 2 真人测试 + 改一轮
+- [ ] 我能给家人完整玩一局 RPG
 
-**任何方向，方法都一样**：拆解 + 写 + 测 + 改。
-
-🎓 毕业快乐！
-
-—— 你的 mentor + Python 课教学组
+W11 毕业 🎮 → 进入 W12「🏆 毕业项目 🎓」。自选主题，从设计图到作品，100+ 行代码，向家人展示。
