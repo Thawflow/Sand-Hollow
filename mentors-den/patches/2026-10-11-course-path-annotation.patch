@@ -1,0 +1,1060 @@
+diff --git a/mentors-den/course/W01-L01.md b/mentors-den/course/W01-L01.md
+index 6dfd275..5845ee8 100644
+--- a/mentors-den/course/W01-L01.md
++++ b/mentors-den/course/W01-L01.md
+@@ -4,7 +4,8 @@
+ 
+ ---
+ 
+-> **📂 课前准备 · 随堂练习文件**：先在 Thonny `文件 → 新建`，立刻 `文件 → 另存为...` 存为 `~/learning-homework/<你的学员名>/homework/W01-L01-practice.py`（ThawPaw 对应 `thawpaw/homework/`，Tree 对应 `tree/homework/`）。本课所有亲手敲的代码都写进这个文件；课后作业 `W01-L01-homework.py` 是另一个文件，别混。
++> **📂 课前准备 · 随堂练习文件**：先在 Thonny `文件 → 新建`，立刻 `文件 → 另存为...` 存为 `~/Sand-Hollow/<你的学员名>/homework/W01-L01-practice.py`（ThawPaw 对应 `thawpaw/homework/`，Tree 对应 `tree/homework/`）。本课所有亲手敲的代码都写进这个文件；课后作业 `W01-L01-homework.py` 是另一个文件，别混。
++> （ThawPaw 机：~/learning-homework · Tree 机：~/Sand-Hollow）
+ 
+ ## 一、Python 是什么（5 分钟）
+ 
+@@ -65,7 +66,7 @@ print("Hello, Python!")
+ print("This is my first line of code")
+ ```
+ 
+-点 Run，第一次会让你保存——用 `文件 → 另存为...` 存到 `~/learning-homework/<你的学员名>/homework/`（目录没有就新建），标题栏路径确认 ✅ 后文件名填 `first.py`。看下方 Shell 区——你的程序说话了！🎉
++点 Run，第一次会让你保存——用 `文件 → 另存为...` 存到 `~/Sand-Hollow/<你的学员名>/homework/`（目录没有就新建），标题栏路径确认 ✅ 后文件名填 `first.py`。看下方 Shell 区——你的程序说话了！🎉
+ 
+ ### 逐字拆解 `print("Hello, Python!")`
+ 
+diff --git a/mentors-den/course/W01-L02.md b/mentors-den/course/W01-L02.md
+index a7c62f8..7c0eeed 100644
+--- a/mentors-den/course/W01-L02.md
++++ b/mentors-den/course/W01-L02.md
+@@ -4,7 +4,8 @@
+ 
+ ---
+ 
+-> **📂 课前准备 · 随堂练习文件**：先在 Thonny `文件 → 新建`，立刻 `文件 → 另存为...` 存为 `~/learning-homework/<你的学员名>/homework/W01-L02-practice.py`（ThawPaw 对应 `thawpaw/homework/`，Tree 对应 `tree/homework/`）。本课所有亲手敲的代码都写进这个文件；课后作业 `W01-L02-homework.py` 是另一个文件，别混。
++> **📂 课前准备 · 随堂练习文件**：先在 Thonny `文件 → 新建`，立刻 `文件 → 另存为...` 存为 `~/Sand-Hollow/<你的学员名>/homework/W01-L02-practice.py`（ThawPaw 对应 `thawpaw/homework/`，Tree 对应 `tree/homework/`）。本课所有亲手敲的代码都写进这个文件；课后作业 `W01-L02-homework.py` 是另一个文件，别混。
++> （ThawPaw 机：~/learning-homework · Tree 机：~/Sand-Hollow）
+ 
+ ## 一、概念：变量 = 贴了标签的盒子（5 分钟）
+ 
+@@ -26,7 +27,7 @@ score = 95
+ 
+ > 📁 **课前准备（完整路径三步检查框 ✅）：**
+ > 1. 打开 Thonny → `文件 → 新建`（别从旧文件打开）
+-> 2. **立刻** `文件 → 另存为...` → 路径完整确认 = `~/learning-homework/<你的学员名>/homework/W01-L02-practice.py`（以 ThawPaw 为例：`thawpaw/homework/`，Tree 对应 `tree/homework/`；目录没有就新建，平铺不建周子目录）
++> 2. **立刻** `文件 → 另存为...` → 路径完整确认 = `~/Sand-Hollow/<你的学员名>/homework/W01-L02-practice.py`（以 ThawPaw 为例：`thawpaw/homework/`，Tree 对应 `tree/homework/`；目录没有就新建，平铺不建周子目录）
+ > 3. Thonny 标题栏显示完整路径 = **完整路径核对完毕** ✅，再开始写第一行代码
+ >
+ > ⚠️ **坑提醒：** Thonny 默认保存到 `/用户/文档/` 或上次打开位置，「保存」不会弹路径对话框，只有「另存为」才会。文件落错地方 = 导师找不到，跑通也白搭。
+@@ -121,7 +122,7 @@ score = 95   # a comment can also follow the code, like this
+ 
+ ## 六、动手练习（先做完，再看第七节答案）
+ 
+-> 📁 **作业保存规则：** 本课课后练习写进一个文件 `W01-L02-homework.py`（存 `~/learning-homework/<你的学员名>/homework/`，以 ThawPaw 为例：`thawpaw/homework/W01-L02-homework.py`），每道题开头用刚学的备注分隔：`# --- 题 1 ---`、`# --- 题 2 ---`……**交完作业要跟你的 mentor 说一声（ThawPaw → IcePaw / Tree → 如意）才会批改**，评语出现在 `reviews/*.review.md`。 **回报触发词：交完作业或修完坑，都在群里回一句「修完了」——不回这句 mentor 不知道，坑会一直挂着等。**
++> 📁 **作业保存规则：** 本课课后练习写进一个文件 `W01-L02-homework.py`（存 `~/Sand-Hollow/<你的学员名>/homework/`，以 ThawPaw 为例：`thawpaw/homework/W01-L02-homework.py`），每道题开头用刚学的备注分隔：`# --- 题 1 ---`、`# --- 题 2 ---`……**交完作业要跟你的 mentor 说一声（ThawPaw → IcePaw / Tree → 如意）才会批改**，评语出现在 `reviews/*.review.md`。 **回报触发词：交完作业或修完坑，都在群里回一句「修完了」——不回这句 mentor 不知道，坑会一直挂着等。**
+ 
+ 1. 建 4 个变量：`my_name`（用化名，别用真名）/ `my_hobby` / `my_dream` / `my_food`，全部打印
+ 2. 大坑验证：建 `food = "ice cream"`，分别跑 `print(food)` 和 `print("food")`，把两个输出各是什么写进注释
+diff --git a/mentors-den/course/W01-L03.md b/mentors-den/course/W01-L03.md
+index e1ce81e..20cd795 100644
+--- a/mentors-den/course/W01-L03.md
++++ b/mentors-den/course/W01-L03.md
+@@ -4,7 +4,8 @@
+ 
+ ---
+ 
+-> **📂 课前准备 · 随堂练习文件**：先在 Thonny `文件 → 新建`，立刻 `文件 → 另存为...` 存为 `~/learning-homework/<你的学员名>/homework/W01-L03-practice.py`（ThawPaw 对应 `thawpaw/homework/`，Tree 对应 `tree/homework/`）。本课所有亲手敲的代码都写进这个文件；课后作业 `W01-L03-homework.py` 是另一个文件，别混。
++> **📂 课前准备 · 随堂练习文件**：先在 Thonny `文件 → 新建`，立刻 `文件 → 另存为...` 存为 `~/Sand-Hollow/<你的学员名>/homework/W01-L03-practice.py`（ThawPaw 对应 `thawpaw/homework/`，Tree 对应 `tree/homework/`）。本课所有亲手敲的代码都写进这个文件；课后作业 `W01-L03-homework.py` 是另一个文件，别混。
++> （ThawPaw 机：~/learning-homework · Tree 机：~/Sand-Hollow）
+ 
+ ## 一、概念：让程序跟你聊天（5 分钟）
+ 
+@@ -23,7 +24,7 @@ name = input("What is your name? ")
+ 
+ > 📁 **课前准备（完整路径三步检查框 ✅）：**
+ > 1. 打开 Thonny → `文件 → 新建`（别从旧文件打开）
+-> 2. **立刻** `文件 → 另存为...` → 路径完整确认 = `~/learning-homework/<你的学员名>/homework/W01-L03-practice.py`（和作业同目录，平铺不建周子目录）
++> 2. **立刻** `文件 → 另存为...` → 路径完整确认 = `~/Sand-Hollow/<你的学员名>/homework/W01-L03-practice.py`（和作业同目录，平铺不建周子目录）
+ > 3. Thonny 标题栏显示完整路径 = **完整路径核对完毕** ✅，再开始写第一行代码
+ >
+ > ⚠️ **坑提醒：** 「保存」不弹路径对话框，「另存为」才弹。文件落错地方 = 导师找不到，跑通也白搭。
+@@ -110,7 +111,7 @@ print(f"{a} / {b} = {a / b}")
+ 
+ > ⚠️ **交作业门禁：5 道题必须全部写完，并实际跑通至少 1 次。只有标题、空函数或半截代码，都算未完成。** 5 题都过再勾“通过”。
+ 
+-> 📁 **作业保存规则：** 本课课后练习全部写进一个文件 `W01-L03-homework.py`（存 `~/learning-homework/<你的学员名>/homework/`），每道题开头写一行备注分隔（如 `# --- 题 1：三问复述 ---`）。**交完作业要跟你的 mentor 说一声才会批改**，评语出现在 `reviews/*.review.md`。 **回报触发词：交完作业或修完坑，都在群里回一句「修完了」——不回这句 mentor 不知道，坑会一直挂着等。**
++> 📁 **作业保存规则：** 本课课后练习全部写进一个文件 `W01-L03-homework.py`（存 `~/Sand-Hollow/<你的学员名>/homework/`），每道题开头写一行备注分隔（如 `# --- 题 1：三问复述 ---`）。**交完作业要跟你的 mentor 说一声才会批改**，评语出现在 `reviews/*.review.md`。 **回报触发词：交完作业或修完坑，都在群里回一句「修完了」——不回这句 mentor 不知道，坑会一直挂着等。**
+ 
+ 1. （题 1 · 三问复述）问 3 个问题（最喜欢的游戏 / 最喜欢的动物 / 今天心情），最后用一句话全部复述
+ 2. （题 2 · 数猫）问家里有几只猫，int 转换后打印 `Next year you will have X + 1 cats`
+@@ -158,7 +159,7 @@ print(f"Average = {(a + b) / 2}")
+ 
+ ## 七、🏠 周末项目：自我介绍机器人（20-30 分钟）
+ 
+-把本周三课全部用上（print / 变量 / input），做一个 `W01-project.py`（存 `~/learning-homework/<你的学员名>/homework/`）：
++把本周三课全部用上（print / 变量 / input），做一个 `W01-project.py`（存 `~/Sand-Hollow/<你的学员名>/homework/`）：
+ 
+ **要求：**
+ 1. 机器人先自我介绍（print 两三行，给它个性：傲娇、话痨、毒舌都行）
+diff --git a/mentors-den/course/W02-L01.md b/mentors-den/course/W02-L01.md
+index 137576c..9d86af9 100644
+--- a/mentors-den/course/W02-L01.md
++++ b/mentors-den/course/W02-L01.md
+@@ -2,11 +2,12 @@
+ 
+ > 用时：30-45 分钟 · 难度：⭐⭐ · 前置：W01 三课
+ 
+-> 📁 **课前准备（开课第一件事）：** 打开 Thonny，新建文件 `W02-L01-practice.py`（`文件 → 新建`），保存到 `~/learning-homework/<你的学员名>/homework/`（以 ThawPaw 为例：`thawpaw/homework/`，Tree 对应 `tree/homework/`；平铺不建周子目录）。本课所有亲手敲的代码都写进它——这是**随堂练习文件**，与课后作业 `W02-L01-homework.py` 是两个文件，导师靠它确认你真的跟着练了。
++> 📁 **课前准备（开课第一件事）：** 打开 Thonny，新建文件 `W02-L01-practice.py`（`文件 → 新建`），保存到 `~/Sand-Hollow/<你的学员名>/homework/`（以 ThawPaw 为例：`thawpaw/homework/`，Tree 对应 `tree/homework/`；平铺不建周子目录）。本课所有亲手敲的代码都写进它——这是**随堂练习文件**，与课后作业 `W02-L01-homework.py` 是两个文件，导师靠它确认你真的跟着练了。
++> （ThawPaw 机：~/learning-homework · Tree 机：~/Sand-Hollow）
+ 
+ ---
+ 
+-> **📂 课前准备 · 随堂练习文件**：先在 Thonny `文件 → 新建`，立刻 `文件 → 另存为...` 存为 `~/learning-homework/<你的学员名>/homework/W02-L01-practice.py`（ThawPaw 对应 `thawpaw/homework/`，Tree 对应 `tree/homework/`）。本课所有亲手敲的代码都写进这个文件；课后作业 `W02-L01-homework.py` 是另一个文件，别混。
++> **📂 课前准备 · 随堂练习文件**：先在 Thonny `文件 → 新建`，立刻 `文件 → 另存为...` 存为 `~/Sand-Hollow/<你的学员名>/homework/W02-L01-practice.py`（ThawPaw 对应 `thawpaw/homework/`，Tree 对应 `tree/homework/`）。本课所有亲手敲的代码都写进这个文件；课后作业 `W02-L01-homework.py` 是另一个文件，别混。
+ 
+ ## 一、概念：数据也有"种族"（5 分钟）
+ 
+@@ -120,7 +121,7 @@ price = float(input("Price in yuan? "))
+ 
+ ## 六、动手练习（先做完，再看第七节答案）
+ 
+-> 📁 **作业保存规则：** 本节课后练习写进一个**新文件** `W02-L01-homework.py`（存 `~/learning-homework/<你的学员名>/homework/`，与随堂练习 `W02-L01-practice.py` 分开），每道题开头写一行备注分隔（如 `# --- 题 1 ---`）。**交完作业要跟你的 mentor 说一声（ThawPaw → IcePaw / Tree → 如意）才会批改**，评语出现在 `reviews/*.review.md`。 **回报触发词：交完作业或修完坑，都在群里回一句「修完了」——不回这句 mentor 不知道，坑会一直挂着等。**
++> 📁 **作业保存规则：** 本节课后练习写进一个**新文件** `W02-L01-homework.py`（存 `~/Sand-Hollow/<你的学员名>/homework/`，与随堂练习 `W02-L01-practice.py` 分开），每道题开头写一行备注分隔（如 `# --- 题 1 ---`）。**交完作业要跟你的 mentor 说一声（ThawPaw → IcePaw / Tree → 如意）才会批改**，评语出现在 `reviews/*.review.md`。 **回报触发词：交完作业或修完坑，都在群里回一句「修完了」——不回这句 mentor 不知道，坑会一直挂着等。**
+ 
+ 1. 透视镜练习：用 type() 查五样东西——`42`、`"42"`、`4.2`、`"ThawPaw"`、input 收到的回答。先笔猜，再运行
+ 2. 先猜再跑三连：`"2026" + "2026"`、`2026 + 2026`、`"10" * 3`
+diff --git a/mentors-den/course/W02-L02.md b/mentors-den/course/W02-L02.md
+index a763ee7..0a24620 100644
+--- a/mentors-den/course/W02-L02.md
++++ b/mentors-den/course/W02-L02.md
+@@ -4,7 +4,8 @@
+ 
+ > 📁 **课前准备（开课第一件事 — 完整路径三步检查框 ✅）：**
+ > 1. 打开 Thonny → `文件 → 新建`（别从旧文件打开）
+-> 2. **立刻** `文件 → 另存为...` → 路径完整确认 = `~/learning-homework/<你的学员名>/homework/W02-L02-practice.py`（以 ThawPaw 为例：`thawpaw/homework/`，Tree 对应 `tree/homework/`；平铺不建周子目录）
++> 2. **立刻** `文件 → 另存为...` → 路径完整确认 = `~/Sand-Hollow/<你的学员名>/homework/W02-L02-practice.py`（以 ThawPaw 为例：`thawpaw/homework/`，Tree 对应 `tree/homework/`；平铺不建周子目录）
++> （ThawPaw 机：~/learning-homework · Tree 机：~/Sand-Hollow）
+ > 3. Thonny 标题栏显示完整路径 = **完整路径核对完毕** ✅，再开始写第一行代码
+ >
+ > ⚠️ **坑提醒（已踩两次）：** Thonny 默认保存到 `/用户/文档/` 或上次打开位置，「保存」不会弹路径对话框，只有点「另存为」才会。漏这一步 = 文件落在桌面/文档，导师找不到，跑通也白搭。本课所有亲手敲的代码都写进这个文件——这是**随堂练习文件**，与课后作业 `W02-L02-homework.py` 是两个文件。
+@@ -155,7 +156,7 @@ print(name)
+ 
+ ## 七、动手练习（先做完，再看第八节答案）
+ 
+-> 📁 **作业保存规则：** 本节课后练习写进一个**新文件** `W02-L02-homework.py`（存 `~/learning-homework/<你的学员名>/homework/`，与随堂练习 `W02-L02-practice.py` 分开），每道题开头写一行备注分隔（如 `# --- 题 1 ---`）。**交完作业要跟你的 mentor 说一声（ThawPaw → IcePaw / Tree → 如意）才会批改**，评语出现在 `reviews/*.review.md`。 **回报触发词：交完作业或修完坑，都在群里回一句「修完了」——不回这句 mentor 不知道，坑会一直挂着等。**
++> 📁 **作业保存规则：** 本节课后练习写进一个**新文件** `W02-L02-homework.py`（存 `~/Sand-Hollow/<你的学员名>/homework/`，与随堂练习 `W02-L02-practice.py` 分开），每道题开头写一行备注分隔（如 `# --- 题 1 ---`）。**交完作业要跟你的 mentor 说一声（ThawPaw → IcePaw / Tree → 如意）才会批改**，评语出现在 `reviews/*.review.md`。 **回报触发词：交完作业或修完坑，都在群里回一句「修完了」——不回这句 mentor 不知道，坑会一直挂着等。**
+ 
+ 1. 名字体检：input 问一个英文名，三行打印它的长度、全大写、全小写
+ 2. 先猜再跑：s = "Fireheart"，笔猜 s[0]、s[-1]、s[0:4]、s[4:]、s[1:3]，再运行验证
+diff --git a/mentors-den/course/W02-L03.md b/mentors-den/course/W02-L03.md
+index e20e342..3f95c14 100644
+--- a/mentors-den/course/W02-L03.md
++++ b/mentors-den/course/W02-L03.md
+@@ -2,11 +2,12 @@
+ 
+ > 用时：30-45 分钟 · 难度：⭐⭐ · 前置：W02-L02
+ 
+-> 📁 **课前准备（开课第一件事）：** 打开 Thonny，新建文件 `W02-L03-practice.py`，保存到 `~/learning-homework/<你的学员名>/homework/`（平铺不建周子目录）。本课所有亲手敲的代码都写进它——这是**随堂练习文件**，与课后作业 `W02-L03-homework.py` 是两个文件。
++> 📁 **课前准备（开课第一件事）：** 打开 Thonny，新建文件 `W02-L03-practice.py`，保存到 `~/Sand-Hollow/<你的学员名>/homework/`（平铺不建周子目录）。本课所有亲手敲的代码都写进它——这是**随堂练习文件**，与课后作业 `W02-L03-homework.py` 是两个文件。
++> （ThawPaw 机：~/learning-homework · Tree 机：~/Sand-Hollow）
+ 
+ ---
+ 
+-> **📂 课前准备 · 随堂练习文件**：先在 Thonny `文件 → 新建`，立刻 `文件 → 另存为...` 存为 `~/learning-homework/<你的学员名>/homework/W02-L03-practice.py`（ThawPaw 对应 `thawpaw/homework/`，Tree 对应 `tree/homework/`）。本课所有亲手敲的代码都写进这个文件；课后作业 `W02-L03-homework.py` 是另一个文件，别混。
++> **📂 课前准备 · 随堂练习文件**：先在 Thonny `文件 → 新建`，立刻 `文件 → 另存为...` 存为 `~/Sand-Hollow/<你的学员名>/homework/W02-L03-practice.py`（ThawPaw 对应 `thawpaw/homework/`，Tree 对应 `tree/homework/`）。本课所有亲手敲的代码都写进这个文件；课后作业 `W02-L03-homework.py` 是另一个文件，别混。
+ 
+ ## 一、概念：拼接到底哪里痛（5 分钟）
+ 
+@@ -118,7 +119,7 @@ f-string 好用，但不是处处必须：
+ 
+ > ⚠️ **交作业门禁：5 道题必须全部写完，并实际跑通至少 1 次。只有标题、空函数或半截代码，都算未完成。** 5 题都过再勾“通过”。
+ 
+-> 📁 **作业保存规则：** 本节课后练习写进一个**新文件** `W02-L03-homework.py`（存 `~/learning-homework/<你的学员名>/homework/`，与随堂练习 `W02-L03-practice.py` 分开），每道题开头写一行备注分隔（如 `# --- 题 1 ---`）。**交完作业要跟你的 mentor 说一声（ThawPaw → IcePaw / Tree → 如意）才会批改**，评语出现在 `reviews/*.review.md`。 **回报触发词：交完作业或修完坑，都在群里回一句「修完了」——不回这句 mentor 不知道，坑会一直挂着等。**
++> 📁 **作业保存规则：** 本节课后练习写进一个**新文件** `W02-L03-homework.py`（存 `~/Sand-Hollow/<你的学员名>/homework/`，与随堂练习 `W02-L03-practice.py` 分开），每道题开头写一行备注分隔（如 `# --- 题 1 ---`）。**交完作业要跟你的 mentor 说一声（ThawPaw → IcePaw / Tree → 如意）才会批改**，评语出现在 `reviews/*.review.md`。 **回报触发词：交完作业或修完坑，都在群里回一句「修完了」——不回这句 mentor 不知道，坑会一直挂着等。**
+ 
+ 1. 名片改造：W01-L02 题 1 原题「建 4 个变量：`my_name`（用化名，别用真名）/ `my_hobby` / `my_dream` / `my_food`，全部打印」——现在用 f-string 重写，把 4 个变量打进一句话名片
+ 2. 猫粮账单：单价 39.5、数量 3，用 :.2f 打印 "Total: xx.xx yuan"
+diff --git a/mentors-den/course/W02-weekend.md b/mentors-den/course/W02-weekend.md
+index 46e3a9e..9b4924f 100644
+--- a/mentors-den/course/W02-weekend.md
++++ b/mentors-den/course/W02-weekend.md
+@@ -14,7 +14,8 @@
+ 
+ ## 二、项目 A：名字实验室（25 分钟）
+ 
+-> 📁 项目存 `~/learning-homework/<你的学员名>/homework/`（与平日练习同目录，平铺不建周子目录）。
++> 📁 项目存 `~/Sand-Hollow/<你的学员名>/homework/`（与平日练习同目录，平铺不建周子目录）。
++> （ThawPaw 机：~/learning-homework · Tree 机：~/Sand-Hollow）
+ 
+ 新建 `name_lab.py`。目标：用户输入姓和名，实验室把这个名字玩出花。
+ 
+diff --git a/mentors-den/course/W03-L01.md b/mentors-den/course/W03-L01.md
+index 659fb56..b86fad2 100644
+--- a/mentors-den/course/W03-L01.md
++++ b/mentors-den/course/W03-L01.md
+@@ -4,7 +4,8 @@
+ 
+ ---
+ 
+-> **📂 课前准备 · 随堂练习文件**：先在 Thonny `文件 → 新建`，立刻 `文件 → 另存为...` 存为 `~/learning-homework/<你的学员名>/homework/W03-L01-practice.py`（ThawPaw 对应 `thawpaw/homework/`，Tree 对应 `tree/homework/`）。本课所有亲手敲的代码都写进这个文件；课后作业 `W03-L01-homework.py` 是另一个文件，别混。
++> **📂 课前准备 · 随堂练习文件**：先在 Thonny `文件 → 新建`，立刻 `文件 → 另存为...` 存为 `~/Sand-Hollow/<你的学员名>/homework/W03-L01-practice.py`（ThawPaw 对应 `thawpaw/homework/`，Tree 对应 `tree/homework/`）。本课所有亲手敲的代码都写进这个文件；课后作业 `W03-L01-homework.py` 是另一个文件，别混。
++> （ThawPaw 机：~/learning-homework · Tree 机：~/Sand-Hollow）
+ 
+ ## 一、概念：程序会看情况办事（5 分钟）
+ 
+@@ -87,7 +88,7 @@ Thonny 小贴士：写完 `if ...:` 按回车，光标自动缩进；想退出
+ 
+ ## 六、动手练习（先做完，再看第七节答案）
+ 
+-> 📁 **作业保存规则：** 本节课后练习写进一个**新文件** `W03-L01-homework.py`（存 `~/learning-homework/<你的学员名>/homework/`，与随堂练习 `W03-L01-practice.py` 分开），每道题开头写一行备注分隔（如 `# --- 题 1 ---`）。**交完作业要跟你的 mentor 说一声（ThawPaw → IcePaw / Tree → 如意）才会批改**，评语出现在 `reviews/*.review.md`。 **回报触发词：交完作业或修完坑，都在群里回一句「修完了」——不回这句 mentor 不知道，坑会一直挂着等。**
++> 📁 **作业保存规则：** 本节课后练习写进一个**新文件** `W03-L01-homework.py`（存 `~/Sand-Hollow/<你的学员名>/homework/`，与随堂练习 `W03-L01-practice.py` 分开），每道题开头写一行备注分隔（如 `# --- 题 1 ---`）。**交完作业要跟你的 mentor 说一声（ThawPaw → IcePaw / Tree → 如意）才会批改**，评语出现在 `reviews/*.review.md`。 **回报触发词：交完作业或修完坑，都在群里回一句「修完了」——不回这句 mentor 不知道，坑会一直挂着等。**
+ 
+ 1. 及格判断器：正文代码扩展——再加一个 if，分数 >= 90 时打印 "Excellent!"。输入 95 会打印几行？为什么？
+ 2. 先猜再跑：print(10 == 10)、print("10" == 10)、print(4 != 5)
+diff --git a/mentors-den/course/W03-L02.md b/mentors-den/course/W03-L02.md
+index ccc37d6..9e25c95 100644
+--- a/mentors-den/course/W03-L02.md
++++ b/mentors-den/course/W03-L02.md
+@@ -4,7 +4,8 @@
+ 
+ ---
+ 
+-> **📂 课前准备 · 随堂练习文件**：先在 Thonny `文件 → 新建`，立刻 `文件 → 另存为...` 存为 `~/learning-homework/<你的学员名>/homework/W03-L02-practice.py`（ThawPaw 对应 `thawpaw/homework/`，Tree 对应 `tree/homework/`）。本课所有亲手敲的代码都写进这个文件；课后作业 `W03-L02-homework.py` 是另一个文件，别混。
++> **📂 课前准备 · 随堂练习文件**：先在 Thonny `文件 → 新建`，立刻 `文件 → 另存为...` 存为 `~/Sand-Hollow/<你的学员名>/homework/W03-L02-practice.py`（ThawPaw 对应 `thawpaw/homework/`，Tree 对应 `tree/homework/`）。本课所有亲手敲的代码都写进这个文件；课后作业 `W03-L02-homework.py` 是另一个文件，别混。
++> （ThawPaw 机：~/learning-homework · Tree 机：~/Sand-Hollow）
+ 
+ ## 一、概念：if 只管晴天（5 分钟）
+ 
+@@ -79,7 +80,7 @@ Python 的走法：**从上往下扫描，命中一条，其余全部跳过。**
+ 
+ ## 六、动手练习（先做完，再看第七节答案）
+ 
+-> 📁 **作业保存规则：** 本节课后练习写进一个**新文件** `W03-L02-homework.py`（存 `~/learning-homework/<你的学员名>/homework/`，与随堂练习 `W03-L02-practice.py` 分开），每道题开头写一行备注分隔（如 `# --- 题 1 ---`）。**交完作业要跟你的 mentor 说一声（ThawPaw → IcePaw / Tree → 如意）才会批改**，评语出现在 `reviews/*.review.md`。 **回报触发词：交完作业或修完坑，都在群里回一句「修完了」——不回这句 mentor 不知道，坑会一直挂着等。**
++> 📁 **作业保存规则：** 本节课后练习写进一个**新文件** `W03-L02-homework.py`（存 `~/Sand-Hollow/<你的学员名>/homework/`，与随堂练习 `W03-L02-practice.py` 分开），每道题开头写一行备注分隔（如 `# --- 题 1 ---`）。**交完作业要跟你的 mentor 说一声（ThawPaw → IcePaw / Tree → 如意）才会批改**，评语出现在 `reviews/*.review.md`。 **回报触发词：交完作业或修完坑，都在群里回一句「修完了」——不回这句 mentor 不知道，坑会一直挂着等。**
+ 
+ 1. 奇偶判断器：把正文例子亲手敲一遍，加一句注释说明 % 2 == 0 在干嘛
+ 2. 水温报告：输入水温，>= 100 打 "Boiling hot" / >= 40 打 "Warm" / else 打 "Cool"
+diff --git a/mentors-den/course/W03-L03.md b/mentors-den/course/W03-L03.md
+index 3f35027..4bf6760 100644
+--- a/mentors-den/course/W03-L03.md
++++ b/mentors-den/course/W03-L03.md
+@@ -4,7 +4,8 @@
+ 
+ ---
+ 
+-> **📂 课前准备 · 随堂练习文件**：先在 Thonny `文件 → 新建`，立刻 `文件 → 另存为...` 存为 `~/learning-homework/<你的学员名>/homework/W03-L03-practice.py`（ThawPaw 对应 `thawpaw/homework/`，Tree 对应 `tree/homework/`）。本课所有亲手敲的代码都写进这个文件；课后作业 `W03-L03-homework.py` 是另一个文件，别混。
++> **📂 课前准备 · 随堂练习文件**：先在 Thonny `文件 → 新建`，立刻 `文件 → 另存为...` 存为 `~/Sand-Hollow/<你的学员名>/homework/W03-L03-practice.py`（ThawPaw 对应 `thawpaw/homework/`，Tree 对应 `tree/homework/`）。本课所有亲手敲的代码都写进这个文件；课后作业 `W03-L03-homework.py` 是另一个文件，别混。
++> （ThawPaw 机：~/learning-homework · Tree 机：~/Sand-Hollow）
+ 
+ ## 一、概念：复杂世界需要组合条件（5 分钟）
+ 
+@@ -94,7 +95,7 @@ print(f"Result: {grade}")
+ 
+ ## 七、动手练习（先做完，再看第八节答案）
+ 
+-> 📁 **作业保存规则：** 本节课后练习写进一个**新文件** `W03-L03-homework.py`（存 `~/learning-homework/<你的学员名>/homework/`，与随堂练习 `W03-L03-practice.py` 分开），每道题开头写一行备注分隔（如 `# --- 题 1 ---`）。**交完作业要跟你的 mentor 说一声（ThawPaw → IcePaw / Tree → 如意）才会批改**，评语出现在 `reviews/*.review.md`。 **回报触发词：交完作业或修完坑，都在群里回一句「修完了」——不回这句 mentor 不知道，坑会一直挂着等。**
++> 📁 **作业保存规则：** 本节课后练习写进一个**新文件** `W03-L03-homework.py`（存 `~/Sand-Hollow/<你的学员名>/homework/`，与随堂练习 `W03-L03-practice.py` 分开），每道题开头写一行备注分隔（如 `# --- 题 1 ---`）。**交完作业要跟你的 mentor 说一声（ThawPaw → IcePaw / Tree → 如意）才会批改**，评语出现在 `reviews/*.review.md`。 **回报触发词：交完作业或修完坑，都在群里回一句「修完了」——不回这句 mentor 不知道，坑会一直挂着等。**
+ 
+ 1. 双人儿童票：问两个人年龄，都 <= 12 才打印 "You can buy the kids' duo ticket"
+ 2. 周末判断器：输入今天星期几，周六或周日打印 "You can sleep in"
+diff --git a/mentors-den/course/W03-weekend.md b/mentors-den/course/W03-weekend.md
+index cc51854..581ab79 100644
+--- a/mentors-den/course/W03-weekend.md
++++ b/mentors-den/course/W03-weekend.md
+@@ -40,7 +40,8 @@ print(secret)
+ 
+ ## 三、搭游戏（20 分钟）
+ 
+-> 📁 项目存 `~/learning-homework/<你的学员名>/homework/`（与平日练习同目录，平铺不建周子目录）。
++> 📁 项目存 `~/Sand-Hollow/<你的学员名>/homework/`（与平日练习同目录，平铺不建周子目录）。
++> （ThawPaw 机：~/learning-homework · Tree 机：~/Sand-Hollow）
+ 
+ 新建 `guess_game.py`，亲手敲：
+ 
+diff --git a/mentors-den/course/W04-L01.md b/mentors-den/course/W04-L01.md
+index 6cd3a20..66c7b6a 100644
+--- a/mentors-den/course/W04-L01.md
++++ b/mentors-den/course/W04-L01.md
+@@ -4,7 +4,8 @@
+ 
+ ---
+ 
+-> **📂 课前准备 · 随堂练习文件**：先在 Thonny `文件 → 新建`，立刻 `文件 → 另存为...` 存为 `~/learning-homework/<你的学员名>/homework/W04-L01-practice.py`（ThawPaw 对应 `thawpaw/homework/`，Tree 对应 `tree/homework/`）。本课所有亲手敲的代码都写进这个文件；课后作业 `W04-L01-homework.py` 是另一个文件，别混。
++> **📂 课前准备 · 随堂练习文件**：先在 Thonny `文件 → 新建`，立刻 `文件 → 另存为...` 存为 `~/Sand-Hollow/<你的学员名>/homework/W04-L01-practice.py`（ThawPaw 对应 `thawpaw/homework/`，Tree 对应 `tree/homework/`）。本课所有亲手敲的代码都写进这个文件；课后作业 `W04-L01-homework.py` 是另一个文件，别混。
++> （ThawPaw 机：~/learning-homework · Tree 机：~/Sand-Hollow）
+ 
+ ## 一、概念：程序终于学会「重复」（5 分钟）
+ 
+@@ -116,7 +117,7 @@ f-string 拼一行，循环打 9 行——W02-L03 的 f-string 立刻派上用
+ 
+ ## 六、动手练习（先做完，再看第七节答案）
+ 
+-> 📁 **作业保存规则：** 本节课后练习写进一个**新文件** `W04-L01-homework.py`（存 `~/learning-homework/<你的学员名>/homework/`，与随堂练习 `W04-L01-practice.py` 分开），每道题开头写一行备注分隔（如 `# --- 题 1 ---`）。**交完作业要跟你的 mentor 说一声（ThawPaw → IcePaw / Tree → 如意）才会批改**，评语出现在 `reviews/*.review.md`。 **回报触发词：交完作业或修完坑，都在群里回一句「修完了」——不回这句 mentor 不知道，坑会一直挂着等。**
++> 📁 **作业保存规则：** 本节课后练习写进一个**新文件** `W04-L01-homework.py`（存 `~/Sand-Hollow/<你的学员名>/homework/`，与随堂练习 `W04-L01-practice.py` 分开），每道题开头写一行备注分隔（如 `# --- 题 1 ---`）。**交完作业要跟你的 mentor 说一声（ThawPaw → IcePaw / Tree → 如意）才会批改**，评语出现在 `reviews/*.review.md`。 **回报触发词：交完作业或修完坑，都在群里回一句「修完了」——不回这句 mentor 不知道，坑会一直挂着等。**
+ 
+ 1. **数到 20**：用 for + range 打 1 到 20，每行一个数
+ 2. **倒计时 10 秒**：用 for 打 10, 9, 8, ..., 1，最后打 "Liftoff!"（提示：range 加步长 -1）
+diff --git a/mentors-den/course/W04-L02.md b/mentors-den/course/W04-L02.md
+index 6e7e642..da42d06 100644
+--- a/mentors-den/course/W04-L02.md
++++ b/mentors-den/course/W04-L02.md
+@@ -4,7 +4,8 @@
+ 
+ ---
+ 
+-> **📂 课前准备 · 随堂练习文件**：先在 Thonny `文件 → 新建`，立刻 `文件 → 另存为...` 存为 `~/learning-homework/<你的学员名>/homework/W04-L02-practice.py`（ThawPaw 对应 `thawpaw/homework/`，Tree 对应 `tree/homework/`）。本课所有亲手敲的代码都写进这个文件；课后作业 `W04-L02-homework.py` 是另一个文件，别混。
++> **📂 课前准备 · 随堂练习文件**：先在 Thonny `文件 → 新建`，立刻 `文件 → 另存为...` 存为 `~/Sand-Hollow/<你的学员名>/homework/W04-L02-practice.py`（ThawPaw 对应 `thawpaw/homework/`，Tree 对应 `tree/homework/`）。本课所有亲手敲的代码都写进这个文件；课后作业 `W04-L02-homework.py` 是另一个文件，别混。
++> （ThawPaw 机：~/learning-homework · Tree 机：~/Sand-Hollow）
+ 
+ ## 一、概念：循环真正的威力（5 分钟）
+ 
+@@ -118,7 +119,7 @@ print("The biggest is:", biggest)
+ 
+ ## 六、动手练习（先做完，再看第七节答案）
+ 
+-> 📁 **作业保存规则：** 本节课后练习写进一个**新文件** `W04-L02-homework.py`（存 `~/learning-homework/<你的学员名>/homework/`，与随堂练习 `W04-L02-practice.py` 分开），每道题开头写一行备注分隔（如 `# --- 题 1 ---`）。**交完作业要跟你的 mentor 说一声（ThawPaw → IcePaw / Tree → 如意）才会批改**，评语出现在 `reviews/*.review.md`。 **回报触发词：交完作业或修完坑，都在群里回一句「修完了」——不回这句 mentor 不知道，坑会一直挂着等。**
++> 📁 **作业保存规则：** 本节课后练习写进一个**新文件** `W04-L02-homework.py`（存 `~/Sand-Hollow/<你的学员名>/homework/`，与随堂练习 `W04-L02-practice.py` 分开），每道题开头写一行备注分隔（如 `# --- 题 1 ---`）。**交完作业要跟你的 mentor 说一声（ThawPaw → IcePaw / Tree → 如意）才会批改**，评语出现在 `reviews/*.review.md`。 **回报触发词：交完作业或修完坑，都在群里回一句「修完了」——不回这句 mentor 不知道，坑会一直挂着等。**
+ 
+ 1. **求和 1-100**：用累加器算 1+2+3+...+100。答案是 5050（高斯公式 n(n+1)/2，你可以验证）
+ 2. **数 7 的倍数**：1-100 中是 7 的倍数的数有几个？
+diff --git a/mentors-den/course/W04-L03.md b/mentors-den/course/W04-L03.md
+index 0bb780a..5309cd4 100644
+--- a/mentors-den/course/W04-L03.md
++++ b/mentors-den/course/W04-L03.md
+@@ -4,7 +4,8 @@
+ 
+ ---
+ 
+-> **📂 课前准备 · 随堂练习文件**：先在 Thonny `文件 → 新建`，立刻 `文件 → 另存为...` 存为 `~/learning-homework/<你的学员名>/homework/W04-L03-practice.py`（ThawPaw 对应 `thawpaw/homework/`，Tree 对应 `tree/homework/`）。本课所有亲手敲的代码都写进这个文件；课后作业 `W04-L03-homework.py` 是另一个文件，别混。
++> **📂 课前准备 · 随堂练习文件**：先在 Thonny `文件 → 新建`，立刻 `文件 → 另存为...` 存为 `~/Sand-Hollow/<你的学员名>/homework/W04-L03-practice.py`（ThawPaw 对应 `thawpaw/homework/`，Tree 对应 `tree/homework/`）。本课所有亲手敲的代码都写进这个文件；课后作业 `W04-L03-homework.py` 是另一个文件，别混。
++> （ThawPaw 机：~/learning-homework · Tree 机：~/Sand-Hollow）
+ 
+ ## 一、概念：循环里再放循环（5 分钟）
+ 
+@@ -142,7 +143,7 @@ for row in range(1, height + 1):
+ 
+ ## 六、动手练习（先做完，再看第七节答案）
+ 
+-> 📁 **作业保存规则：** 本节课后练习写进一个**新文件** `W04-L03-homework.py`（存 `~/learning-homework/<你的学员名>/homework/`，与随堂练习 `W04-L03-practice.py` 分开），每道题开头写一行备注分隔（如 `# --- 题 1 ---`）。**交完作业要跟你的 mentor 说一声（ThawPaw → IcePaw / Tree → 如意）才会批改**，评语出现在 `reviews/*.review.md`。 **回报触发词：交完作业或修完坑，都在群里回一句「修完了」——不回这句 mentor 不知道，坑会一直挂着等。**
++> 📁 **作业保存规则：** 本节课后练习写进一个**新文件** `W04-L03-homework.py`（存 `~/Sand-Hollow/<你的学员名>/homework/`，与随堂练习 `W04-L03-practice.py` 分开），每道题开头写一行备注分隔（如 `# --- 题 1 ---`）。**交完作业要跟你的 mentor 说一声（ThawPaw → IcePaw / Tree → 如意）才会批改**，评语出现在 `reviews/*.review.md`。 **回报触发词：交完作业或修完坑，都在群里回一句「修完了」——不回这句 mentor 不知道，坑会一直挂着等。**
+ 
+ 1. **2 排 10 列**：用嵌套循环打一个 2×10 的星星方阵
+ 2. **倒楼梯**：`* * * * *`（5 个）→ `* * * *`（4 个）→ ... → `*`（1 个）。提示：外层倒着走
+diff --git a/mentors-den/course/W04-weekend.md b/mentors-den/course/W04-weekend.md
+index d81885b..9d0c075 100644
+--- a/mentors-den/course/W04-weekend.md
++++ b/mentors-den/course/W04-weekend.md
+@@ -15,7 +15,8 @@
+ 
+ ## 二、项目 A：倒圣诞树（10 分钟）
+ 
+-> 📁 项目存 `~/learning-homework/<你的学员名>/homework/`，新建 `upside_down_tree.py`。
++> 📁 项目存 `~/Sand-Hollow/<你的学员名>/homework/`，新建 `upside_down_tree.py`。
++> （ThawPaw 机：~/learning-homework · Tree 机：~/Sand-Hollow）
+ 
+ 需求：打一个倒过来的圣诞树（顶宽底尖），高度 5：
+ 
+@@ -50,7 +51,7 @@ for row in range(height, 0, -1):
+ 
+ ## 三、项目 B：镂空菱形（15 分钟）
+ 
+-> 📁 项目存 `~/learning-homework/<你的学员名>/homework/`，新建 `hollow_diamond.py`。
++> 📁 项目存 `~/Sand-Hollow/<你的学员名>/homework/`，新建 `hollow_diamond.py`。
+ 
+ 需求：打一个空心的菱形（中间是空的），边长 5：
+ 
+@@ -110,7 +111,7 @@ for row in range(size - 1, 0, -1):
+ 
+ ## 四、项目 C：九九乘法表（20 分钟）
+ 
+-> 📁 项目存 `~/learning-homework/<你的学员名>/homework/`，新建 `multiplication_table.py`。
++> 📁 项目存 `~/Sand-Hollow/<你的学员名>/homework/`，新建 `multiplication_table.py`。
+ 
+ 需求：打一个完整的九九乘法表（1×1 到 9×9）：
+ 
+diff --git a/mentors-den/course/W05-L01.md b/mentors-den/course/W05-L01.md
+index 5ffd3af..3bc6090 100644
+--- a/mentors-den/course/W05-L01.md
++++ b/mentors-den/course/W05-L01.md
+@@ -4,7 +4,8 @@
+ 
+ ---
+ 
+-> **📂 课前准备 · 随堂练习文件**：先在 Thonny `文件 → 新建`，立刻 `文件 → 另存为...` 存为 `~/learning-homework/<你的学员名>/homework/W05-L01-practice.py`（ThawPaw 对应 `thawpaw/homework/`，Tree 对应 `tree/homework/`）。本课所有亲手敲的代码都写进这个文件；课后作业 `W05-L01-homework.py` 是另一个文件，别混。
++> **📂 课前准备 · 随堂练习文件**：先在 Thonny `文件 → 新建`，立刻 `文件 → 另存为...` 存为 `~/Sand-Hollow/<你的学员名>/homework/W05-L01-practice.py`（ThawPaw 对应 `thawpaw/homework/`，Tree 对应 `tree/homework/`）。本课所有亲手敲的代码都写进这个文件；课后作业 `W05-L01-homework.py` 是另一个文件，别混。
++> （ThawPaw 机：~/learning-homework · Tree 机：~/Sand-Hollow）
+ 
+ ## 一、概念：不知道跑几次才停？（5 分钟）
+ 
+@@ -123,7 +124,7 @@ print("Welcome!")
+ 
+ ## 六、动手练习（先做完，再看第七节答案）
+ 
+-> 📁 **作业保存规则：** 本节课后练习写进一个**新文件** `W05-L01-homework.py`（存 `~/learning-homework/<你的学员名>/homework/`，与随堂练习 `W05-L01-practice.py` 分开），每道题开头写一行备注分隔（如 `# --- 题 1 ---`）。**交完作业要跟你的 mentor 说一声（ThawPaw → IcePaw / Tree → 如意）才会批改**，评语出现在 `reviews/*.review.md`。 **回报触发词：交完作业或修完坑，都在群里回一句「修完了」——不回这句 mentor 不知道，坑会一直挂着等。**
++> 📁 **作业保存规则：** 本节课后练习写进一个**新文件** `W05-L01-homework.py`（存 `~/Sand-Hollow/<你的学员名>/homework/`，与随堂练习 `W05-L01-practice.py` 分开），每道题开头写一行备注分隔（如 `# --- 题 1 ---`）。**交完作业要跟你的 mentor 说一声（ThawPaw → IcePaw / Tree → 如意）才会批改**，评语出现在 `reviews/*.review.md`。 **回报触发词：交完作业或修完坑，都在群里回一句「修完了」——不回这句 mentor 不知道，坑会一直挂着等。**
+ 
+ 1. **数到 50**：用 while 打印 1 到 50（参考 4.1）
+ 2. **倒计时 10 秒**：while 打 10, 9, ..., 1, "Liftoff!"（提示：起手 10，条件 `n >= 1`）
+diff --git a/mentors-den/course/W05-L02.md b/mentors-den/course/W05-L02.md
+index efbbdce..797530d 100644
+--- a/mentors-den/course/W05-L02.md
++++ b/mentors-den/course/W05-L02.md
+@@ -4,7 +4,8 @@
+ 
+ ---
+ 
+-> **📂 课前准备 · 随堂练习文件**：先在 Thonny `文件 → 新建`，立刻 `文件 → 另存为...` 存为 `~/learning-homework/<你的学员名>/homework/W05-L02-practice.py`（ThawPaw 对应 `thawpaw/homework/`，Tree 对应 `tree/homework/`）。本课所有亲手敲的代码都写进这个文件；课后作业 `W05-L02-homework.py` 是另一个文件，别混。
++> **📂 课前准备 · 随堂练习文件**：先在 Thonny `文件 → 新建`，立刻 `文件 → 另存为...` 存为 `~/Sand-Hollow/<你的学员名>/homework/W05-L02-practice.py`（ThawPaw 对应 `thawpaw/homework/`，Tree 对应 `tree/homework/`）。本课所有亲手敲的代码都写进这个文件；课后作业 `W05-L02-homework.py` 是另一个文件，别混。
++> （ThawPaw 机：~/learning-homework · Tree 机：~/Sand-Hollow）
+ 
+ ## 一、概念：循环跑一半想跑？（5 分钟）
+ 
+@@ -144,7 +145,7 @@ else:
+ 
+ ## 七、动手练习（先做完，再看第八节答案）
+ 
+-> 📁 **作业保存规则：** 本节课后练习写进一个**新文件** `W05-L02-homework.py`（存 `~/learning-homework/<你的学员名>/homework/`，与随堂练习 `W05-L02-practice.py` 分开），每道题开头写一行备注分隔（如 `# --- 题 1 ---`）。**交完作业要跟你的 mentor 说一声（ThawPaw → IcePaw / Tree → 如意）才会批改**，评语出现在 `reviews/*.review.md`。 **回报触发词：交完作业或修完坑，都在群里回一句「修完了」——不回这句 mentor 不知道，坑会一直挂着等。**
++> 📁 **作业保存规则：** 本节课后练习写进一个**新文件** `W05-L02-homework.py`（存 `~/Sand-Hollow/<你的学员名>/homework/`，与随堂练习 `W05-L02-practice.py` 分开），每道题开头写一行备注分隔（如 `# --- 题 1 ---`）。**交完作业要跟你的 mentor 说一声（ThawPaw → IcePaw / Tree → 如意）才会批改**，评语出现在 `reviews/*.review.md`。 **回报触发词：交完作业或修完坑，都在群里回一句「修完了」——不回这句 mentor 不知道，坑会一直挂着等。**
+ 
+ 1. **第一个偶数**：用 for + break 在 1-20 中找到第一个偶数并打印
+ 2. **跳过 5 的倍数**：用 continue 在 1-30 中跳过 5 的倍数
+diff --git a/mentors-den/course/W05-L03.md b/mentors-den/course/W05-L03.md
+index 6ec51c1..009b4bb 100644
+--- a/mentors-den/course/W05-L03.md
++++ b/mentors-den/course/W05-L03.md
+@@ -4,7 +4,8 @@
+ 
+ ---
+ 
+-> **📂 课前准备 · 随堂练习文件**：先在 Thonny `文件 → 新建`，立刻 `文件 → 另存为...` 存为 `~/learning-homework/<你的学员名>/homework/W05-L03-practice.py`（ThawPaw 对应 `thawpaw/homework/`，Tree 对应 `tree/homework/`）。本课所有亲手敲的代码都写进这个文件；课后作业 `W05-L03-homework.py` 是另一个文件，别混。
++> **📂 课前准备 · 随堂练习文件**：先在 Thonny `文件 → 新建`，立刻 `文件 → 另存为...` 存为 `~/Sand-Hollow/<你的学员名>/homework/W05-L03-practice.py`（ThawPaw 对应 `thawpaw/homework/`，Tree 对应 `tree/homework/`）。本课所有亲手敲的代码都写进这个文件；课后作业 `W05-L03-homework.py` 是另一个文件，别混。
++> （ThawPaw 机：~/learning-homework · Tree 机：~/Sand-Hollow）
+ 
+ ## 一、概念：把 W03-W05 全串起来（3 分钟）
+ 
+@@ -18,7 +19,7 @@
+ 
+ ## 二、第一版：基础猜数字（12 分钟）
+ 
+-> 📁 项目存 `~/learning-homework/<你的学员名>/homework/`，新建 `guess_full.py`。
++> 📁 项目存 `~/Sand-Hollow/<你的学员名>/homework/`，新建 `guess_full.py`。
+ 
+ 新建文件，亲手敲：
+ 
+@@ -151,7 +152,7 @@ print("Thanks for playing!")
+ 
+ ## 七、动手练习（先做完，再看第八节答案）
+ 
+-> 📁 **作业保存规则：** 本节课后练习写进一个**新文件** `W05-L03-homework.py`（存 `~/learning-homework/<你的学员名>/homework/`，与随堂练习 `W05-L03-practice.py` 分开），每道题开头写一行备注分隔（如 `# --- 题 1 ---`）。**交完作业要跟你的 mentor 说一声（ThawPaw → IcePaw / Tree → 如意）才会批改**，评语出现在 `reviews/*.review.md`。 **回报触发词：交完作业或修完坑，都在群里回一句「修完了」——不回这句 mentor 不知道，坑会一直挂着等。**
++> 📁 **作业保存规则：** 本节课后练习写进一个**新文件** `W05-L03-homework.py`（存 `~/Sand-Hollow/<你的学员名>/homework/`，与随堂练习 `W05-L03-practice.py` 分开），每道题开头写一行备注分隔（如 `# --- 题 1 ---`）。**交完作业要跟你的 mentor 说一声（ThawPaw → IcePaw / Tree → 如意）才会批改**，评语出现在 `reviews/*.review.md`。 **回报触发词：交完作业或修完坑，都在群里回一句「修完了」——不回这句 mentor 不知道，坑会一直挂着等。**
+ 
+ 1. **基础猜数字**：实现第二版的「限 5 次」猜数字（参考上面代码）
+ 2. **提示更友好**：大了/小了之外，给个范围提示（如 "Try between 30 and 60"）
+diff --git a/mentors-den/course/W05-weekend.md b/mentors-den/course/W05-weekend.md
+index 1b66ba5..a383398 100644
+--- a/mentors-den/course/W05-weekend.md
++++ b/mentors-den/course/W05-weekend.md
+@@ -15,7 +15,8 @@
+ 
+ ## 二、项目 A：完整计分版（30 分钟）
+ 
+-> 📁 项目存 `~/learning-homework/<你的学员名>/homework/`，新建 `guess_pro.py`。
++> 📁 项目存 `~/Sand-Hollow/<你的学员名>/homework/`，新建 `guess_pro.py`。
++> （ThawPaw 机：~/learning-homework · Tree 机：~/Sand-Hollow）
+ 
+ 需求：
+ 
+diff --git a/mentors-den/course/W06-L01.md b/mentors-den/course/W06-L01.md
+index cddf64d..5c22e2f 100644
+--- a/mentors-den/course/W06-L01.md
++++ b/mentors-den/course/W06-L01.md
+@@ -4,7 +4,8 @@
+ 
+ ---
+ 
+-> **📂 课前准备 · 随堂练习文件**：先在 Thonny `文件 → 新建`，立刻 `文件 → 另存为...` 存为 `~/learning-homework/<你的学员名>/homework/W06-L01-practice.py`（ThawPaw 对应 `thawpaw/homework/`，Tree 对应 `tree/homework/`）。本课所有亲手敲的代码都写进这个文件；课后作业 `W06-L01-homework.py` 是另一个文件，别混。
++> **📂 课前准备 · 随堂练习文件**：先在 Thonny `文件 → 新建`，立刻 `文件 → 另存为...` 存为 `~/Sand-Hollow/<你的学员名>/homework/W06-L01-practice.py`（ThawPaw 对应 `thawpaw/homework/`，Tree 对应 `tree/homework/`）。本课所有亲手敲的代码都写进这个文件；课后作业 `W06-L01-homework.py` 是另一个文件，别混。
++> （ThawPaw 机：~/learning-homework · Tree 机：~/Sand-Hollow）
+ 
+ ## 一、概念：一个名字管一堆东西（5 分钟）
+ 
+@@ -142,7 +143,7 @@ print(f"Week average: {total / len(temps):.1f}°C")
+ 
+ ## 七、动手练习（先做完，再看第八节答案）
+ 
+-> 📁 **作业保存规则：** 本节课后练习写进一个**新文件** `W06-L01-homework.py`（存 `~/learning-homework/<你的学员名>/homework/`，与随堂练习 `W06-L01-practice.py` 分开），每道题开头写一行备注分隔（如 `# --- 题 1 ---`）。**交完作业要跟你的 mentor 说一声（ThawPaw → IcePaw / Tree → 如意）才会批改**，评语出现在 `reviews/*.review.md`。 **回报触发词：交完作业或修完坑，都在群里回一句「修完了」——不回这句 mentor 不知道，坑会一直挂着等。**
++> 📁 **作业保存规则：** 本节课后练习写进一个**新文件** `W06-L01-homework.py`（存 `~/Sand-Hollow/<你的学员名>/homework/`，与随堂练习 `W06-L01-practice.py` 分开），每道题开头写一行备注分隔（如 `# --- 题 1 ---`）。**交完作业要跟你的 mentor 说一声（ThawPaw → IcePaw / Tree → 如意）才会批改**，评语出现在 `reviews/*.review.md`。 **回报触发词：交完作业或修完坑，都在群里回一句「修完了」——不回这句 mentor 不知道，坑会一直挂着等。**
+ 
+ 1. **水果篮**：fruits = ["apple", "banana", "cherry", "durian", "elderberry"]，打印列表长度、第 3 个水果、最后一个
+ 2. **一周温度**：周一到周日 7 个温度，算平均温度
+diff --git a/mentors-den/course/W06-L02.md b/mentors-den/course/W06-L02.md
+index 24c1948..92ee750 100644
+--- a/mentors-den/course/W06-L02.md
++++ b/mentors-den/course/W06-L02.md
+@@ -4,7 +4,8 @@
+ 
+ ---
+ 
+-> **📂 课前准备 · 随堂练习文件**：先在 Thonny `文件 → 新建`，立刻 `文件 → 另存为...` 存为 `~/learning-homework/<你的学员名>/homework/W06-L02-practice.py`（ThawPaw 对应 `thawpaw/homework/`，Tree 对应 `tree/homework/`）。本课所有亲手敲的代码都写进这个文件；课后作业 `W06-L02-homework.py` 是另一个文件，别混。
++> **📂 课前准备 · 随堂练习文件**：先在 Thonny `文件 → 新建`，立刻 `文件 → 另存为...` 存为 `~/Sand-Hollow/<你的学员名>/homework/W06-L02-practice.py`（ThawPaw 对应 `thawpaw/homework/`，Tree 对应 `tree/homework/`）。本课所有亲手敲的代码都写进这个文件；课后作业 `W06-L02-homework.py` 是另一个文件，别混。
++> （ThawPaw 机：~/learning-homework · Tree 机：~/Sand-Hollow）
+ 
+ ## 一、概念：列表的日常四件事（3 分钟）
+ 
+@@ -167,7 +168,7 @@ for name in my_class:
+ 
+ ## 八、动手练习（先做完，再看第九节答案）
+ 
+-> 📁 **作业保存规则：** 本节课后练习写进一个**新文件** `W06-L02-homework.py`（存 `~/learning-homework/<你的学员名>/homework/`，与随堂练习 `W06-L02-practice.py` 分开），每道题开头写一行备注分隔（如 `# --- 题 1 ---`）。**交完作业要跟你的 mentor 说一声（ThawPaw → IcePaw / Tree → 如意）才会批改**，评语出现在 `reviews/*.review.md`。 **回报触发词：交完作业或修完坑，都在群里回一句「修完了」——不回这句 mentor 不知道，坑会一直挂着等。**
++> 📁 **作业保存规则：** 本节课后练习写进一个**新文件** `W06-L02-homework.py`（存 `~/Sand-Hollow/<你的学员名>/homework/`，与随堂练习 `W06-L02-practice.py` 分开），每道题开头写一行备注分隔（如 `# --- 题 1 ---`）。**交完作业要跟你的 mentor 说一声（ThawPaw → IcePaw / Tree → 如意）才会批改**，评语出现在 `reviews/*.review.md`。 **回报触发词：交完作业或修完坑，都在群里回一句「修完了」——不回这句 mentor 不知道，坑会一直挂着等。**
+ 
+ 1. **班级名单**：start = []，循环 input 5 个名字 append 进去，最后打印
+ 2. **删除重复**：nums = [1, 2, 2, 3, 3, 3, 4]，用循环 + remove 去重（提示：循环里 if x in nums[按位置看]）
+diff --git a/mentors-den/course/W06-L03.md b/mentors-den/course/W06-L03.md
+index d55d679..c96ce57 100644
+--- a/mentors-den/course/W06-L03.md
++++ b/mentors-den/course/W06-L03.md
+@@ -4,7 +4,8 @@
+ 
+ ---
+ 
+-> **📂 课前准备 · 随堂练习文件**：先在 Thonny `文件 → 新建`，立刻 `文件 → 另存为...` 存为 `~/learning-homework/<你的学员名>/homework/W06-L03-practice.py`（ThawPaw 对应 `thawpaw/homework/`，Tree 对应 `tree/homework/`）。本课所有亲手敲的代码都写进这个文件；课后作业 `W06-L03-homework.py` 是另一个文件，别混。
++> **📂 课前准备 · 随堂练习文件**：先在 Thonny `文件 → 新建`，立刻 `文件 → 另存为...` 存为 `~/Sand-Hollow/<你的学员名>/homework/W06-L03-practice.py`（ThawPaw 对应 `thawpaw/homework/`，Tree 对应 `tree/homework/`）。本课所有亲手敲的代码都写进这个文件；课后作业 `W06-L03-homework.py` 是另一个文件，别混。
++> （ThawPaw 机：~/learning-homework · Tree 机：~/Sand-Hollow）
+ 
+ ## 一、概念：W04-L02 学的累加器，套上列表（3 分钟）
+ 
+@@ -140,7 +141,7 @@ print(f"  Failing (<60): {len(failing)} students")
+ 
+ ## 八、动手练习（先做完，再看第九节答案）
+ 
+-> 📁 **作业保存规则：** 本节课后练习写进一个**新文件** `W06-L03-homework.py`（存 `~/learning-homework/<你的学员名>/homework/`，与随堂练习 `W06-L03-practice.py` 分开），每道题开头写一行备注分隔（如 `# --- 题 1 ---`）。**交完作业要跟你的 mentor 说一声（ThawPaw → IcePaw / Tree → 如意）才会批改**，评语出现在 `reviews/*.review.md`。 **回报触发词：交完作业或修完坑，都在群里回一句「修完了」——不回这句 mentor 不知道，坑会一直挂着等。**
++> 📁 **作业保存规则：** 本节课后练习写进一个**新文件** `W06-L03-homework.py`（存 `~/Sand-Hollow/<你的学员名>/homework/`，与随堂练习 `W06-L03-practice.py` 分开），每道题开头写一行备注分隔（如 `# --- 题 1 ---`）。**交完作业要跟你的 mentor 说一声（ThawPaw → IcePaw / Tree → 如意）才会批改**，评语出现在 `reviews/*.review.md`。 **回报触发词：交完作业或修完坑，都在群里回一句「修完了」——不回这句 mentor 不知道，坑会一直挂着等。**
+ 
+ 1. **班级平均**：scores = [85, 92, 78, 95, 88]，算平均（提示：sum + len）
+ 2. **最高最低**：nums = [12, 45, 7, 23, 56, 89, 34]，分别找出最大和最小
+diff --git a/mentors-den/course/W06-weekend.md b/mentors-den/course/W06-weekend.md
+index 2cdecde..cf8d37d 100644
+--- a/mentors-den/course/W06-weekend.md
++++ b/mentors-den/course/W06-weekend.md
+@@ -15,7 +15,8 @@
+ 
+ ## 二、项目 A：基础购物清单（25 分钟）
+ 
+-> 📁 项目存 `~/learning-homework/<你的学员名>/homework/`，新建 `shopping_list.py`。
++> 📁 项目存 `~/Sand-Hollow/<你的学员名>/homework/`，新建 `shopping_list.py`。
++> （ThawPaw 机：~/learning-homework · Tree 机：~/Sand-Hollow）
+ 
+ 需求：
+ 
+diff --git a/mentors-den/course/W07-L01.md b/mentors-den/course/W07-L01.md
+index 140d5ba..7ea84b5 100644
+--- a/mentors-den/course/W07-L01.md
++++ b/mentors-den/course/W07-L01.md
+@@ -4,7 +4,8 @@
+ 
+ ---
+ 
+-> **📂 课前准备 · 随堂练习文件**：先在 Thonny `文件 → 新建`，立刻 `文件 → 另存为...` 存为 `~/learning-homework/<你的学员名>/homework/W07-L01-practice.py`（ThawPaw 对应 `thawpaw/homework/`，Tree 对应 `tree/homework/`）。本课所有亲手敲的代码都写进这个文件；课后作业 `W07-L01-homework.py` 是另一个文件，别混。
++> **📂 课前准备 · 随堂练习文件**：先在 Thonny `文件 → 新建`，立刻 `文件 → 另存为...` 存为 `~/Sand-Hollow/<你的学员名>/homework/W07-L01-practice.py`（ThawPaw 对应 `thawpaw/homework/`，Tree 对应 `tree/homework/`）。本课所有亲手敲的代码都写进这个文件；课后作业 `W07-L01-homework.py` 是另一个文件，别混。
++> （ThawPaw 机：~/learning-homework · Tree 机：~/Sand-Hollow）
+ 
+ ## 一、概念：项目周的「先想后写」（5 分钟）
+ 
+@@ -101,7 +102,7 @@ while room != "quit":
+ 
+ ## 四、动手练习（先做完，再看第五节）
+ 
+-> 📁 **作业保存规则：** 本节课后练习写进一个**新文件** `W07-L01-homework.py`（存 `~/learning-homework/<你的学员名>/homework/`，与随堂练习 `W07-L01-practice.py` 分开），每道题开头写一行备注分隔（如 `# --- 题 1 ---`）。**交完作业要跟你的 mentor 说一声（ThawPaw → IcePaw / Tree → 如意）才会批改**，评语出现在 `reviews/*.review.md`。 **回报触发词：交完作业或修完坑，都在群里回一句「修完了」——不回这句 mentor 不知道，坑会一直挂着等。**
++> 📁 **作业保存规则：** 本节课后练习写进一个**新文件** `W07-L01-homework.py`（存 `~/Sand-Hollow/<你的学员名>/homework/`，与随堂练习 `W07-L01-practice.py` 分开），每道题开头写一行备注分隔（如 `# --- 题 1 ---`）。**交完作业要跟你的 mentor 说一声（ThawPaw → IcePaw / Tree → 如意）才会批改**，评语出现在 `reviews/*.review.md`。 **回报触发词：交完作业或修完坑，都在群里回一句「修完了」——不回这句 mentor 不知道，坑会一直挂着等。**
+ 
+ 1. **画地图**：在纸上画你的 5-7 房间地图（标注房间名 + 敌人/道具）
+ 2. **列房间表**：写一个 Python 字典（或列表）存房间信息——`rooms = {"shrine": "起点", "forest": "树林"}`，打印验证
+diff --git a/mentors-den/course/W07-L02.md b/mentors-den/course/W07-L02.md
+index cedfc2e..b31d12a 100644
+--- a/mentors-den/course/W07-L02.md
++++ b/mentors-den/course/W07-L02.md
+@@ -4,7 +4,8 @@
+ 
+ ---
+ 
+-> **📂 课前准备 · 随堂练习文件**：先在 Thonny `文件 → 新建`，立刻 `文件 → 另存为...` 存为 `~/learning-homework/<你的学员名>/homework/W07-L02-practice.py`（ThawPaw 对应 `thawpaw/homework/`，Tree 对应 `tree/homework/`）。本课所有亲手敲的代码都写进这个文件；课后作业 `W07-L02-homework.py` 是另一个文件，别混。
++> **📂 课前准备 · 随堂练习文件**：先在 Thonny `文件 → 新建`，立刻 `文件 → 另存为...` 存为 `~/Sand-Hollow/<你的学员名>/homework/W07-L02-practice.py`（ThawPaw 对应 `thawpaw/homework/`，Tree 对应 `tree/homework/`）。本课所有亲手敲的代码都写进这个文件；课后作业 `W07-L02-homework.py` 是另一个文件，别混。
++> （ThawPaw 机：~/learning-homework · Tree 机：~/Sand-Hollow）
+ 
+ ## 一、概念：玩家得有「状态」（5 分钟）
+ 
+@@ -142,7 +143,7 @@ if room == "game_over":
+ 
+ ## 七、动手练习（先做完，再看第八节）
+ 
+-> 📁 **作业保存规则：** 本节课后练习写进一个**新文件** `W07-L02-homework.py`（存 `~/learning-homework/<你的学员名>/homework/`，与随堂练习 `W07-L02-practice.py` 分开），每道题开头写一行备注分隔（如 `# --- 题 1 ---`）。**交完作业要跟你的 mentor 说一声（ThawPaw → IcePaw / Tree → 如意）才会批改**，评语出现在 `reviews/*.review.md`。 **回报触发词：交完作业或修完坑，都在群里回一句「修完了」——不回这句 mentor 不知道，坑会一直挂着等。**
++> 📁 **作业保存规则：** 本节课后练习写进一个**新文件** `W07-L02-homework.py`（存 `~/Sand-Hollow/<你的学员名>/homework/`，与随堂练习 `W07-L02-practice.py` 分开），每道题开头写一行备注分隔（如 `# --- 题 1 ---`）。**交完作业要跟你的 mentor 说一声（ThawPaw → IcePaw / Tree → 如意）才会批改**，评语出现在 `reviews/*.review.md`。 **回报触发词：交完作业或修完坑，都在群里回一句「修完了」——不回这句 mentor 不知道，坑会一直挂着等。**
+ 
+ 1. **玩家状态**：建一个 player 字典，HP/ATK/DEF/名字四件套
+ 2. **简单战斗函数**：写 battle(player, enemy) 函数，循环攻击直到一方 HP <= 0
+diff --git a/mentors-den/course/W07-L03.md b/mentors-den/course/W07-L03.md
+index b6a7687..360edba 100644
+--- a/mentors-den/course/W07-L03.md
++++ b/mentors-den/course/W07-L03.md
+@@ -4,7 +4,8 @@
+ 
+ ---
+ 
+-> **📂 课前准备 · 随堂练习文件**：先在 Thonny `文件 → 新建`，立刻 `文件 → 另存为...` 存为 `~/learning-homework/<你的学员名>/homework/W07-L03-practice.py`（ThawPaw 对应 `thawpaw/homework/`，Tree 对应 `tree/homework/`）。本课所有亲手敲的代码都写进这个文件；课后作业 `W07-L03-homework.py` 是另一个文件，别混。
++> **📂 课前准备 · 随堂练习文件**：先在 Thonny `文件 → 新建`，立刻 `文件 → 另存为...` 存为 `~/Sand-Hollow/<你的学员名>/homework/W07-L03-practice.py`（ThawPaw 对应 `thawpaw/homework/`，Tree 对应 `tree/homework/`）。本课所有亲手敲的代码都写进这个文件；课后作业 `W07-L03-homework.py` 是另一个文件，别混。
++> （ThawPaw 机：~/learning-homework · Tree 机：~/Sand-Hollow）
+ 
+ ## 一、概念：让游戏真的能通关（5 分钟）
+ 
+@@ -148,7 +149,7 @@ while room != "quit":
+ 
+ ## 七、动手练习（先做完，再看第八节）
+ 
+-> 📁 **作业保存规则：** 本节课后练习写进一个**新文件** `W07-L03-homework.py`（存 `~/learning-homework/<你的学员名>/homework/`，与随堂练习 `W07-L03-practice.py` 分开），每道题开头写一行备注分隔（如 `# --- 题 1 ---`）。**交完作业要跟你的 mentor 说一声（ThawPaw → IcePaw / Tree → 如意）才会批改**，评语出现在 `reviews/*.review.md`。 **回报触发词：交完作业或修完坑，都在群里回一句「修完了」——不回这句 mentor 不知道，坑会一直挂着等。**
++> 📁 **作业保存规则：** 本节课后练习写进一个**新文件** `W07-L03-homework.py`（存 `~/Sand-Hollow/<你的学员名>/homework/`，与随堂练习 `W07-L03-practice.py` 分开），每道题开头写一行备注分隔（如 `# --- 题 1 ---`）。**交完作业要跟你的 mentor 说一声（ThawPaw → IcePaw / Tree → 如意）才会批改**，评语出现在 `reviews/*.review.md`。 **回报触发词：交完作业或修完坑，都在群里回一句「修完了」——不回这句 mentor 不知道，坑会一直挂着等。**
+ 
+ 1. **道具字典**：建 items_db 含 herb / feather / claw 三种道具
+ 2. **use_item 函数**：处理 heal 和 attack 两种效果
+diff --git a/mentors-den/course/W08-L01.md b/mentors-den/course/W08-L01.md
+index 493c9bb..98b1f1a 100644
+--- a/mentors-den/course/W08-L01.md
++++ b/mentors-den/course/W08-L01.md
+@@ -4,7 +4,8 @@
+ 
+ ---
+ 
+-> **📂 课前准备 · 随堂练习文件**：先在 Thonny `文件 → 新建`，立刻 `文件 → 另存为...` 存为 `~/learning-homework/<你的学员名>/homework/W08-L01-practice.py`（ThawPaw 对应 `thawpaw/homework/`，Tree 对应 `tree/homework/`）。本课所有亲手敲的代码都写进这个文件；课后作业 `W08-L01-homework.py` 是另一个文件，别混。
++> **📂 课前准备 · 随堂练习文件**：先在 Thonny `文件 → 新建`，立刻 `文件 → 另存为...` 存为 `~/Sand-Hollow/<你的学员名>/homework/W08-L01-practice.py`（ThawPaw 对应 `thawpaw/homework/`，Tree 对应 `tree/homework/`）。本课所有亲手敲的代码都写进这个文件；课后作业 `W08-L01-homework.py` 是另一个文件，别混。
++> （ThawPaw 机：~/learning-homework · Tree 机：~/Sand-Hollow）
+ 
+ ## 一、概念：写一次，处处调用（5 分钟）
+ 
+@@ -124,7 +125,7 @@ print_class(friends)
+ 
+ ## 七、动手练习（先做完，再看第八节）
+ 
+-> 📁 **作业保存规则：** 本节课后练习写进一个**新文件** `W08-L01-homework.py`（存 `~/learning-homework/<你的学员名>/homework/`，与随堂练习 `W08-L01-practice.py` 分开），每道题开头写一行备注分隔（如 `# --- 题 1 ---`）。**交完作业要跟你的 mentor 说一声（ThawPaw → IcePaw / Tree → 如意）才会批改**，评语出现在 `reviews/*.review.md`。 **回报触发词：交完作业或修完坑，都在群里回一句「修完了」——不回这句 mentor 不知道，坑会一直挂着等。**
++> 📁 **作业保存规则：** 本节课后练习写进一个**新文件** `W08-L01-homework.py`（存 `~/Sand-Hollow/<你的学员名>/homework/`，与随堂练习 `W08-L01-practice.py` 分开），每道题开头写一行备注分隔（如 `# --- 题 1 ---`）。**交完作业要跟你的 mentor 说一声（ThawPaw → IcePaw / Tree → 如意）才会批改**，评语出现在 `reviews/*.review.md`。 **回报触发词：交完作业或修完坑，都在群里回一句「修完了」——不回这句 mentor 不知道，坑会一直挂着等。**
+ 
+ 1. **greet(name)**：定义一个 greet 函数，打印 `Hello, <name>!`，调用 3 次
+ 2. **print_menu()**：定义一个菜单函数，打 3 个选项
+diff --git a/mentors-den/course/W08-L02.md b/mentors-den/course/W08-L02.md
+index b3f429d..bacb2a2 100644
+--- a/mentors-den/course/W08-L02.md
++++ b/mentors-den/course/W08-L02.md
+@@ -4,7 +4,8 @@
+ 
+ ---
+ 
+-> **📂 课前准备 · 随堂练习文件**：先在 Thonny `文件 → 新建`，立刻 `文件 → 另存为...` 存为 `~/learning-homework/<你的学员名>/homework/W08-L02-practice.py`（ThawPaw 对应 `thawpaw/homework/`，Tree 对应 `tree/homework/`）。本课所有亲手敲的代码都写进这个文件；课后作业 `W08-L02-homework.py` 是另一个文件，别混。
++> **📂 课前准备 · 随堂练习文件**：先在 Thonny `文件 → 新建`，立刻 `文件 → 另存为...` 存为 `~/Sand-Hollow/<你的学员名>/homework/W08-L02-practice.py`（ThawPaw 对应 `thawpaw/homework/`，Tree 对应 `tree/homework/`）。本课所有亲手敲的代码都写进这个文件；课后作业 `W08-L02-homework.py` 是另一个文件，别混。
++> （ThawPaw 机：~/learning-homework · Tree 机：~/Sand-Hollow）
+ 
+ ## 一、概念：函数接住外部的数据（5 分钟）
+ 
+@@ -118,7 +119,7 @@ print_scores([85, 92, 78], label="Math Test", show_total=False)
+ 
+ ## 七、动手练习（先做完，再看第八节）
+ 
+-> 📁 **作业保存规则：** 本节课后练习写进一个**新文件** `W08-L02-homework.py`（存 `~/learning-homework/<你的学员名>/homework/`，与随堂练习 `W08-L02-practice.py` 分开），每道题开头写一行备注分隔（如 `# --- 题 1 ---`）。**交完作业要跟你的 mentor 说一声（ThawPaw → IcePaw / Tree → 如意）才会批改**，评语出现在 `reviews/*.review.md`。 **回报触发词：交完作业或修完坑，都在群里回一句「修完了」——不回这句 mentor 不知道，坑会一直挂着等。**
++> 📁 **作业保存规则：** 本节课后练习写进一个**新文件** `W08-L02-homework.py`（存 `~/Sand-Hollow/<你的学员名>/homework/`，与随堂练习 `W08-L02-practice.py` 分开），每道题开头写一行备注分隔（如 `# --- 题 1 ---`）。**交完作业要跟你的 mentor 说一声（ThawPaw → IcePaw / Tree → 如意）才会批改**，评语出现在 `reviews/*.review.md`。 **回报触发词：交完作业或修完坑，都在群里回一句「修完了」——不回这句 mentor 不知道，坑会一直挂着等。**
+ 
+ 1. **introduce(name, age)**：接受两个参数，打印一句自我介绍
+ 2. **calculate(a, b, op="add")**：根据 op 做加减乘（if/elif 分支）
+diff --git a/mentors-den/course/W08-L03.md b/mentors-den/course/W08-L03.md
+index 5449139..c5c98c4 100644
+--- a/mentors-den/course/W08-L03.md
++++ b/mentors-den/course/W08-L03.md
+@@ -4,7 +4,8 @@
+ 
+ ---
+ 
+-> **📂 课前准备 · 随堂练习文件**：先在 Thonny `文件 → 新建`，立刻 `文件 → 另存为...` 存为 `~/learning-homework/<你的学员名>/homework/W08-L03-practice.py`（ThawPaw 对应 `thawpaw/homework/`，Tree 对应 `tree/homework/`）。本课所有亲手敲的代码都写进这个文件；课后作业 `W08-L03-homework.py` 是另一个文件，别混。
++> **📂 课前准备 · 随堂练习文件**：先在 Thonny `文件 → 新建`，立刻 `文件 → 另存为...` 存为 `~/Sand-Hollow/<你的学员名>/homework/W08-L03-practice.py`（ThawPaw 对应 `thawpaw/homework/`，Tree 对应 `tree/homework/`）。本课所有亲手敲的代码都写进这个文件；课后作业 `W08-L03-homework.py` 是另一个文件，别混。
++> （ThawPaw 机：~/learning-homework · Tree 机：~/Sand-Hollow）
+ 
+ ## 一、概念：函数不只做事，还能「交货」（5 分钟）
+ 
+@@ -145,7 +146,7 @@ print(result)  # 5.0
+ 
+ ## 八、动手练习（先做完，再看第九节）
+ 
+-> 📁 **作业保存规则：** 本节课后练习写进一个**新文件** `W08-L03-homework.py`（存 `~/learning-homework/<你的学员名>/homework/`，与随堂练习 `W08-L03-practice.py` 分开），每道题开头写一行备注分隔（如 `# --- 题 1 ---`）。**交完作业要跟你的 mentor 说一声（ThawPaw → IcePaw / Tree → 如意）才会批改**，评语出现在 `reviews/*.review.md`。 **回报触发词：交完作业或修完坑，都在群里回一句「修完了」——不回这句 mentor 不知道，坑会一直挂着等。**
++> 📁 **作业保存规则：** 本节课后练习写进一个**新文件** `W08-L03-homework.py`（存 `~/Sand-Hollow/<你的学员名>/homework/`，与随堂练习 `W08-L03-practice.py` 分开），每道题开头写一行备注分隔（如 `# --- 题 1 ---`）。**交完作业要跟你的 mentor 说一声（ThawPaw → IcePaw / Tree → 如意）才会批改**，评语出现在 `reviews/*.review.md`。 **回报触发词：交完作业或修完坑，都在群里回一句「修完了」——不回这句 mentor 不知道，坑会一直挂着等。**
+ 
+ 1. **add(a, b)**：return a+b
+ 2. **is_even(n)**：return True/False（n 是偶数吗）
+diff --git a/mentors-den/course/W08-weekend.md b/mentors-den/course/W08-weekend.md
+index 3eb4d16..0f38766 100644
+--- a/mentors-den/course/W08-weekend.md
++++ b/mentors-den/course/W08-weekend.md
+@@ -14,7 +14,8 @@
+ 
+ ## 二、项目：函数化改造（40 分钟）
+ 
+-> 📁 项目存 `~/learning-homework/<你的学员名>/homework/`，新建 `cat_adventure_v4.py`（基于 W07 改）。
++> 📁 项目存 `~/Sand-Hollow/<你的学员名>/homework/`，新建 `cat_adventure_v4.py`（基于 W07 改）。
++> （ThawPaw 机：~/learning-homework · Tree 机：~/Sand-Hollow）
+ 
+ ### 改造 1：抽 show_room 函数
+ 
+diff --git a/mentors-den/course/W09-L01.md b/mentors-den/course/W09-L01.md
+index ae93756..c1bb047 100644
+--- a/mentors-den/course/W09-L01.md
++++ b/mentors-den/course/W09-L01.md
+@@ -4,7 +4,8 @@
+ 
+ ---
+ 
+-> **📂 课前准备 · 随堂练习文件**：先在 Thonny `文件 → 新建`，立刻 `文件 → 另存为...` 存为 `~/learning-homework/<你的学员名>/homework/W09-L01-practice.py`（ThawPaw 对应 `thawpaw/homework/`，Tree 对应 `tree/homework/`）。本课所有亲手敲的代码都写进这个文件；课后作业 `W09-L01-homework.py` 是另一个文件，别混。
++> **📂 课前准备 · 随堂练习文件**：先在 Thonny `文件 → 新建`，立刻 `文件 → 另存为...` 存为 `~/Sand-Hollow/<你的学员名>/homework/W09-L01-practice.py`（ThawPaw 对应 `thawpaw/homework/`，Tree 对应 `tree/homework/`）。本课所有亲手敲的代码都写进这个文件；课后作业 `W09-L01-homework.py` 是另一个文件，别混。
++> （ThawPaw 机：~/learning-homework · Tree 机：~/Sand-Hollow）
+ 
+ ## 一、先回忆 W05（3 分钟）
+ 
+diff --git a/mentors-den/course/W09-L02.md b/mentors-den/course/W09-L02.md
+index 4c6673d..edd7788 100644
+--- a/mentors-den/course/W09-L02.md
++++ b/mentors-den/course/W09-L02.md
+@@ -4,7 +4,8 @@
+ 
+ ---
+ 
+-> **📂 课前准备 · 随堂练习文件**：先在 Thonny `文件 → 新建`，立刻 `文件 → 另存为...` 存为 `~/learning-homework/<你的学员名>/homework/W09-L02-practice.py`。本课所有亲手敲的代码都写进这个文件；课后作业 `W09-L02-homework.py` 是另一个文件，别混。
++> **📂 课前准备 · 随堂练习文件**：先在 Thonny `文件 → 新建`，立刻 `文件 → 另存为...` 存为 `~/Sand-Hollow/<你的学员名>/homework/W09-L02-practice.py`。本课所有亲手敲的代码都写进这个文件；课后作业 `W09-L02-homework.py` 是另一个文件，别混。
++> （ThawPaw 机：~/learning-homework · Tree 机：~/Sand-Hollow）
+ 
+ ## 一、今天的目标（3 分钟）
+ 
+diff --git a/mentors-den/course/W09-weekend.md b/mentors-den/course/W09-weekend.md
+index d3786d2..73f1ee0 100644
+--- a/mentors-den/course/W09-weekend.md
++++ b/mentors-den/course/W09-weekend.md
+@@ -14,7 +14,8 @@
+ 
+ ## 二、项目 A：部族名册寻宝赛（35 分钟）
+ 
+-> 📁 项目存 `~/learning-homework/<你的学员名>/homework/`，新建 `roster_race.py`。
++> 📁 项目存 `~/Sand-Hollow/<你的学员名>/homework/`，新建 `roster_race.py`。
++> （ThawPaw 机：~/learning-homework · Tree 机：~/Sand-Hollow）
+ 
+ 场景：四大部族的联合名册（第一步先造一份**有序**的大名单），族长报出一只猫的名字，看谁最快找到它在第几 位。
+ 
+diff --git a/mentors-den/course/W10-L01.md b/mentors-den/course/W10-L01.md
+index 5773de7..31d6b20 100644
+--- a/mentors-den/course/W10-L01.md
++++ b/mentors-den/course/W10-L01.md
+@@ -4,7 +4,8 @@
+ 
+ ---
+ 
+-> **📂 课前准备 · 随堂练习文件**：先在 Thonny `文件 → 新建`，立刻 `文件 → 另存为...` 存为 `~/learning-homework/<你的学员名>/homework/W09-L01-practice.py`（ThawPaw 对应 `thawpaw/homework/`，Tree 对应 `tree/homework/`）。本课所有亲手敲的代码都写进这个文件；课后作业 `W09-L01-homework.py` 是另一个文件，别混。
++> **📂 课前准备 · 随堂练习文件**：先在 Thonny `文件 → 新建`，立刻 `文件 → 另存为...` 存为 `~/Sand-Hollow/<你的学员名>/homework/W09-L01-practice.py`（ThawPaw 对应 `thawpaw/homework/`，Tree 对应 `tree/homework/`）。本课所有亲手敲的代码都写进这个文件；课后作业 `W09-L01-homework.py` 是另一个文件，别混。
++> （ThawPaw 机：~/learning-homework · Tree 机：~/Sand-Hollow）
+ 
+ ## 一、概念：让程序「画」出来（5 分钟）
+ 
+@@ -117,7 +118,7 @@ turtle.done()  # Keep window open until closed manually
+ 
+ ## 七、动手练习（先做完，再看第八节）
+ 
+-> 📁 **作业保存规则：** 本节课后练习写进一个**新文件** `W09-L01-homework.py`（存 `~/learning-homework/<你的学员名>/homework/`，与随堂练习 `W09-L01-practice.py` 分开），每道题开头写一行备注分隔（如 `# --- 题 1 ---`）。**交完作业要跟你的 mentor 说一声（ThawPaw → IcePaw / Tree → 如意）才会批改**，评语出现在 `reviews/*.review.md`。 **回报触发词：交完作业或修完坑，都在群里回一句「修完了」——不回这句 mentor 不知道，坑会一直挂着等。**
++> 📁 **作业保存规则：** 本节课后练习写进一个**新文件** `W09-L01-homework.py`（存 `~/Sand-Hollow/<你的学员名>/homework/`，与随堂练习 `W09-L01-practice.py` 分开），每道题开头写一行备注分隔（如 `# --- 题 1 ---`）。**交完作业要跟你的 mentor 说一声（ThawPaw → IcePaw / Tree → 如意）才会批改**，评语出现在 `reviews/*.review.md`。 **回报触发词：交完作业或修完坑，都在群里回一句「修完了」——不回这句 mentor 不知道，坑会一直挂着等。**
+ 
+ 1. **正方形**：用 for 画边长 100 的正方形
+ 2. **等边三角形**：用 for 画边长 80 的等边三角形（提示：左转 120）
+diff --git a/mentors-den/course/W10-L02.md b/mentors-den/course/W10-L02.md
+index 649255c..d522e89 100644
+--- a/mentors-den/course/W10-L02.md
++++ b/mentors-den/course/W10-L02.md
+@@ -4,7 +4,8 @@
+ 
+ ---
+ 
+-> **📂 课前准备 · 随堂练习文件**：先在 Thonny `文件 → 新建`，立刻 `文件 → 另存为...` 存为 `~/learning-homework/<你的学员名>/homework/W09-L02-practice.py`（ThawPaw 对应 `thawpaw/homework/`，Tree 对应 `tree/homework/`）。本课所有亲手敲的代码都写进这个文件；课后作业 `W09-L02-homework.py` 是另一个文件，别混。
++> **📂 课前准备 · 随堂练习文件**：先在 Thonny `文件 → 新建`，立刻 `文件 → 另存为...` 存为 `~/Sand-Hollow/<你的学员名>/homework/W09-L02-practice.py`（ThawPaw 对应 `thawpaw/homework/`，Tree 对应 `tree/homework/`）。本课所有亲手敲的代码都写进这个文件；课后作业 `W09-L02-homework.py` 是另一个文件，别混。
++> （ThawPaw 机：~/learning-homework · Tree 机：~/Sand-Hollow）
+ 
+ ## 一、概念：让画更好看（3 分钟）
+ 
+@@ -177,7 +178,7 @@ t.end_fill()
+ 
+ ## 八、动手练习（先做完，再看第九节）
+ 
+-> 📁 **作业保存规则：** 本节课后练习写进一个**新文件** `W09-L02-homework.py`（存 `~/learning-homework/<你的学员名>/homework/`，与随堂练习 `W09-L02-practice.py` 分开），每道题开头写一行备注分隔（如 `# --- 题 1 ---`）。**交完作业要跟你的 mentor 说一声（ThawPaw → IcePaw / Tree → 如意）才会批改**，评语出现在 `reviews/*.review.md`。 **回报触发词：交完作业或修完坑，都在群里回一句「修完了」——不回这句 mentor 不知道，坑会一直挂着等。**
++> 📁 **作业保存规则：** 本节课后练习写进一个**新文件** `W09-L02-homework.py`（存 `~/Sand-Hollow/<你的学员名>/homework/`，与随堂练习 `W09-L02-practice.py` 分开），每道题开头写一行备注分隔（如 `# --- 题 1 ---`）。**交完作业要跟你的 mentor 说一声（ThawPaw → IcePaw / Tree → 如意）才会批改**，评语出现在 `reviews/*.review.md`。 **回报触发词：交完作业或修完坑，都在群里回一句「修完了」——不回这句 mentor 不知道，坑会一直挂着等。**
+ 
+ 1. **彩色正方形**：画一个 4 色正方形（每边一色）
+ 2. **填充圆**：画一个填充红色的圆（提示：`t.circle(50)`）
+diff --git a/mentors-den/course/W10-L03.md b/mentors-den/course/W10-L03.md
+index b8843b9..79d9717 100644
+--- a/mentors-den/course/W10-L03.md
++++ b/mentors-den/course/W10-L03.md
+@@ -4,7 +4,8 @@
+ 
+ ---
+ 
+-> **📂 课前准备 · 随堂练习文件**：先在 Thonny `文件 → 新建`，立刻 `文件 → 另存为...` 存为 `~/learning-homework/<你的学员名>/homework/W09-L03-practice.py`（ThawPaw 对应 `thawpaw/homework/`，Tree 对应 `tree/homework/`）。本课所有亲手敲的代码都写进这个文件；课后作业 `W09-L03-homework.py` 是另一个文件，别混。
++> **📂 课前准备 · 随堂练习文件**：先在 Thonny `文件 → 新建`，立刻 `文件 → 另存为...` 存为 `~/Sand-Hollow/<你的学员名>/homework/W09-L03-practice.py`（ThawPaw 对应 `thawpaw/homework/`，Tree 对应 `tree/homework/`）。本课所有亲手敲的代码都写进这个文件；课后作业 `W09-L03-homework.py` 是另一个文件，别混。
++> （ThawPaw 机：~/learning-homework · Tree 机：~/Sand-Hollow）
+ 
+ ## 一、概念：循环是 turtle 的灵魂（5 分钟）
+ 
+@@ -139,7 +140,7 @@ for color in colors:
+ 
+ ## 七、动手练习（先做完，再看第八节）
+ 
+-> 📁 **作业保存规则：** 本节课后练习写进一个**新文件** `W09-L03-homework.py`（存 `~/learning-homework/<你的学员名>/homework/`，与随堂练习 `W09-L03-practice.py` 分开），每道题开头写一行备注分隔（如 `# --- 题 1 ---`）。**交完作业要跟你的 mentor 说一声（ThawPaw → IcePaw / Tree → 如意）才会批改**，评语出现在 `reviews/*.review.md`。 **回报触发词：交完作业或修完坑，都在群里回一句「修完了」——不回这句 mentor 不知道，坑会一直挂着等。**
++> 📁 **作业保存规则：** 本节课后练习写进一个**新文件** `W09-L03-homework.py`（存 `~/Sand-Hollow/<你的学员名>/homework/`，与随堂练习 `W09-L03-practice.py` 分开），每道题开头写一行备注分隔（如 `# --- 题 1 ---`）。**交完作业要跟你的 mentor 说一声（ThawPaw → IcePaw / Tree → 如意）才会批改**，评语出现在 `reviews/*.review.md`。 **回报触发词：交完作业或修完坑，都在群里回一句「修完了」——不回这句 mentor 不知道，坑会一直挂着等。**
+ 
+ 1. **画 6 边形族**：用 polygon 函数画 3-8 边形（参考第二节）
+ 2. **画 8 臂雪花**：把第三节的 6 臂改 8 臂（提示：转 45°）
+diff --git a/mentors-den/course/W10-weekend.md b/mentors-den/course/W10-weekend.md
+index 130f143..aeeae45 100644
+--- a/mentors-den/course/W10-weekend.md
++++ b/mentors-den/course/W10-weekend.md
+@@ -14,7 +14,8 @@
+ 
+ ## 二、项目：自由创作（60 分钟）
+ 
+-> 📁 项目存 `~/learning-homework/<你的学员名>/homework/`，新建 `my_art.py`。
++> 📁 项目存 `~/Sand-Hollow/<你的学员名>/homework/`，新建 `my_art.py`。
++> （ThawPaw 机：~/learning-homework · Tree 机：~/Sand-Hollow）
+ 
+ 任选一题（也可自己设计）：
+ 
+diff --git a/mentors-den/course/W11-L01.md b/mentors-den/course/W11-L01.md
+index bf3cb61..48c8388 100644
+--- a/mentors-den/course/W11-L01.md
++++ b/mentors-den/course/W11-L01.md
+@@ -4,7 +4,8 @@
+ 
+ ---
+ 
+-> **📂 课前准备 · 随堂练习文件**：先在 Thonny `文件 → 新建`，立刻 `文件 → 另存为...` 存为 `~/learning-homework/<你的学员名>/homework/W10-L01-practice.py`（ThawPaw 对应 `thawpaw/homework/`，Tree 对应 `tree/homework/`）。本课所有亲手敲的代码都写进这个文件；课后作业 `W10-L01-homework.py` 是另一个文件，别混。
++> **📂 课前准备 · 随堂练习文件**：先在 Thonny `文件 → 新建`，立刻 `文件 → 另存为...` 存为 `~/Sand-Hollow/<你的学员名>/homework/W10-L01-practice.py`（ThawPaw 对应 `thawpaw/homework/`，Tree 对应 `tree/homework/`）。本课所有亲手敲的代码都写进这个文件；课后作业 `W10-L01-homework.py` 是另一个文件，别混。
++> （ThawPaw 机：~/learning-homework · Tree 机：~/Sand-Hollow）
+ 
+ ## 一、概念：用「名字」找东西（5 分钟）
+ 
+@@ -119,7 +120,7 @@ else:
+ 
+ ## 七、动手练习（先做完，再看第八节）
+ 
+-> 📁 **作业保存规则：** 本节课后练习写进一个**新文件** `W10-L01-homework.py`（存 `~/learning-homework/<你的学员名>/homework/`，与随堂练习 `W10-L01-practice.py` 分分开），每道题开头写一行备注分隔（如 `# --- 题 1 ---`）。**交完作业要跟你的 mentor 说一声（ThawPaw → IcePaw / Tree → 如意）才会批改**，评语出现在 `reviews/*.review.md`。 **回报触发词：交完作业或修完坑，都在群里回一句「修完了」——不回这句 mentor 不知道，坑会一直挂着等。**
++> 📁 **作业保存规则：** 本节课后练习写进一个**新文件** `W10-L01-homework.py`（存 `~/Sand-Hollow/<你的学员名>/homework/`，与随堂练习 `W10-L01-practice.py` 分分开），每道题开头写一行备注分隔（如 `# --- 题 1 ---`）。**交完作业要跟你的 mentor 说一声（ThawPaw → IcePaw / Tree → 如意）才会批改**，评语出现在 `reviews/*.review.md`。 **回报触发词：交完作业或修完坑，都在群里回一句「修完了」——不回这句 mentor 不知道，坑会一直挂着等。**
+ 
+ 1. **个人资料字典**：建 my_info 字典，存 name / age / city / favorite_color
+ 2. **查找**：从字典里取 favorite_color 并 print
+diff --git a/mentors-den/course/W11-L02.md b/mentors-den/course/W11-L02.md
+index ddad401..e9e7fc3 100644
+--- a/mentors-den/course/W11-L02.md
++++ b/mentors-den/course/W11-L02.md
+@@ -4,7 +4,8 @@
+ 
+ ---
+ 
+-> **📂 课前准备 · 随堂练习文件**：先在 Thonny `文件 → 新建`，立刻 `文件 → 另存为...` 存为 `~/learning-homework/<你的学员名>/homework/W10-L02-practice.py`（ThawPaw 对应 `thawpaw/homework/`，Tree 对应 `tree/homework/`）。本课所有亲手敲的代码都写进这个文件；课后作业 `W10-L02-homework.py` 是另一个文件，别混。
++> **📂 课前准备 · 随堂练习文件**：先在 Thonny `文件 → 新建`，立刻 `文件 → 另存为...` 存为 `~/Sand-Hollow/<你的学员名>/homework/W10-L02-practice.py`（ThawPaw 对应 `thawpaw/homework/`，Tree 对应 `tree/homework/`）。本课所有亲手敲的代码都写进这个文件；课后作业 `W10-L02-homework.py` 是另一个文件，别混。
++> （ThawPaw 机：~/learning-homework · Tree 机：~/Sand-Hollow）
+ 
+ ## 一、概念：字典能装任何东西（3 分钟）
+ 
+@@ -120,7 +121,7 @@ for subject in classes:
+ 
+ ## 六、动手练习（先做完，再看第七节）
+ 
+-> 📁 **作业保存规则：** 本节课后练习写进一个**新文件** `W10-L02-homework.py`（存 `~/learning-homework/<你的学员名>/homework/`，与随堂练习 `W10-L02-practice.py` 分开），每道题开头写一行备注分隔（如 `# --- 题 1 ---`）。**交完作业要跟你的 mentor 说一声（ThawPaw → IcePaw / Tree → 如意）才会批改**，评语出现在 `reviews/*.review.md`。 **回报触发词：交完作业或修完坑，都在群里回一句「修完了」——不回这句 mentor 不知道，坑会一直挂着等。**
++> 📁 **作业保存规则：** 本节课后练习写进一个**新文件** `W10-L02-homework.py`（存 `~/Sand-Hollow/<你的学员名>/homework/`，与随堂练习 `W10-L02-practice.py` 分开），每道题开头写一行备注分隔（如 `# --- 题 1 ---`）。**交完作业要跟你的 mentor 说一声（ThawPaw → IcePaw / Tree → 如意）才会批改**，评语出现在 `reviews/*.review.md`。 **回报触发词：交完作业或修完坑，都在群里回一句「修完了」——不回这句 mentor 不知道，坑会一直挂着等。**
+ 
+ 1. **字典套列表**：建 player 含 inventory 列表，加 3 件物品 + append 第 4 件
+ 2. **字典套字典**：建 cat 含 stats 子字典，打印 hp
+diff --git a/mentors-den/course/W11-L03.md b/mentors-den/course/W11-L03.md
+index 2c186ff..a23131f 100644
+--- a/mentors-den/course/W11-L03.md
++++ b/mentors-den/course/W11-L03.md
+@@ -4,7 +4,8 @@
+ 
+ ---
+ 
+-> **📂 课前准备 · 随堂练习文件**：先在 Thonny `文件 → 新建`，立刻 `文件 → 另存为...` 存为 `~/learning-homework/<你的学员名>/homework/W10-L03-practice.py`（ThawPaw 对应 `thawpaw/homework/`，Tree 对应 `tree/homework/`）。本课所有亲手敲的代码都写进这个文件；课后作业 `W10-L03-homework.py` 是另一个文件，别混。
++> **📂 课前准备 · 随堂练习文件**：先在 Thonny `文件 → 新建`，立刻 `文件 → 另存为...` 存为 `~/Sand-Hollow/<你的学员名>/homework/W10-L03-practice.py`（ThawPaw 对应 `thawpaw/homework/`，Tree 对应 `tree/homework/`）。本课所有亲手敲的代码都写进这个文件；课后作业 `W10-L03-homework.py` 是另一个文件，别混。
++> （ThawPaw 机：~/learning-homework · Tree 机：~/Sand-Hollow）
+ 
+ ## 一、概念：用嵌套字典建一个「数据库」（5 分钟）
+ 
+@@ -111,7 +112,7 @@ list_all(codex)
+ 
+ ## 八、动手练习（先做完，再看第九节）
+ 
+-> 📁 **作业保存规则：** 本节课后练习写进一个**新文件** `W10-L03-homework.py`（存 `~/learning-homework/<你的学员名>/homework/`，与随堂练习 `W10-L03-practice.py` 分开），每道题开头写一行备注分隔（如 `# --- 题 1 ---`）。**交完作业要跟你的 mentor 说一声（ThawPaw → IcePaw / Tree → 如意）才会批改**，评语出现在 `reviews/*.review.md`。 **回报触发词：交完作业或修完坑，都在群里回一句「修完了」——不回这句 mentor 不知道，坑会一直挂着等。**
++> 📁 **作业保存规则：** 本节课后练习写进一个**新文件** `W10-L03-homework.py`（存 `~/Sand-Hollow/<你的学员名>/homework/`，与随堂练习 `W10-L03-practice.py` 分开），每道题开头写一行备注分隔（如 `# --- 题 1 ---`）。**交完作业要跟你的 mentor 说一声（ThawPaw → IcePaw / Tree → 如意）才会批改**，评语出现在 `reviews/*.review.md`。 **回报触发词：交完作业或修完坑，都在群里回一句「修完了」——不回这句 mentor 不知道，坑会一直挂着等。**
+ 
+ 1. **建图鉴**：建 codex 含 Whiskers 和 Rex 两只宠物
+ 2. **查询**：用 show_pet 函数查 Whiskers
+diff --git a/mentors-den/course/W11-weekend.md b/mentors-den/course/W11-weekend.md
+index b0bb2e7..dead752 100644
+--- a/mentors-den/course/W11-weekend.md
++++ b/mentors-den/course/W11-weekend.md
+@@ -14,7 +14,8 @@
+ 
+ ## 二、项目：完整版图鉴（60 分钟）
+ 
+-> 📁 项目存 `~/learning-homework/<你的学员名>/homework/`，新建 `pet_codex_v1.py`。
++> 📁 项目存 `~/Sand-Hollow/<你的学员名>/homework/`，新建 `pet_codex_v1.py`。
++> （ThawPaw 机：~/learning-homework · Tree 机：~/Sand-Hollow）
+ 
+ ### 完整代码
+ 
+diff --git a/mentors-den/course/W12-L01.md b/mentors-den/course/W12-L01.md
+index d8df02f..0a3c29d 100644
+--- a/mentors-den/course/W12-L01.md
++++ b/mentors-den/course/W12-L01.md
+@@ -4,7 +4,8 @@
+ 
+ ---
+ 
+-> **📂 课前准备 · 随堂练习文件**：先在 Thonny `文件 → 新建`，立刻 `文件 → 另存为...` 存为 `~/learning-homework/<你的学员名>/homework/W11-L01-practice.py`（ThawPaw 对应 `thawpaw/homework/`，Tree 对应 `tree/homework/`）。本课所有亲手敲的代码都写进这个文件；课后作业 `W11-L01-homework.py` 是另一个文件，别混。
++> **📂 课前准备 · 随堂练习文件**：先在 Thonny `文件 → 新建`，立刻 `文件 → 另存为...` 存为 `~/Sand-Hollow/<你的学员名>/homework/W11-L01-practice.py`（ThawPaw 对应 `thawpaw/homework/`，Tree 对应 `tree/homework/`）。本课所有亲手敲的代码都写进这个文件；课后作业 `W11-L01-homework.py` 是另一个文件，别混。
++> （ThawPaw 机：~/learning-homework · Tree 机：~/Sand-Hollow）
+ 
+ ## 一、概念：程序要有「运气」（5 分钟）
+ 
+@@ -120,7 +121,7 @@ print(f"Winners: {', '.join(winners)}")
+ 
+ ## 七、动手练习（先做完，再看第八节）
+ 
+-> 📁 **作业保存规则：** 本节课后练习写进一个**新文件** `W11-L01-homework.py`（存 `~/learning-homework/<你的学员名>/homework/`，与随堂练习 `W11-L01-practice.py` 分开），每道题开头写一行备注分隔（如 `# --- 题 1 ---`）。**交完作业要跟你的 mentor 说一声（ThawPaw → IcePaw / Tree → 如意）才会批改**，评语出现在 `reviews/*.review.md`。 **回报触发词：交完作业或修完坑，都在群里回一句「修完了」——不回这句 mentor 不知道，坑会一直挂着等。**
++> 📁 **作业保存规则：** 本节课后练习写进一个**新文件** `W11-L01-homework.py`（存 `~/Sand-Hollow/<你的学员名>/homework/`，与随堂练习 `W11-L01-practice.py` 分开），每道题开头写一行备注分隔（如 `# --- 题 1 ---`）。**交完作业要跟你的 mentor 说一声（ThawPaw → IcePaw / Tree → 如意）才会批改**，评语出现在 `reviews/*.review.md`。 **回报触发词：交完作业或修完坑，都在群里回一句「修完了」——不回这句 mentor 不知道，坑会一直挂着等。**
+ 
+ 1. **掷骰子**：模拟掷两个骰子（提示：random.randint 调两次 + 相加）
+ 2. **随机选课**：courses = ["Math", "English", "Science", "Art", "Music"]，随机选 3 门不重复
+diff --git a/mentors-den/course/W12-L02.md b/mentors-den/course/W12-L02.md
+index 8b87714..2b811ab 100644
+--- a/mentors-den/course/W12-L02.md
++++ b/mentors-den/course/W12-L02.md
+@@ -4,7 +4,8 @@
+ 
+ ---
+ 
+-> **📂 课前准备 · 随堂练习文件**：先在 Thonny `文件 → 新建`，立刻 `文件 → 另存为...` 存为 `~/learning-homework/<你的学员名>/homework/W11-L02-practice.py`（ThawPaw 对应 `thawpaw/homework/`，Tree 对应 `tree/homework/`）。本课所有亲手敲的代码都写进这个文件；课后作业 `W11-L02-homework.py` 是另一个文件，别混。
++> **📂 课前准备 · 随堂练习文件**：先在 Thonny `文件 → 新建`，立刻 `文件 → 另存为...` 存为 `~/Sand-Hollow/<你的学员名>/homework/W11-L02-practice.py`（ThawPaw 对应 `thawpaw/homework/`，Tree 对应 `tree/homework/`）。本课所有亲手敲的代码都写进这个文件；课后作业 `W11-L02-homework.py` 是另一个文件，别混。
++> （ThawPaw 机：~/learning-homework · Tree 机：~/Sand-Hollow）
+ 
+ ## 一、概念：电脑对战玩家的经典游戏（5 分钟）
+ 
+@@ -124,7 +125,7 @@ U+1FAA8 = 岩石 emoji，U+1F4C4 = 文档，U+2702 = 剪刀。
+ 
+ ## 七、动手练习（先做完，再看第八节）
+ 
+-> 📁 **作业保存规则：** 本节课后练习写进一个**新文件** `W11-L02-homework.py`（存 `~/learning-homework/<你的学员名>/homework/`，与随堂练习 `W11-L02-practice.py` 分开），每道题开头写一行备注分隔（如 `# --- 题 1 ---`）。**交完作业要跟你的 mentor 说一声（ThawPaw → IcePaw / Tree → 如意）才会批改**，评语出现在 `reviews/*.review.md`。 **回报触发词：交完作业或修完坑，都在群里回一句「修完了」——不回这句 mentor 不知道，坑会一直挂着等。**
++> 📁 **作业保存规则：** 本节课后练习写进一个**新文件** `W11-L02-homework.py`（存 `~/Sand-Hollow/<你的学员名>/homework/`，与随堂练习 `W11-L02-practice.py` 分开），每道题开头写一行备注分隔（如 `# --- 题 1 ---`）。**交完作业要跟你的 mentor 说一声（ThawPaw → IcePaw / Tree → 如意）才会批改**，评语出现在 `reviews/*.review.md`。 **回报触发词：交完作业或修完坑，都在群里回一句「修完了」——不回这句 mentor 不知道，坑会一直挂着等。**
+ 
+ 1. **第一版**：跑通基础石头剪刀布
+ 2. **第二版**：改成 5 局 + 计分
+diff --git a/mentors-den/course/W12-L03.md b/mentors-den/course/W12-L03.md
+index 4f27d06..7339873 100644
+--- a/mentors-den/course/W12-L03.md
++++ b/mentors-den/course/W12-L03.md
+@@ -4,7 +4,8 @@
+ 
+ ---
+ 
+-> **📂 课前准备 · 随堂练习文件**：先在 Thonny `文件 → 新建`，立刻 `文件 → 另存为...` 存为 `~/learning-homework/<你的学员名>/homework/W11-L03-practice.py`（ThawPaw 对应 `thawpaw/homework/`，Tree 对应 `tree/homework/`）。本课所有亲手敲的代码都写进这个文件；课后作业 `W11-L03-homework.py` 是另一个文件，别混。
++> **📂 课前准备 · 随堂练习文件**：先在 Thonny `文件 → 新建`，立刻 `文件 → 另存为...` 存为 `~/Sand-Hollow/<你的学员名>/homework/W11-L03-practice.py`（ThawPaw 对应 `thawpaw/homework/`，Tree 对应 `tree/homework/`）。本课所有亲手敲的代码都写进这个文件；课后作业 `W11-L03-homework.py` 是另一个文件，别混。
++> （ThawPaw 机：~/learning-homework · Tree 机：~/Sand-Hollow）
+ 
+ ## 一、概念：把 W07 战斗升级成完整 RPG（5 分钟）
+ 
+@@ -139,7 +140,7 @@ main()
+ 
+ ## 六、动手练习（先做完，再看第七节）
+ 
+-> 📁 **作业保存规则：** 本节课后练习写进一个**新文件** `W11-L03-homework.py`（存 `~/learning-homework/<你的学员名>/homework/`，与随堂练习 `W11-L03-practice.py` 分开），每道题开头写一行备注分隔（如 `# --- 题 1 ---`）。**交完作业要跟你的 mentor 说一声（ThawPaw → IcePaw / Tree → 如意）才会批改**，评语出现在 `reviews/*.review.md`。 **回报触发词：交完作业或修完坑，都在群里回一句「修完了」——不回这句 mentor 不知道，坑会一直挂着等。**
++> 📁 **作业保存规则：** 本节课后练习写进一个**新文件** `W11-L03-homework.py`（存 `~/Sand-Hollow/<你的学员名>/homework/`，与随堂练习 `W11-L03-practice.py` 分开），每道题开头写一行备注分隔（如 `# --- 题 1 ---`）。**交完作业要跟你的 mentor 说一声（ThawPaw → IcePaw / Tree → 如意）才会批改**，评语出现在 `reviews/*.review.md`。 **回报触发词：交完作业或修完坑，都在群里回一句「修完了」——不回这句 mentor 不知道，坑会一直挂着等。**
+ 
+ 1. **跑通基础战斗**：跟 Slime 打一架，验证升级
+ 2. **加技能**：给玩家加个 "heal" 技能（用一次回 30 HP，每场战斗只能用一次）
+diff --git a/mentors-den/course/W13-L01.md b/mentors-den/course/W13-L01.md
+index 3186211..d0a7030 100644
+--- a/mentors-den/course/W13-L01.md
++++ b/mentors-den/course/W13-L01.md
+@@ -4,7 +4,8 @@
+ 
+ ---
+ 
+-> **📂 课前准备 · 随堂练习文件**：先在 Thonny `文件 → 新建`，立刻 `文件 → 另存为...` 存为 `~/learning-homework/<你的学员名>/homework/W12-L01-practice.py`（ThawPaw 对应 `thawpaw/homework/`，Tree 对应 `tree/homework/`）。本课所有亲手敲的代码都写进这个文件；课后作业 `W12-L01-homework.py` 是另一个文件，别混。
++> **📂 课前准备 · 随堂练习文件**：先在 Thonny `文件 → 新建`，立刻 `文件 → 另存为...` 存为 `~/Sand-Hollow/<你的学员名>/homework/W12-L01-practice.py`（ThawPaw 对应 `thawpaw/homework/`，Tree 对应 `tree/homework/`）。本课所有亲手敲的代码都写进这个文件；课后作业 `W12-L01-homework.py` 是另一个文件，别混。
++> （ThawPaw 机：~/learning-homework · Tree 机：~/Sand-Hollow）
+ 
+ ## 一、概念：从学到做（5 分钟）
+ 
+@@ -93,7 +94,7 @@ Interface (pseudo-ASCII example):
+ 
+ ## 四、动手练习（先做完，再看第五节）
+ 
+-> 📁 **作业保存规则：** 本节课后练习写进一个**新文件** `W12-L01-homework.py`（存 `~/learning-homework/<你的学员名>/homework/`，与随堂 `W12-L01-practice.py` 分开），每道题开头写一行备注分隔（如 `# --- 题 1 ---`）。**交完作业要跟你的 mentor 说一声（ThawPaw → IcePaw / Tree → 如意）才会批改**，评语出现在 `reviews/*.review.md`。 **回报触发词：交完作业或修完坑，都在群里回一句「修完了」——不回这句 mentor 不知道，坑会一直挂着等。**
++> 📁 **作业保存规则：** 本节课后练习写进一个**新文件** `W12-L01-homework.py`（存 `~/Sand-Hollow/<你的学员名>/homework/`，与随堂 `W12-L01-practice.py` 分开），每道题开头写一行备注分隔（如 `# --- 题 1 ---`）。**交完作业要跟你的 mentor 说一声（ThawPaw → IcePaw / Tree → 如意）才会批改**，评语出现在 `reviews/*.review.md`。 **回报触发词：交完作业或修完坑，都在群里回一句「修完了」——不回这句 mentor 不知道，坑会一直挂着等。**
+ 
+ 1. **选题**：从四类里选一类 + 一个具体题目
+ 2. **功能清单**：写 3-5 条
+diff --git a/mentors-den/course/W13-L02.md b/mentors-den/course/W13-L02.md
+index 101b73e..3cb621b 100644
+--- a/mentors-den/course/W13-L02.md
++++ b/mentors-den/course/W13-L02.md
+@@ -4,7 +4,8 @@
+ 
+ ---
+ 
+-> **📂 课前准备 · 随堂练习文件**：先在 Thonny `文件 → 新建`，立刻 `文件 → 另存为...` 存为 `~/learning-homework/<你的学员名>/homework/W12-L02-practice.py`（ThawPaw 对应 `thawpaw/homework/`，Tree 对应 `tree/homework/`）。本课所有亲手敲的代码都写进这个文件；课后作业 `W12-L02-homework.py` 是另一个文件，别混。
++> **📂 课前准备 · 随堂练习文件**：先在 Thonny `文件 → 新建`，立刻 `文件 → 另存为...` 存为 `~/Sand-Hollow/<你的学员名>/homework/W12-L02-practice.py`（ThawPaw 对应 `thawpaw/homework/`，Tree 对应 `tree/homework/`）。本课所有亲手敲的代码都写进这个文件；课后作业 `W12-L02-homework.py` 是另一个文件，别混。
++> （ThawPaw 机：~/learning-homework · Tree 机：~/Sand-Hollow）
+ 
+ ## 一、概念：不要一次写完（5 分钟）
+ 
+@@ -142,7 +143,7 @@ def load_data():
+ 
+ ## 五、动手练习（先做完，再看第六节）
+ 
+-> 📁 **作业保存规则：** 毕业项目代码写进 `W12-L02-project.py`（存 `~/learning-homework/<你的学员名>/homework/`，与随堂练习 `W12-L02-practice.py` 分开），每天下课前至少 commit 一次进度（mentor 看得到）。**交完作业要跟你的 mentor 说一声（ThawPaw → IcePaw / Tree → 如意）才会批改**，评语出现在 `reviews/*.review.md`。 **回报触发词：交完作业或修完坑，都在群里回一句「修完了」——不回这句 mentor 不知道，坑会一直挂着等。**
++> 📁 **作业保存规则：** 毕业项目代码写进 `W12-L02-project.py`（存 `~/Sand-Hollow/<你的学员名>/homework/`，与随堂练习 `W12-L02-practice.py` 分开），每天下课前至少 commit 一次进度（mentor 看得到）。**交完作业要跟你的 mentor 说一声（ThawPaw → IcePaw / Tree → 如意）才会批改**，评语出现在 `reviews/*.review.md`。 **回报触发词：交完作业或修完坑，都在群里回一句「修完了」——不回这句 mentor 不知道，坑会一直挂着等。**
+ 
+ 1. **建骨架**：写 main + 3 个空函数 + 跑通
+ 2. **第一块**：实现一个核心函数 + 跑通
+diff --git a/mentors-den/course/W13-L03.md b/mentors-den/course/W13-L03.md
+index badefd6..78e2551 100644
+--- a/mentors-den/course/W13-L03.md
++++ b/mentors-den/course/W13-L03.md
+@@ -4,7 +4,8 @@
+ 
+ ---
+ 
+-> **📂 课前准备 · 随堂练习文件**：先在 Thonny `文件 → 新建`，立刻 `文件 → 另存为...` 存为 `~/learning-homework/<你的学员名>/homework/W12-L03-practice.py`（ThawPaw 对应 `thawpaw/homework/`，Tree 对应 `tree/homework/`）。本课所有亲手敲的代码都写进这个文件；课后作业 `W12-L03-homework.py` 是另一个文件，别混。
++> **📂 课前准备 · 随堂练习文件**：先在 Thonny `文件 → 新建`，立刻 `文件 → 另存为...` 存为 `~/Sand-Hollow/<你的学员名>/homework/W12-L03-practice.py`（ThawPaw 对应 `thawpaw/homework/`，Tree 对应 `tree/homework/`）。本课所有亲手敲的代码都写进这个文件；课后作业 `W12-L03-homework.py` 是另一个文件，别混。
++> （ThawPaw 机：~/learning-homework · Tree 机：~/Sand-Hollow）
+ 
+ ## 一、概念：能讲清 = 真的懂（5 分钟）
+ 
+@@ -137,7 +138,7 @@ A tool for teachers / parents.
+ 
+ ## 五、动手练习（先做完，再看第六节）
+ 
+-> 📁 **作业保存规则：** README.md 存 `~/learning-homework/<你的学员名>/homework/`（和 W12 项目代码同目录）；演示反馈记录写进 `W12-L03-homework.py` 顶部注释（谁提的什么建议、你改了哪）。**交完作业要跟你的 mentor 说一声（ThawPaw → IcePaw / Tree → 如意）才会批改**，评语出现在 `reviews/*.review.md`。 **回报触发词：交完作业或修完坑，都在群里回一句「修完了」——不回这句 mentor 不知道，坑会一直挂着等。**
++> 📁 **作业保存规则：** README.md 存 `~/Sand-Hollow/<你的学员名>/homework/`（和 W12 项目代码同目录）；演示反馈记录写进 `W12-L03-homework.py` 顶部注释（谁提的什么建议、你改了哪）。**交完作业要跟你的 mentor 说一声（ThawPaw → IcePaw / Tree → 如意）才会批改**，评语出现在 `reviews/*.review.md`。 **回报触发词：交完作业或修完坑，都在群里回一句「修完了」——不回这句 mentor 不知道，坑会一直挂着等。**
+ 
+ 1. **写 README**：完整版（含全部 7 部分）
+ 2. **演示准备**：自己跑一遍，记录需要讲什么
+diff --git a/mentors-den/course/algopedia/binary-big-o.md b/mentors-den/course/algopedia/binary-big-o.md
+index 1d66843..f32b6a1 100644
+--- a/mentors-den/course/algopedia/binary-big-o.md
++++ b/mentors-den/course/algopedia/binary-big-o.md
+@@ -4,7 +4,8 @@
+ 
+ ---
+ 
+-> **📂 课前准备 · 随堂练习文件**：先在 Thonny `文件 → 新建`，立刻 `文件 → 另存为...` 存为 `~/learning-homework/<你的学员名>/homework/W13-L03-practice.py`。本课所有亲手敲的代码都写进这个文件；课后作业 `W13-L03-homework.py` 是另一个文件，别混。
++> **📂 课前准备 · 随堂练习文件**：先在 Thonny `文件 → 新建`，立刻 `文件 → 另存为...` 存为 `~/Sand-Hollow/<你的学员名>/homework/W13-L03-practice.py`。本课所有亲手敲的代码都写进这个文件；课后作业 `W13-L03-homework.py` 是另一个文件，别混。
++> （ThawPaw 机：~/learning-homework · Tree 机：~/Sand-Hollow）
+ 
+ ## 一、问题：怎么比较两个算法谁快（3 分钟）
+ 
