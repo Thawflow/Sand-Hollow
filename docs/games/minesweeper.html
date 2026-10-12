@@ -113,6 +113,11 @@ h1{font-size:18px;color:#ffd700;margin-bottom:10px;letter-spacing:1px}
   .diff-btn{padding:6px 10px;font-size:11.5px}
   .topbar{padding:8px 10px;min-height:58px}
 }
+
+/* ⬆ 沙坑出口（10/12 苗苗：进去就出不来不行）*/
+.sand-exit{position:fixed;right:14px;bottom:14px;z-index:9999;display:inline-flex;align-items:center;gap:6px;padding:9px 14px;border-radius:12px;background:rgba(23,30,46,.85);backdrop-filter:blur(8px);border:1px solid #2a3550;color:#8b96ad;font-size:.82rem;cursor:pointer;text-decoration:none;font-family:-apple-system,BlinkMacSystemFont,'PingFang SC',sans-serif;transition:all .18s;user-select:none}
+.sand-exit:hover{color:#ff6b81;border-color:#ff6b81;transform:translateY(-2px)}
+.sand-exit:active{transform:scale(.96)}
 </style>
 </head>
 <body>
@@ -573,5 +578,5 @@ window.addEventListener('resize', () => {
 // ─── Boot ───
 init('easy');
 </script>
-</body>
+<a class="sand-exit" href="../" title="退出游戏，回沙坑">✕ 退出 · 回沙坑</a></body>
 </html>
