@@ -173,6 +173,20 @@ index e20e342..3f95c14 100644
  
  1. 名片改造：W01-L02 题 1 原题「建 4 个变量：`my_name`（用化名，别用真名）/ `my_hobby` / `my_dream` / `my_food`，全部打印」——现在用 f-string 重写，把 4 个变量打进一句话名片
  2. 猫粮账单：单价 39.5、数量 3，用 :.2f 打印 "Total: xx.xx yuan"
+diff --git a/mentors-den/course/W02-S1.md b/mentors-den/course/W02-S1.md
+index 0f1b825..f616697 100644
+--- a/mentors-den/course/W02-S1.md
++++ b/mentors-den/course/W02-S1.md
+@@ -74,7 +74,8 @@ str(11) + " years"  # "11 years" —— int 变 str，能拼接了
+ 
+ ## 📝 今日作业（≈10 分钟，今天的 30 分钟额度还剩这些）
+ 
+-新建文件 `W02-S1-homework.py`（存 `~/learning-homework/<你的学员名>/homework/`），3 道题：
++新建文件 `W02-S1-homework.py`（存 `~/Sand-Hollow/<你的学员名>/homework/`），3 道题：
++> （ThawPaw 机：~/learning-homework · Tree 机：~/Sand-Hollow）
+ 
+ 1. **透视镜**：用 `print(type(...))` 查四样东西——`14`、`"14"`、`1.4`、`"1.4"`。先在注释里笔猜每行输出，再运行对答案
+ 2. **复读机验证**：先笔猜再跑——`"52" * 6` 和 `52 * 6` 各输出什么？
 diff --git a/mentors-den/course/W02-weekend.md b/mentors-den/course/W02-weekend.md
 index 46e3a9e..9b4924f 100644
 --- a/mentors-den/course/W02-weekend.md
