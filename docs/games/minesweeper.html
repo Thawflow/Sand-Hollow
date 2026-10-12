@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no,viewport-fit=cover">
+<meta name="description" content="经典扫雷 - 鼠标左键翻格右键标旗。简单/中级/专家/满屏/自定义五种难度。" />
+<meta property="og:title" content="扫雷 💣" />
+<meta property="og:description" content="经典扫雷游戏，鼠标左键翻格右键标旗" />
+<title>扫雷 - ThawPaw Games</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{height:100%}
+body{font-family:system-ui,-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;
+  background:linear-gradient(135deg,#0f1424 0%,#1a1a3a 50%,#0f1424 100%);
+  color:#eee;min-height:100vh;display:flex;flex-direction:column;align-items:center;
+  padding:14px 10px 18px;user-select:none;-webkit-user-select:none;-webkit-tap-highlight-color:transparent}
+h1{font-size:18px;color:#ffd700;margin-bottom:10px;letter-spacing:1px}
+
+/* ====== Game card ====== */
+.game-card{background:linear-gradient(180deg,#16213e 0%,#0f3460 100%);border-radius:16px;
+  padding:12px;box-shadow:0 12px 36px rgba(0,0,0,.5),inset 0 1px 0 rgba(255,255,255,.05);
+  display:flex;flex-direction:column;gap:10px;position:relative;max-width:100%}
+
+/* ====== Top bar: 雷数 | 笑脸 | 计时 ====== */
+.topbar{background:linear-gradient(180deg,#1a2a4a,#0f1a30);border-radius:10px;
+  padding:10px 14px;display:flex;align-items:center;justify-content:space-between;
+  min-height:64px;box-shadow:inset 0 2px 4px rgba(0,0,0,.3),inset 0 -1px 0 rgba(255,255,255,.05);
+  gap:10px}
+.counter{display:flex;align-items:center;gap:6px;background:#0a0f1c;
+  padding:6px 10px;border-radius:6px;border:1px solid #2a3148;
+  box-shadow:inset 0 1px 3px rgba(0,0,0,.5);min-width:80px}
+.counter-icon{font-size:15px;filter:drop-shadow(0 0 4px rgba(255,255,255,.2))}
+.counter-num{font-family:"Courier New",ui-monospace,monospace;font-size:22px;font-weight:800;
+  color:#ff3b30;text-shadow:0 0 8px rgba(255,59,48,.5);letter-spacing:2px;
+  font-variant-numeric:tabular-nums;line-height:1;flex:1;text-align:right}
+.timer-counter .counter-num{color:#4ac14a;text-shadow:0 0 8px rgba(74,193,74,.5)}
+
+.smile{font-size:40px;cursor:pointer;line-height:1;filter:drop-shadow(0 3px 6px rgba(0,0,0,.4));
+  transition:transform .15s;-webkit-user-select:none;user-select:none;flex-shrink:0}
+.smile:hover{transform:scale(1.08)}
+.smile:active{transform:scale(.92)}
+
+/* ====== Difficulty selector ====== */
+.diff-row{display:flex;gap:6px;flex-wrap:wrap;justify-content:center;padding:2px 0}
+.diff-btn{background:rgba(15,52,96,.7);border:1px solid #2a4a78;color:#cfd8e8;padding:7px 12px;
+  border-radius:18px;cursor:pointer;font-size:12.5px;transition:all .2s;font-family:inherit;
+  white-space:nowrap}
+.diff-btn:hover{background:rgba(25,72,126,.9);color:#fff;transform:translateY(-1px)}
+.diff-btn.active{background:linear-gradient(180deg,#e94560,#c93550);color:#fff;border-color:#e94560;
+  box-shadow:0 0 12px rgba(233,69,96,.4)}
+
+/* ====== Custom panel ====== */
+.custom-panel{display:flex;align-items:center;gap:8px;flex-wrap:wrap;justify-content:center;
+  padding:8px 10px;background:rgba(10,15,28,.5);border-radius:8px;border:1px solid #2a4a78;
+  font-size:13px}
+.custom-panel[hidden]{display:none}
+.custom-panel label{color:#aaa;font-weight:600}
+.custom-panel input[type=number]{background:#0a0f1c;border:1px solid #2a4a78;color:#eee;
+  padding:6px 8px;border-radius:6px;width:62px;font-size:13px;font-family:inherit;
+  text-align:center;font-weight:600;font-variant-numeric:tabular-nums}
+.custom-panel input[type=number]:focus{outline:none;border-color:#e94560;
+  box-shadow:0 0 0 2px rgba(233,69,96,.2)}
+.custom-panel input[type=number]::-webkit-inner-spin-button,
+.custom-panel input[type=number]::-webkit-outer-spin-button{-webkit-appearance:none;margin:0}
+.custom-panel .sep{color:#888}
+.custom-apply{background:linear-gradient(180deg,#e94560,#c93550);border:none;color:#fff;
+  padding:7px 18px;border-radius:8px;cursor:pointer;font-size:13px;font-weight:700;
+  font-family:inherit;transition:transform .15s;box-shadow:0 2px 6px rgba(233,69,96,.3)}
+.custom-apply:hover{transform:translateY(-1px);box-shadow:0 4px 10px rgba(233,69,96,.4)}
+.custom-apply:active{transform:translateY(0)}
+
+/* ====== Grid ====== */
+.grid{display:grid;gap:2px;background:#0a0f1c;padding:6px;border-radius:8px;
+  box-shadow:inset 0 2px 6px rgba(0,0,0,.5);touch-action:none;
+  --cell-size:34px;--cell-font:18px;--cell-flag:20px}
+.cell{
+  width:var(--cell-size);height:var(--cell-size);
+  background:linear-gradient(180deg,#4d6f9f,#3a5a85);
+  border:2px solid;border-color:#6a8ec0 #2a4068 #2a4068 #6a8ec0;border-radius:3px;
+  display:flex;align-items:center;justify-content:center;font-weight:800;
+  font-size:var(--cell-font);cursor:pointer;transition:background .1s;
+  user-select:none;-webkit-user-select:none;line-height:1;font-family:system-ui,sans-serif
+}
+.cell.hidden:hover:not(.gameover){background:linear-gradient(180deg,#5d80b0,#4a6a95)}
+.cell.revealed{background:#1a1f30;border:1px solid #2a3148;cursor:default;
+  box-shadow:inset 0 1px 2px rgba(0,0,0,.4)}
+.cell.revealed.mine{background:linear-gradient(180deg,#cc3333,#aa2222);
+  border-color:#ff5555;color:#fff;font-size:var(--cell-flag)}
+.cell.exploded{background:linear-gradient(180deg,#ff4444,#cc0000)!important;
+  border-color:#ff8888!important}
+.cell.flagged{color:#ffd700;font-size:var(--cell-flag)}
+.cell .num1{color:#4a9eff}.cell .num2{color:#4ac14a}
+.cell .num3{color:#ff5555}.cell .num4{color:#9d4aff}
+.cell .num5{color:#ff9d4a}.cell .num6{color:#4aeaea}
+.cell .num7{color:#e0e0e0}.cell .num8{color:#888}
+
+/* ====== Overlay ====== */
+.overlay{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+  background:rgba(10,15,28,.78);border-radius:16px;font-size:20px;font-weight:700;
+  pointer-events:none;opacity:0;transition:opacity .3s;letter-spacing:1px;
+  text-shadow:0 2px 8px rgba(0,0,0,.6)}
+.overlay.show{opacity:1}
+.overlay.win{color:#4ac14a}
+.overlay.lose{color:#ff5555}
+
+/* Mobile */
+@media (max-width:480px){
+  :root{--cell-size:30px;--cell-font:16px;--cell-flag:18px}
+  .counter{padding:5px 8px;min-width:72px}
+  .counter-num{font-size:18px}
+  .smile{font-size:34px}
+  h1{font-size:16px;margin-bottom:8px}
+  .diff-btn{padding:6px 10px;font-size:11.5px}
+  .topbar{padding:8px 10px;min-height:58px}
+}
+</style>
+</head>
+<body>
+<h1>💣 扫雷 Minesweeper</h1>
+
+<div class="game-card">
+  <!-- 顶栏：左雷数 | 中笑脸 | 右计时 -->
+  <div class="topbar">
+    <div class="counter mines-counter">
+      <span class="counter-icon">🚩</span>
+      <span class="counter-num" id="minesLeft">000</span>
+    </div>
+    <div class="smile" id="smile" title="重新开始">😀</div>
+    <div class="counter timer-counter">
+      <span class="counter-icon">⏱️</span>
+      <span class="counter-num" id="timer">000</span>
+    </div>
+  </div>
+
+  <!-- 难度选择 -->
+  <div class="diff-row" id="diffRow">
+    <button class="diff-btn active" data-diff="easy">简单 9×9</button>
+    <button class="diff-btn" data-diff="medium">中级 16×16</button>
+    <button class="diff-btn" data-diff="expert">专家 16×30</button>
+    <button class="diff-btn" data-diff="full">满屏</button>
+    <button class="diff-btn" data-diff="custom">自定义</button>
+  </div>
+
+  <!-- 自定义面板（点自定义按钮才显示） -->
+  <div class="custom-panel" id="customPanel" hidden>
+    <label>行</label><input type="number" id="customRows" min="3" max="50" value="12">
+    <span class="sep">×</span>
+    <label>列</label><input type="number" id="customCols" min="3" max="60" value="14">
+    <span class="sep">💣</span><input type="number" id="customMines" min="1" value="25">
+    <button class="custom-apply" id="customApply">开始</button>
+  </div>
+
+  <!-- 棋盘 -->
+  <div class="grid" id="grid"></div>
+
+  <!-- 终局遮罩 -->
+  <div class="overlay" id="overlay"></div>
+</div>
+
+<script>
+'use strict';
+
+// ─── Difficulty presets ───
+const DIFFS = {
+  easy:   { rows: 9,  cols: 9,  mines: 10 },
+  medium: { rows: 16, cols: 16, mines: 40 },
+  expert: { rows: 16, cols: 30, mines: 99 }
+};
+
+// ─── State ───
+let S = null;
+let currentDiff = 'easy';
+
+function freshState(rows, cols, mines){
+  return {
+    rows, cols, mines,
+    board: Array.from({length: rows}, () => new Array(cols).fill(0)),
+    revealed: Array.from({length: rows}, () => new Array(cols).fill(false)),
+    flagged: Array.from({length: rows}, () => new Array(cols).fill(false)),
+    firstClick: true,
+    flagCount: 0,
+    startTime: null,
+    timerId: null,
+    state: 'idle'
+  };
+}
+
+// ─── DOM ───
+const $ = id => document.getElementById(id);
+const $grid    = $('grid');
+const $smile   = $('smile');
+const $mines   = $('minesLeft');
+const $timer   = $('timer');
+const $overlay = $('overlay');
+const $customPanel = $('customPanel');
+
+// ─── Fullscreen dim calculator ───
+function calcFullscreenDims(){
+  const vw = window.innerWidth;
+  const vh = window.innerHeight;
+  // Reserve: topbar (~80) + diff row (~40) + custom panel (0-50) + grid padding (~12) + card padding (~28)
+  const reserveW = 50;
+  const reserveH = 220;
+  const usableW = Math.max(120, vw - reserveW);
+  const usableH = Math.max(120, vh - reserveH);
+  const target = 30;
+  const cols = Math.max(8, Math.min(60, Math.floor(usableW / target)));
+  const rows = Math.max(8, Math.min(40, Math.floor(usableH / target)));
+  const mines = Math.max(1, Math.min(rows * cols - 9, Math.floor(rows * cols * 0.15)));
+  return { rows, cols, mines };
+}
+
+// ─── Cell size auto-adjust ───
+function adjustCellSize(){
+  const isFull = currentDiff === 'full';
+  let px;
+  if (isFull && S){
+    const vw = window.innerWidth;
+    const vh = window.innerHeight;
+    const cw = Math.floor((vw - 60) / S.cols);
+    const ch = Math.floor((vh - 220) / S.rows);
+    px = Math.max(16, Math.min(cw, ch, 40));
+  } else if (window.innerWidth <= 480){
+    px = 30;
+  } else {
+    px = 34;
+  }
+  const root = document.documentElement.style;
+  root.setProperty('--cell-size', px + 'px');
+  root.setProperty('--cell-font', Math.floor(px * 0.55) + 'px');
+  root.setProperty('--cell-flag', Math.floor(px * 0.65) + 'px');
+}
+
+// ─── Resolve dims for a diff key ───
+function dimsFor(key){
+  if (key === 'full')    return calcFullscreenDims();
+  if (key === 'custom') {
+    return {
+      rows:  parseInt($('customRows').value)  || 12,
+      cols:  parseInt($('customCols').value)  || 14,
+      mines: parseInt($('customMines').value) || 25
+    };
+  }
+  return DIFFS[key];
+}
+
+function validateDims(d){
+  return d.rows >= 3 && d.rows <= 50
+      && d.cols >= 3 && d.cols <= 60
+      && d.mines >= 1 && d.mines < d.rows * d.cols;
+}
+
+// ─── Init / Reset ───
+function init(diffKey){
+  const d = dimsFor(diffKey);
+  if (!validateDims(d)){
+    console.warn('Invalid dims', d);
+    return;
+  }
+  currentDiff = diffKey;
+  S = freshState(d.rows, d.cols, d.mines);
+
+  $grid.style.gridTemplateColumns = `repeat(${S.cols}, var(--cell-size))`;
+  $grid.innerHTML = '';
+
+  adjustCellSize();
+
+  const frag = document.createDocumentFragment();
+  for (let r = 0; r < S.rows; r++){
+    for (let c = 0; c < S.cols; c++){
+      const cell = document.createElement('div');
+      cell.className = 'cell hidden';
+      cell.dataset.r = r;
+      cell.dataset.c = c;
+
+      cell.addEventListener('click',       onLeftClick);
+      cell.addEventListener('contextmenu', e => { e.preventDefault(); onRightClick(parseInt(cell.dataset.r), parseInt(cell.dataset.c)); });
+      cell.addEventListener('touchstart',  onTouchStart,  { passive: false });
+      cell.addEventListener('touchend',    onTouchEnd);
+      cell.addEventListener('touchmove',   onTouchMove);
+
+      frag.appendChild(cell);
+    }
+  }
+  $grid.appendChild(frag);
+
+  $smile.textContent = '😀';
+  $overlay.classList.remove('show', 'win', 'lose');
+  $overlay.textContent = '';
+
+  // Reset displays
+  $mines.textContent = String(S.mines).padStart(3, '0');
+  $timer.textContent = '000';
+}
+
+// ─── Mine placement ───
+function placeMines(sr, sc){
+  const safe = new Set();
+  for (let dr = -1; dr <= 1; dr++){
+    for (let dc = -1; dc <= 1; dc++){
+      const r = sr + dr, c = sc + dc;
+      if (r >= 0 && r < S.rows && c >= 0 && c < S.cols) safe.add(r * S.cols + c);
+    }
+  }
+  const all = [];
+  for (let i = 0; i < S.rows * S.cols; i++) if (!safe.has(i)) all.push(i);
+
+  const n = Math.min(S.mines, all.length);
+  for (let i = 0; i < n; i++){
+    const j = i + Math.floor(Math.random() * (all.length - i));
+    [all[i], all[j]] = [all[j], all[i]];
+    const r = Math.floor(all[i] / S.cols), c = all[i] % S.cols;
+    S.board[r][c] = -1;
+  }
+
+  for (let r = 0; r < S.rows; r++){
+    for (let c = 0; c < S.cols; c++){
+      if (S.board[r][c] === -1) continue;
+      let cnt = 0;
+      for (let dr = -1; dr <= 1; dr++){
+        for (let dc = -1; dc <= 1; dc++){
+          if (dr === 0 && dc === 0) continue;
+          const nr = r + dr, nc = c + dc;
+          if (nr >= 0 && nr < S.rows && nc >= 0 && nc < S.cols && S.board[nr][nc] === -1) cnt++;
+        }
+      }
+      S.board[r][c] = cnt;
+    }
+  }
+
+  S.firstClick = false;
+  S.startTime = Date.now();
+  S.timerId = setInterval(() => { $timer.textContent = String(getTime()).padStart(3, '0'); }, 1000);
+}
+
+// ─── Reveal ───
+function reveal(r, c){
+  if (S.state === 'won' || S.state === 'lost') return;
+  if (S.flagged[r][c] || S.revealed[r][c]) return;
+  if (S.firstClick) placeMines(r, c);
+
+  if (S.board[r][c] === -1){
+    for (let rr = 0; rr < S.rows; rr++){
+      for (let cc = 0; cc < S.cols; cc++){
+        if (S.board[rr][cc] === -1 && !S.flagged[rr][cc]) S.revealed[rr][cc] = true;
+      }
+    }
+    S.revealed[r][c] = true;
+    S.state = 'lost';
+    $smile.textContent = '😭';
+    showOverlay('lose', '💥 踩雷了！');
+    stopTimer();
+    renderAll();
+    markExploded(r, c);
+    return;
+  }
+
+  const stack = [[r, c]];
+  while (stack.length){
+    const [cr, cc] = stack.pop();
+    if (S.revealed[cr][cc] || S.flagged[cr][cc]) continue;
+    S.revealed[cr][cc] = true;
+    if (S.board[cr][cc] === 0){
+      for (let dr = -1; dr <= 1; dr++){
+        for (let dc = -1; dc <= 1; dc++){
+          if (dr === 0 && dc === 0) continue;
+          const nr = cr + dr, nc = cc + dc;
+          if (nr >= 0 && nr < S.rows && nc >= 0 && nc < S.cols){
+            if (!S.revealed[nr][nc] && !S.flagged[nr][nc]) stack.push([nr, nc]);
+          }
+        }
+      }
+    }
+  }
+
+  if (checkWin()){
+    S.state = 'won';
+    $smile.textContent = '😎';
+    for (let rr = 0; rr < S.rows; rr++){
+      for (let cc = 0; cc < S.cols; cc++){
+        if (S.board[rr][cc] === -1 && !S.flagged[rr][cc]){
+          S.flagged[rr][cc] = true;
+          S.flagCount++;
+        }
+      }
+    }
+    showOverlay('win', `🎉 通关！${getTime()} 秒`);
+    stopTimer();
+    updateStats();
+  }
+  renderAll();
+}
+
+function toggleFlag(r, c){
+  if (S.state === 'won' || S.state === 'lost') return;
+  if (S.revealed[r][c]) return;
+  if (S.flagged[r][c]){
+    S.flagged[r][c] = false;
+    S.flagCount--;
+  } else {
+    S.flagged[r][c] = true;
+    S.flagCount++;
+  }
+  updateStats();
+  renderCell(r, c);
+}
+
+function checkWin(){
+  for (let r = 0; r < S.rows; r++){
+    for (let c = 0; c < S.cols; c++){
+      if (S.board[r][c] !== -1 && !S.revealed[r][c]) return false;
+    }
+  }
+  return true;
+}
+
+// ─── Render ───
+function renderCell(r, c){
+  const idx = r * S.cols + c;
+  const cell = $grid.children[idx];
+  if (!cell) return;
+  renderCellEl(cell, r, c);
+}
+
+function renderCellEl(cell, r, c){
+  cell.classList.remove('revealed','mine','flagged','exploded');
+
+  if (S.state === 'lost' && S.board[r][c] === -1 && !S.flagged[r][c]){
+    cell.classList.add('revealed', 'mine');
+    cell.textContent = '💣';
+    return;
+  }
+  if (S.flagged[r][c]){
+    cell.classList.add('flagged');
+    cell.textContent = '🚩';
+    return;
+  }
+  if (!S.revealed[r][c]){
+    cell.textContent = '';
+    return;
+  }
+  cell.classList.add('revealed');
+  const v = S.board[r][c];
+  cell.innerHTML = v === 0 ? '' : `<span class="num${v}">${v}</span>`;
+}
+
+function renderAll(){
+  const cells = $grid.children;
+  for (let i = 0; i < cells.length; i++){
+    const r = Math.floor(i / S.cols), c = i % S.cols;
+    renderCellEl(cells[i], r, c);
+  }
+}
+
+function markExploded(r, c){
+  const cell = $grid.children[r * S.cols + c];
+  if (cell) cell.classList.add('exploded');
+}
+
+// ─── Stats ───
+function updateStats(){
+  $mines.textContent = String(Math.max(0, S.mines - S.flagCount)).padStart(3, '0');
+}
+
+function getTime(){
+  return S.startTime ? Math.floor((Date.now() - S.startTime) / 1000) : 0;
+}
+
+function stopTimer(){
+  if (S.timerId){ clearInterval(S.timerId); S.timerId = null; }
+}
+
+function showOverlay(type, text){
+  $overlay.textContent = text;
+  $overlay.classList.remove('win','lose');
+  $overlay.classList.add(type, 'show');
+}
+
+// ─── Events ───
+function onLeftClick(e){
+  reveal(parseInt(e.currentTarget.dataset.r), parseInt(e.currentTarget.dataset.c));
+}
+
+function onRightClick(r, c){ toggleFlag(r, c); }
+
+let touchTimer = null;
+let touchMoved = false;
+function onTouchStart(e){
+  if (S.state === 'won' || S.state === 'lost') return;
+  const cell = e.currentTarget;
+  const r = parseInt(cell.dataset.r), c = parseInt(cell.dataset.c);
+  touchMoved = false;
+  touchTimer = setTimeout(() => {
+    toggleFlag(r, c);
+    touchTimer = null;
+    if (e.cancelable) e.preventDefault();
+  }, 400);
+}
+function onTouchMove(){
+  touchMoved = true;
+  if (touchTimer){ clearTimeout(touchTimer); touchTimer = null; }
+}
+function onTouchEnd(e){
+  if (touchMoved){ touchTimer = null; return; }
+  if (touchTimer){
+    clearTimeout(touchTimer);
+    touchTimer = null;
+    const cell = e.currentTarget;
+    reveal(parseInt(cell.dataset.r), parseInt(cell.dataset.c));
+  }
+}
+
+// ─── Difficulty buttons ───
+function setActiveDiff(btn){
+  document.querySelectorAll('.diff-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+}
+
+document.querySelectorAll('.diff-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const key = btn.dataset.diff;
+    setActiveDiff(btn);
+
+    if (key === 'custom'){
+      $customPanel.hidden = false;
+      // 不立刻 init，等用户填完点开始；也可以先按当前值 init
+      init('custom');
+      return;
+    }
+    $customPanel.hidden = true;
+    init(key);
+  });
+});
+
+// ─── 自定义应用 ───
+$('customApply').addEventListener('click', () => {
+  const r = parseInt($('customRows').value);
+  const c = parseInt($('customCols').value);
+  const m = parseInt($('customMines').value);
+  if (!validateDims({rows: r, cols: c, mines: m})){
+    alert('请检查：\n· 行 3-50\n· 列 3-60\n· 雷数 ≥ 1 且 < 行 × 列');
+    return;
+  }
+  init('custom');
+});
+
+// 回车直接开始
+['customRows','customCols','customMines'].forEach(id => {
+  $(id).addEventListener('keydown', e => { if (e.key === 'Enter') $('customApply').click(); });
+});
+
+// ─── Smiley = reset ───
+$smile.addEventListener('click', () => init(currentDiff));
+
+// ─── 阻止右键菜单 ───
+$grid.addEventListener('contextmenu', e => e.preventDefault());
+
+// ─── Resize: 满屏重算格数 / 其他模式只调格大小 ───
+let resizeTimer = null;
+window.addEventListener('resize', () => {
+  clearTimeout(resizeTimer);
+  resizeTimer = setTimeout(() => {
+    if (currentDiff === 'full'){
+      // 满屏：只在空闲态重算行列，游戏中仅调格大小
+      if (!S || S.state === 'idle') init('full');
+      else adjustCellSize();
+    } else {
+      adjustCellSize();
+    }
+  }, 150);
+});
+
+// ─── Boot ───
+init('easy');
+</script>
+</body>
+</html>

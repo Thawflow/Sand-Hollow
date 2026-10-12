@@ -12,7 +12,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="沙坑训练场">
-<script>var BUILD_TIME="20261007-0929"
+<script>var BUILD_TIME="20261012-0724"
 if('serviceWorker' in navigator){addEventListener('load',()=>navigator.serviceWorker.register('sw.js').catch(()=>{}))}</script>
 <style>
 :root{--bg:#0f1420;--card:#171e2e;--card2:#1e2740;--border:#2a3550;--text:#e8ecf4;--text2:#8b96ad;--accent:#5b9dff;--accent2:#7c6cff;--ok:#3ecf8e;--warn:#ffb454}
@@ -71,6 +71,10 @@ h1{font-size:1.6rem}
 @keyframes r{to{transform:rotate(360deg)}}
 .err{color:#ff8095}
 footer{text-align:center;color:var(--text2);font-size:.75rem;margin-top:30px}
+.game-fab{position:fixed;right:18px;bottom:18px;z-index:90;width:54px;height:54px;border-radius:16px;background:linear-gradient(135deg,var(--accent),var(--accent2));display:flex;align-items:center;justify-content:center;font-size:26px;text-decoration:none;box-shadow:0 6px 24px rgba(91,157,255,.35);border:none;transition:transform .18s,box-shadow .18s;animation:fab-in .5s ease 1.2s both}
+.game-fab:hover{transform:translateY(-3px) scale(1.06);box-shadow:0 10px 32px rgba(124,108,255,.45)}
+.game-fab:active{transform:scale(.95)}
+@keyframes fab-in{from{opacity:0;transform:translateY(14px) scale(.8)}to{opacity:1;transform:translateY(0) scale(1)}}
 </style>
 </head>
 <body>
@@ -78,7 +82,7 @@ footer{text-align:center;color:var(--text2);font-size:.75rem;margin-top:30px}
   <header>
     <h1>🏖️ 沙坑训练场</h1>
     <span class="sub">Skyclan 家庭 12 周课程 · 一套材料，两位学员（ThawPaw 🐱 × Tree 🌳）</span>
-    <a class="home-link" href="https://games.thawflow.com/" target="_blank" rel="noopener">🎮 游戏大本营 ↗</a>
+    <a class="home-link" href="/games/">🎮 游戏小窝</a>
   </header>
   <div class="notice">
     <b>⭐ 最佳学习姿势 · 分屏边看边练：</b>左边开本站，右边开 Thonny，看一行写一行、写一行跑一行，不用靠记性来回切窗口。<br>
@@ -94,6 +98,7 @@ footer{text-align:center;color:var(--text2);font-size:.75rem;margin-top:30px}
     <main class="content" id="content"><div class="spin"></div></main>
   </div>
   <footer>🏖️ 沙坑训练场 · learning v1 · <span id="bt"></span></footer>
+  <a class="game-fab" href="/games/" title="游戏小窝" aria-label="游戏小窝">🎮</a>
 </div>
 <script src="vendor/marked.min.js"></script>
 <script src="track.js?v=5" defer></script>
