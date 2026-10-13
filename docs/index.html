@@ -12,7 +12,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="沙坑训练场">
-<script>var BUILD_TIME="20261013-0750"
+<script>var BUILD_TIME="20261013-0834"
 if('serviceWorker' in navigator){addEventListener('load',()=>navigator.serviceWorker.register('sw.js').catch(()=>{}))}</script>
 <style>
 :root{--bg:#0f1420;--card:#171e2e;--card2:#1e2740;--border:#2a3550;--text:#e8ecf4;--text2:#8b96ad;--accent:#5b9dff;--accent2:#7c6cff;--ok:#3ecf8e;--warn:#ffb454}
@@ -92,6 +92,10 @@ footer{text-align:center;color:var(--text2);font-size:.75rem;margin-top:30px}
     <h1>🏖️ 沙坑训练场</h1>
     <span class="sub">Skyclan 家庭 12 周课程 · 一套材料，两位学员（ThawPaw 🐱 × Tree 🌳）</span>
     <a class="home-link" href="/games/">🎮 游戏小窝</a>
+    <button class="mailbox-btn" id="mailbox-btn" onclick="openSandMailbox()" title="我的信箱" style="display:none">
+      ✉
+      <span class="mail-badge" id="mail-badge" style="display:none">0</span>
+    </button>
   </header>
   <div class="notice">
     <b>⭐ 最佳学习姿势 · 分屏边看边练：</b>左边开本站，右边开 Thonny，看一行写一行、写一行跑一行，不用靠记性来回切窗口。<br>
@@ -276,11 +280,14 @@ function renderWeek(w){
       +'<div class="lesson-head"><span class="lt">'+(L.title||L.id)+'</span></div>'
       +'<div class="md" data-lid="'+L.id+'">'+(window.marked?marked.parse(L.markdown||'内容待补'):'<pre>'+String(L.markdown||'内容待补').replace(/</g,'&lt;')+'</pre>')+'</div>'
       +'<div class="hw-upload" data-lid="'+L.id+'">'
-      +'<h4>📝 交作业（没有 OpenClaw 分身的同学走这里）</h4>'
-      +'<div class="row"><input type="text" class="hw-name" placeholder="你的名字/昵称" maxlength="32"></div>'
-      +'<textarea class="hw-code" placeholder="把你的 Python 代码粘贴到这里（或点下面的按钮选文件）"></textarea>'
+      +'<h4>📝 交作业（首次使用：选个玩家号存本机）</h4>'
+      +'<div class="hw-idpick" data-pending="0">'
+      +'<div class="row"><input type="text" class="hw-name" placeholder="玩家号 8 位数字（例 24602243）" maxlength="32"></div>'
+      +'<div class="row"><button class="btn hw-random">🎲 随机一个</button><button class="btn hw-custom">✋ 用这个自己填的</button></div>'
+      +'<div class="note">本机记住玩家号；不用填昵称</div></div>'
+      +'<div class="hw-idconfirm" style="display:none"></div>'
+      +'<textarea class="hw-code" placeholder="粘贴代码或点「选 .py 文件」"></textarea>'
       +'<div class="row" style="margin-top:8px"><button class="btn hw-file-btn">📄 选 .py 文件</button><button class="btn hw-send-btn">🚀 提交作业</button></div>'
-      +'<div class="note">第一次提交会自动注册玩家号并加 mentor 好友（mentor 通过后即可交）。批改结果会发到你的信箱 📮（games 站同款，右下角信箱图标）</div>'
       +'<input type="file" class="hw-file" accept=".py,.txt" style="display:none">'
       +'<div class="ok-msg" style="display:none"></div>'
       +'</div></div>';
@@ -319,41 +326,54 @@ function renderWeek(w){
   // ── 作业直交卡片接线（2026-10-13 ThawPaw 提议：外部学员无分身也能交）──
   $('#content').querySelectorAll('.hw-upload').forEach(box=>{
     const lid=box.dataset.lid;
-    const nameI=box.querySelector('.hw-name'),codeT=box.querySelector('.hw-code'),fileI=box.querySelector('.hw-file'),sendB=box.querySelector('.hw-send-btn'),okM=box.querySelector('.ok-msg');
-    try{nameI.value=localStorage.getItem('hw-learner')||''}catch(_){}
+    const nameI=box.querySelector('.hw-name'),idpick=box.querySelector('.hw-idpick'),idconf=box.querySelector('.hw-idconfirm'),codeT=box.querySelector('.hw-code'),fileI=box.querySelector('.hw-file'),sendB=box.querySelector('.hw-send-btn'),okM=box.querySelector('.ok-msg');
+    const getId=()=>(localStorage.getItem('hw-pid')||'').trim();
+    const setId=id=>{try{localStorage.setItem('hw-pid',id)}catch(_){}};
+    function showConfirm(id, friendStatus){
+      idconf.innerHTML='<div class="row" style="background:var(--card2);padding:8px 12px;border-radius:8px;margin-top:6px">🆔 玩家号: <b>'+id+'</b> · 状态: '+(friendStatus||'待审')+'</div>';
+      idconf.style.display='block';
+    }
+    function tryUse(id){
+      if(!/^\d{8}$/.test(id)){okM.style.display='block';okM.style.color='#ff6b81';okM.textContent='玩家号必须是 8 位数字';return false}
+      setId(id);idpick.style.display='none';showConfirm(id,'申请中...（最多等 1 分钟）');return true;
+    }
+    box.querySelector('.hw-random').onclick=()=>{
+      const n=String(Math.floor(10000000+Math.random()*89999999));
+      nameI.value=n;tryUse(n);
+    };
+    box.querySelector('.hw-custom').onclick=()=>{
+      const v=nameI.value.trim();tryUse(v);
+    };
+    // 已选过号 → 跳过选号面板
+    if(getId()){idpick.style.display='none';showConfirm(getId(),'已就绪（可点右上角信箱看回信）');}
     box.querySelector('.hw-file-btn').onclick=()=>fileI.click();
     fileI.onchange=()=>{const f=fileI.files[0];if(!f)return;const r=new FileReader();r.onload=()=>{codeT.value=String(r.result).slice(0,32*1024);codeT.placeholder=f.name};r.readAsText(f)};
     sendB.onclick=async()=>{
-      const learner=nameI.value.trim(),code=codeT.value.trim();
-      if(!learner){okM.style.display='block';okM.style.color='#ff6b81';okM.textContent='先填名字～';return}
+      const pid=getId();
+      const code=codeT.value.trim();
+      if(!pid){okM.style.display='block';okM.style.color='#ff6b81';okM.textContent='先选个玩家号（上面「随机一个」或「用这个自己填的」）';return}
       if(!code){okM.style.display='block';okM.style.color='#ff6b81';okM.textContent='代码还空着～';return}
       sendB.disabled=true;sendB.textContent='提交中…';
       try{
-        // 走 DM 信箱（复用 games 体系，已上线）：学员需先注册玩家号 + 加 mentor 好友
-        const pid=localStorage.getItem('hw-pid')||'';
-        const pnick=localStorage.getItem('hw-pnickname')||nameI.value.trim();
-        if(!/^\d{8}$/.test(pid)){
-          // 首次：自动注册一个玩家号（随机 8 位）+ 加 mentor 好友
-          const nid=String(Math.floor(10000000+Math.random()*89999999));
-          try{
-            const rr=await fetch(API+'/register',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({id:nid,nickname:pnick})});
-            const rj=await rr.json();
-            if(!rj.ok){okM.style.display='block';okM.style.color='#ff6b81';okM.textContent='注册失败：'+(rj.error||'')+'——换个名字试试';return}
-            localStorage.setItem('hw-pid',nid);localStorage.setItem('hw-pnickname',pnick);
-            await fetch(API+'/friends/add',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({id:nid,nickname:pnick,targetId:'20260627'})});
-          }catch(e){okM.style.display='block';okM.style.color='#ff6b81';okM.textContent='网络不通——稍后再试';return}
-        }
-        const myPid=localStorage.getItem('hw-pid');
+        // 1) 注册 + 2) 加 WWX 好友（门牌号 94568945）——首次才走
+        const nick=pid; // 默认昵称=玩家号，学员可不填
+        const r1=await fetch(API+'/register',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({id:pid,nickname:nick})});
+        const j1=await r1.json();
+        if(!j1.ok && !/已被注册/.test(j1.error||'')){okM.style.display='block';okM.style.color='#ff6b81';okM.textContent='注册失败：'+(j1.error||'');sendB.disabled=false;sendB.textContent='🚀 提交作业';return}
+        await fetch(API+'/friends/add',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({id:pid,nickname:nick,targetId:'94568945'})}).catch(()=>{});
+        // 3) 发 DM
         const content='[作业:'+lid+']\n'+code;
-        const r=await fetch(API+'/dm/send',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({id:myPid,nickname:localStorage.getItem('hw-pnickname'),to:'20260627',content:content})});
+        const r=await fetch(API+'/dm/send',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({id:pid,nickname:nick,to:'94568945',content:content})});
         const j=await r.json();
         okM.style.display='block';
-        if(j.ok){okM.style.color='var(--ok)';okM.textContent='✅ '+j.message;try{localStorage.setItem('hw-learner',learner)}catch(_){}codeT.value=''}
+        if(j.ok){okM.style.color='var(--ok)';okM.textContent='✅ 作业已收到！批改后会出现在你右上角信箱 ✉（点首页右上角 ✉ 图标）';codeT.value='';showConfirm(pid,'已提交待批改')}
         else{okM.style.color='#ff6b81';okM.textContent='❌ '+(j.error||'提交失败，稍后再试')}
       }catch(e){okM.style.display='block';okM.style.color='#ff6b81';okM.textContent='网络不通——保存好代码稍后再试'}
       sendB.disabled=false;sendB.textContent='🚀 提交作业';
     };
   });
+  // 邮箱按钮 + 红点
+  (async()=>{try{await updateMailBadge()}catch(_){}})();
   // 记录「学员停在的章节」（2026-09-08 v1.8）：intersection observer 50% 可见即写入 learning-pos；scroll position 也写
   try{
     if(typeof IntersectionObserver!=='undefined'){
@@ -384,6 +404,42 @@ function renderWeek(w){
   }catch(e){}
 }
 loadIndex();
+</script>
+<script>
+// 信箱面板（独立于课程 script，避免耦合）
+async function updateMailBadge(){
+  const pid=localStorage.getItem('hw-pid');
+  const btn=document.getElementById('mailbox-btn');
+  if(!pid||!/^\d{8}$/.test(pid)){if(btn)btn.style.display='none';return}
+  if(btn)btn.style.display='flex';
+  try{
+    // 从 mentor 拉回最近 50 条，看未读（未读 = lastReadAt 之前的）
+    const lr=parseInt(localStorage.getItem('hw-lastread:'+pid)||'0');
+    const r=await fetch(API+'/dm/history?id=94568945&with='+pid+'&nickname=WWX&since='+lr,{headers:{'User-Agent':'curl/8.7.1'}});
+    const j=await r.json();
+    const msgs=(j&&j.messages)||[];
+    const unread=msgs.filter(m=>!m.from||m.from==='94568945').length;
+    const b=document.getElementById('mail-badge');
+    if(b){b.textContent=unread>9?'9+':unread;b.style.display=unread>0?'flex':'none';}
+  }catch(_){}
+}
+async function openSandMailbox(){
+  const pid=localStorage.getItem('hw-pid');
+  if(!pid||!/^\d{8}$/.test(pid)){alert('还没选玩家号——随便进一节课点「随机一个」即可');return}
+  const r=await fetch(API+'/dm/history?id=94568945&with='+pid+'&nickname=WWX&since=0',{headers:{'User-Agent':'curl/8.7.1'}});
+  const j=await r.json();
+  const msgs=((j&&j.messages)||[]).filter(m=>m.from==='94568945');
+  if(!msgs.length){alert('📭 信箱空着——批改后会来消息');return}
+  // 标记已读
+  try{const ts=Math.max(...msgs.map(m=>m.ts||0));localStorage.setItem('hw-lastread:'+pid,String(ts))}catch(_){}
+  // 简化展示：最新 5 条全展开
+  const lines=msgs.slice(-5).reverse().map(m=>{
+    const d=new Date(m.ts||0).toLocaleString('zh-CN',{hour12:false});
+    return '─' + d + '─\n' + m.content;
+  });
+  alert('📬 WWX 老师批改（最新 5 条）\n\n' + lines.join('\n\n'));
+  updateMailBadge();
+}
 $('#bt').textContent=BUILD_TIME==='DEV'?'DEV build':'v'+BUILD_TIME;
 </script>
 </body>
