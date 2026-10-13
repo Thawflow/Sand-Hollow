@@ -12,7 +12,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="沙坑训练场">
-<script>var BUILD_TIME="20261013-0726"
+<script>var BUILD_TIME="20261013-0750"
 if('serviceWorker' in navigator){addEventListener('load',()=>navigator.serviceWorker.register('sw.js').catch(()=>{}))}</script>
 <style>
 :root{--bg:#0f1420;--card:#171e2e;--card2:#1e2740;--border:#2a3550;--text:#e8ecf4;--text2:#8b96ad;--accent:#5b9dff;--accent2:#7c6cff;--ok:#3ecf8e;--warn:#ffb454}
@@ -280,7 +280,7 @@ function renderWeek(w){
       +'<div class="row"><input type="text" class="hw-name" placeholder="你的名字/昵称" maxlength="32"></div>'
       +'<textarea class="hw-code" placeholder="把你的 Python 代码粘贴到这里（或点下面的按钮选文件）"></textarea>'
       +'<div class="row" style="margin-top:8px"><button class="btn hw-file-btn">📄 选 .py 文件</button><button class="btn hw-send-btn">🚀 提交作业</button></div>'
-      +'<div class="note">提交后 mentor（AI 分身）会批改，评语回到这里 + 邮箱（可选填）</div>'
+      +'<div class="note">第一次提交会自动注册玩家号并加 mentor 好友（mentor 通过后即可交）。批改结果会发到你的信箱 📮（games 站同款，右下角信箱图标）</div>'
       +'<input type="file" class="hw-file" accept=".py,.txt" style="display:none">'
       +'<div class="ok-msg" style="display:none"></div>'
       +'</div></div>';
@@ -329,7 +329,23 @@ function renderWeek(w){
       if(!code){okM.style.display='block';okM.style.color='#ff6b81';okM.textContent='代码还空着～';return}
       sendB.disabled=true;sendB.textContent='提交中…';
       try{
-        const r=await fetch(API+'/learning/homework/submit',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({learner,code,week:w.week_id,lesson:lid,filename:(fileI.files[0]&&fileI.files[0].name)||''})});
+        // 走 DM 信箱（复用 games 体系，已上线）：学员需先注册玩家号 + 加 mentor 好友
+        const pid=localStorage.getItem('hw-pid')||'';
+        const pnick=localStorage.getItem('hw-pnickname')||nameI.value.trim();
+        if(!/^\d{8}$/.test(pid)){
+          // 首次：自动注册一个玩家号（随机 8 位）+ 加 mentor 好友
+          const nid=String(Math.floor(10000000+Math.random()*89999999));
+          try{
+            const rr=await fetch(API+'/register',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({id:nid,nickname:pnick})});
+            const rj=await rr.json();
+            if(!rj.ok){okM.style.display='block';okM.style.color='#ff6b81';okM.textContent='注册失败：'+(rj.error||'')+'——换个名字试试';return}
+            localStorage.setItem('hw-pid',nid);localStorage.setItem('hw-pnickname',pnick);
+            await fetch(API+'/friends/add',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({id:nid,nickname:pnick,targetId:'20260627'})});
+          }catch(e){okM.style.display='block';okM.style.color='#ff6b81';okM.textContent='网络不通——稍后再试';return}
+        }
+        const myPid=localStorage.getItem('hw-pid');
+        const content='[作业:'+lid+']\n'+code;
+        const r=await fetch(API+'/dm/send',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({id:myPid,nickname:localStorage.getItem('hw-pnickname'),to:'20260627',content:content})});
         const j=await r.json();
         okM.style.display='block';
         if(j.ok){okM.style.color='var(--ok)';okM.textContent='✅ '+j.message;try{localStorage.setItem('hw-learner',learner)}catch(_){}codeT.value=''}
