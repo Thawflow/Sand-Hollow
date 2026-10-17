@@ -832,7 +832,7 @@ let profile = {
 };
 // 统一 ID：优先用 portal 的 8 位数字 ID
 function getUnifiedPlayerId(){
-  const activeId = localStorage.getItem('thawpawActiveId');
+  const activeId = window.getLid();
   if(activeId) return activeId;
   let id = localStorage.getItem('thawpawPlayerId');
   if(!id){
@@ -866,8 +866,8 @@ function setSharedNickname(nickname){
     players[id].lastSeen = Date.now();
   }
   localStorage.setItem('thawpawPlayers', JSON.stringify(players));
-  if(!localStorage.getItem('thawpawActiveId')){
-    localStorage.setItem('thawpawActiveId', id);
+  if(!window.getLid()){
+    window.setLid( id);
   }
 }
 

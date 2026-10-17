@@ -971,7 +971,7 @@ function toggleSetting(key){
 // 统一 ID：优先用 portal 的 8 位数字 ID
 function getUnifiedPlayerId(){
   // 优先用 portal 的活动 ID（多账号系统）
-  const activeId = localStorage.getItem('thawpawActiveId');
+  const activeId = window.getLid();
   if(activeId) return activeId;
   // 兼容老格式
   let id = localStorage.getItem('thawpawPlayerId');
@@ -1009,8 +1009,8 @@ function setSharedNickname(nickname){
   }
   localStorage.setItem('thawpawPlayers', JSON.stringify(players));
   // 同时设为活动 ID（首次设昵称时）
-  if(!localStorage.getItem('thawpawActiveId')){
-    localStorage.setItem('thawpawActiveId', id);
+  if(!window.getLid()){
+    window.setLid( id);
   }
 }
 
@@ -1209,7 +1209,7 @@ function openAvatarPicker(){
 // Sync avatar to all players + cloud
 function syncAvatar(avatar){
   try{
-    var id=localStorage.getItem('thawpawActiveId');
+    var id=window.getLid();
     if(!id) return;
     var players=JSON.parse(localStorage.getItem('thawpawPlayers')||'{}');
     if(players[id]){ players[id].avatar=avatar; localStorage.setItem('thawpawPlayers',JSON.stringify(players)); }
@@ -1575,7 +1575,7 @@ function onlineApi(path, method, data) {
 }
 
 function getMyId() {
-  var id = localStorage.getItem('thawpawActiveId');
+  var id = window.getLid();
   if (!id) return null;
   var players = JSON.parse(localStorage.getItem('thawpawPlayers') || '{}');
   return players[id] ? { id: id, nickname: players[id].nickname } : null;

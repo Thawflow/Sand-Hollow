@@ -3072,7 +3072,7 @@ function smEquipArmor(key){
   if(!smSave.ownedArmors[key])return;
   smSave.equippedArmor=key;smSaveSave();smRenderShop();smUpdateHome();
 }
-function smGetKey(){const id=localStorage.getItem('thawpawActiveId')||'default';return 'sword_master_save_'+id;}
+function smGetKey(){const id=window.getLid()||'default';return 'sword_master_save_'+id;}
 function smLoadSave(){try{const d=JSON.parse(localStorage.getItem(smGetKey()));if(!d)d={};return{coins:d.coins||0,seals:d.seals||0,petCoins:d.petCoins||0,highestLevel:d.highestLevel||1,ownedArmors:d.ownedArmors||{},equippedArmor:d.equippedArmor||null,speedLevel:d.speedLevel||0,atkLevel:d.atkLevel||0,hpLevel:d.hpLevel||0,petNests:d.petNests||[null,null,null],petBag:d.petBag||{food:[],toy:[],care:[],egg:[]}};}catch(e){return{coins:0,seals:0,petCoins:0,highestLevel:1,ownedArmors:{},equippedArmor:null,speedLevel:0,atkLevel:0,hpLevel:0,petNests:[null,null,null],petBag:{food:[],toy:[],care:[],egg:[]}};}}
 function smSaveSave(){localStorage.setItem(smGetKey(),JSON.stringify(smSave));try{if(window.cloudSync&&cloudSync.isEnabled())cloudSync.autoSave();}catch(e){}}
 
@@ -3260,7 +3260,7 @@ function smSaveIsEmpty(){
 function smCloudSyncInit(){
   if(!window.cloudSync)return;
   var id=null,nick=null;
-  try{id=localStorage.getItem('thawpawActiveId');}catch(e){}
+  try{id=window.getLid();}catch(e){}
   if(!id)return;
   try{var ps=JSON.parse(localStorage.getItem('thawpawPlayers')||'{}');if(ps[id]&&ps[id].nickname)nick=ps[id].nickname;}catch(e){}
   if(!nick)return; // 拿不到注册昵称就不启动云同步（后端要求昵称匹配）
@@ -3505,7 +3505,7 @@ function smGetHatchingProgress(nestIdx){
   var elapsed=Date.now()-n.placedAt;
   return Math.min(100,Math.round(elapsed/PET_HATCH_TIME*100));
 }
-function smGetNick(){try{const id=localStorage.getItem('thawpawActiveId');if(id){const ps=JSON.parse(localStorage.getItem('thawpawPlayers')||'{}');if(ps[id]&&ps[id].nickname)return ps[id].nickname;}}catch(e){}return'少年剑客';}
+function smGetNick(){try{const id=window.getLid();if(id){const ps=JSON.parse(localStorage.getItem('thawpawPlayers')||'{}');if(ps[id]&&ps[id].nickname)return ps[id].nickname;}}catch(e){}return'少年剑客';}
 function smShowPage(name){
   document.querySelectorAll('.sm-page').forEach(p=>{p.classList.remove('active');p.style.display='none';});
   const pg=document.getElementById('sm-page-'+name);if(pg){pg.classList.add('active');pg.style.display='';}
@@ -3573,7 +3573,7 @@ function smGoHome(){
 }
 function smUpdateHome(){
   const nick=smGetNick();const el=document.getElementById('sm-nick');if(el)el.textContent=nick;
-  const idEl=document.getElementById('sm-wuxia-id');if(idEl)idEl.textContent=(localStorage.getItem('thawpawActiveId')||'--------');
+  const idEl=document.getElementById('sm-wuxia-id');if(idEl)idEl.textContent=(window.getLid()||'--------');
   document.getElementById('sm-home-coins').textContent=formatNum(smSave.coins);
   document.getElementById('sm-home-seals').textContent=formatNum(smSave.seals);
   var _pc=document.getElementById('sm-home-petcoins');if(_pc)_pc.textContent=formatNum(smSave.petCoins);
