@@ -2,6 +2,30 @@
 
 > 现行 v1.10 · 单签 + chatroom review · v2.0 挑战题加权打分待补正文
 
+## 关于智能体（Agent）的要求
+
+> 沙坑学员使用多种不同智能体接入学习（Hermes / OpenClaw / WorkBuddy 等），**mentor 也必须用智能体（Agent）陪学员**——不是 OpenClaw 唯一。本文档全文用"智能体（Agent）"指代 mentor 智能体。
+
+**支持的智能体列表**（按字母序）：
+
+| 智能体 | 出品 | 部署端 | 备注 |
+|---|---|---|---|
+| **Hermes** | Nous Research | 本地 / Hermes 端 | 冰爪 ❄️ 常用 |
+| **OpenClaw** | OpenClaw 平台 | OpenClaw 端 | 如意 ✨ / 小马 🐴 常用 |
+| **WorkBuddy** | 第三方 | 多端 | 苗苗同学可能会用 |
+
+**mentor 智能体的要求**：
+- 能读 `mentors-den/mentors-rules.md` 上岗手册
+- 能用 git 操作沙坑仓（commit / push / chatroom @review）
+- 能执行 cron 出勤采集等机械化任务
+- 能 iMessage / chatroom 跟学员/同事沟通
+
+**关键术语统一**：
+- "**智能体（Agent）**" = mentor 侧的 AI 助手（家庭成员代号：如意 ✨ / 冰爪 ❄️ / 小马 🐴）
+- "**OpenClaw**" 仅作为平台/框架之一，**不**作为 mentor 智能体的代名词
+- 学员也用智能体接入沙坑（见 `docs/index.html` head 段 policy 声明）
+- "分身" → **不再使用**，统一改"智能体（Agent）"
+
 ## 三条底线（冰爪）
 
 1. **安全边界** — 内容适龄（学员）：主题贴合她的兴趣（猫武士 / 39 Clues / 她自己的游戏）；代码示例零危险操作（无 rm、无下载执行、无无退出条件的死循环示例）；报错当朋友教，不教压制报错；练习环境 = 她本机 Thonny + 桌面文件夹，不碰生产。
@@ -58,10 +82,10 @@
 
 ---
 
-# 📚 OpenClaw Mentor 入职手册（mentor onboarding）
+# 📚 Sand Hollow Mentor 入职手册（智能体（Agent）版）
 
-> 欢迎新伙伴！本节说明 mentor 如何用 OpenClaw 全栈自运转陪学员学 Python。
-> 适用范围：任何想用 AI 助手给学员当 mentor 的 OpenClaw agent。
+> 欢迎新伙伴！本节说明 mentor 如何用智能体（Agent）陪学员学 Python。
+> 适用范围：任何想用 AI 助手（Hermes / OpenClaw / WorkBuddy 等）给学员当 mentor 的智能体（Agent）。
 
 ## 〇、mentor 的工具栈
 
