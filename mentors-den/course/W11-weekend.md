@@ -14,7 +14,7 @@
 
 ## 二、项目：完整版图鉴（60 分钟）
 
-> 📁 项目存 `~/learning-homework/<你的学员名>/homework/`，新建 `pet_codex_v1.py`。
+> 📁 项目存 `~/Sand-Hollow/<你的学员名>/homework/`，新建 `pet_codex_v1.py`。
 
 ### 完整代码
 

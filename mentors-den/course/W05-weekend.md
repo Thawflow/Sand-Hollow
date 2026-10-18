@@ -15,7 +15,7 @@
 
 ## 二、项目 A：完整计分版（30 分钟）
 
-> 📁 项目存 `~/learning-homework/<你的学员名>/homework/`，新建 `guess_pro.py`。
+> 📁 项目存 `~/Sand-Hollow/<你的学员名>/homework/`，新建 `guess_pro.py`。
 
 需求：
 

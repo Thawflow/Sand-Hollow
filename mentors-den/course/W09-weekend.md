@@ -14,7 +14,7 @@
 
 ## 二、项目 A：部族名册寻宝赛（35 分钟）
 
-> 📁 项目存 `~/learning-homework/<你的学员名>/homework/`，新建 `roster_race.py`。
+> 📁 项目存 `~/Sand-Hollow/<你的学员名>/homework/`，新建 `roster_race.py`。
 
 场景：四大部族的联合名册（第一步先造一份**有序**的大名单），族长报出一只猫的名字，看谁最快找到它在第几 位。
 

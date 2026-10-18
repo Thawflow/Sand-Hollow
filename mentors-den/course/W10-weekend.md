@@ -14,7 +14,7 @@
 
 ## 二、项目：自由创作（60 分钟）
 
-> 📁 项目存 `~/learning-homework/<你的学员名>/homework/`，新建 `my_art.py`。
+> 📁 项目存 `~/Sand-Hollow/<你的学员名>/homework/`，新建 `my_art.py`。
 
 任选一题（也可自己设计）：
 
