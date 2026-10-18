@@ -51,152 +51,7 @@
 > v1.9 5 节制（冰爪 10/19 落地）：每节 S1=核心 / S2=实践 / S3=变种 / S4=综合 / S5=项目 + 🏠 weekend
 > 风格：Grokking Algorithms 中文版（中文叙述 + 代码英文 + 一句话核心 + 判一判 + C++ 认脸）
 
-### W06 · 列表：一串数据（前置 W05 while）
-| 节 | 主题 | slug |
-|---|---|---|
-| S1 | 列表是什么：一个变量装一批 | `list-intro` |
-| S2 | 增删改查四大操作 | `list-ops` |
-| S3 | 遍历 + 统计（max/min/sum/平均）| `list-iterate` |
-| S4 | 嵌套：字典里的列表 + 实战宠物图鉴 | `list-slice` |
-| S5 | 列表综合 + 数据结构选型 | `list-summary` |
-| 🏠 周末 | 购物清单完整版（add / remove / save）| `list-shopping-cart` |
-
-### W07 · 🏆 项目周：画地图（前置 W06 列表）
-| 节 | 主题 | slug |
-|---|---|---|
-| S1 | 画地图：先想后写 | `cat-adv-map` |
-| S2 | 设计图：功能 + 数据 + 函数 + 界面 | `cat-adv-design` |
-| S3 | 最小骨架：让空房子通电 | `cat-adv-skeleton` |
-| S4 | 逐块实现：每天搬两块 | `cat-adv-block` |
-| S5 | save/load：让作品活下去 | `cat-adv-save` |
-| 🏠 周末 | 打磨 + 家人对战赛 | `cat-adventure` |
-
-### W08 · 函数 def：打包一段代码（前置 W07 项目周）
-| 节 | 主题 | slug |
-|---|---|---|
-| S1 | def 初见：为什么要打包 | `function-def` |
-| S2 | 参数：凹槽 + 默认值 + 关键字 | `function-params` |
-| S3 | 返回值：return + 作用域 | `function-return` |
-| S4 | 高阶函数：map / filter / sorted | `function-higher-order` |
-| S5 | 递归入门：函数调自己 | `function-recursion-intro` |
-| 🏠 周末 | 改造冒险游戏：用函数重构 | `function-adventure-refactor` |
-
-## 第三阶段：算法加餐 + 视觉 + 创作 + 毕业（W09-W13，5 节制 + 周末）
-
-### W09 · turtle 海龟登场：编程画画（前置 W08 函数）
-| 节 | 主题 | slug |
-|---|---|---|
-| S1 | 前进 + 转弯：画正方形 | `turtle-basics` |
-| S2 | 颜色 + 速度 + 粗细 + 填充 | `turtle-style` |
-| S3 | 循环画图：正多边形 → 雪花 → 螺旋 | `turtle-loops` |
-| S4 | 实战：签名 + 装饰画 | `turtle-projects` |
-| S5 | turtle + 函数：画分形（snowflake）| `turtle-fractal` |
-| 🏠 周末 | 用 turtle 画一幅完整的画（签名！）| `turtle-gallery` |
-
-### W10 · 字典：用名字找东西（前置 W09 turtle）
-| 节 | 主题 | slug |
-|---|---|---|
-| S1 | 字典基础：键值对 | `dict-intro` |
-| S2 | 嵌套：字典里的列表 | `dict-nested` |
-| S3 | 实战：宠物图鉴 v1 | `dict-codex` |
-| S4 | 字典 vs 列表：何时用哪个 | `dict-vs-list` |
-| S5 | dict + 函数：配置管理 | `dict-config` |
-| 🏠 周末 | 宠物图鉴完整版 | `dict-codex-final` |
-
-### W11 · random 三招：让电脑扔骰子（前置 W10 字典）
-| 节 | 主题 | slug |
-|---|---|---|
-| S1 | random.choice / randint | `random-basic` |
-| S2 | random + 字典：随机抽题 | `random-quiz` |
-| S3 | random + 函数：石头剪刀布 | `random-game` |
-| S4 | 实战：文字 RPG 战斗 | `random-rpg` |
-| S5 | random.seed：可复现的"随机" | `random-seed` |
-| 🏠 周末 | 文字 RPG 完整版 + 战斗系统 | `random-rpg-final` |
-
-### W12 · 🏆 毕业选题：四选一（前置 W11 random）
-| 节 | 主题 | slug |
-|---|---|---|
-| S1 | 毕业选题：四选一（游戏 / turtle / 工具 / 数据）| `grad-topic` |
-| S2 | 设计图：先想后写 | `grad-design` |
-| S3 | 最小骨架 + 第一块 | `grad-skeleton` |
-| S4 | 逐块实现：每天搬两块 | `grad-block` |
-| S5 | save/load：让作品活下去 | `grad-save` |
-| 🏠 周末 | 打磨 + 家人对战赛 | `grad-final` |
-
-### W13 · 🏆 毕业项目 L1-L3（3 节制，前置 W12 毕业选题）
-| 课 | 主题 | slug |
-|---|---|---|
-| L01 | 选题 + 设计图 | `grad-topic-final` |
-| L02 | 实现 + 调试 | `grad-implement` |
-| L03 | 演示 + 讲给家人听（费曼输出）| `grad-demo` |
-| 🏠 周末 | 家族展示会 | `grad-showcase` |
-
-**通过标准：100+ 行自己写的代码，能讲清每一部分，报错自己修。**
-
-## 第四阶段：算法加餐 ①/②/③/④（W14-W17，前置 W01-W13 全部基础）
-
-> 风格：Grokking Algorithms 中文版（参考 Aditya Bhargava 2016《Grokking Algorithms》/ 中文版《算法图解》）
-> 每节开头：🤖 AI 常识胶囊（清华附 AI 营线上测评题型热身）+ 每节末尾：👀 C++ 认脸（AI 营笔试 C++ 语法认脸）
-> 加餐 ①/②/③/④ 间隔分布（猴哥 2026-10-19 指示"不要连续三周算法"）：W14/W15/W16/W17 各 1 周
-
-### 📚 加餐课知识依赖表（2026-10-19 猴哥要求梳理）
-
-> **目标**：确认每个加餐课用到的 Python 知识已经在 W01-W13 学完。
-
-| 加餐课 | 用到的 Python 模块 | 前置周 | 状态 |
-|---|---|---|---|
-| **加餐① 二分** (W14) | `if` 条件 / `while` 循环 / 列表下标 / 变量 / 函数 `def` | W03 条件 + W05 while + W06 列表 + W08 def | ✓ 全部前置覆盖 |
-| **加餐② 贪心** (W15) | `if` 比较 / `for` 循环 / 列表遍历 / 函数 `def` | W03 条件 + W04 循环 + W06 列表 + W08 def | ✓ 全部前置覆盖 |
-| **加餐③ 数组 vs 链表** (W16) | 列表索引 + 列表插入 / 删除 / 比较 + 交换 | W06 列表 | ✓ 全部前置覆盖 |
-| **加餐③ 选择排序** (W16) | 列表 + `for` 循环 + 变量交换 | W04 循环 + W06 列表 | ✓ 全部前置覆盖 |
-| **加餐④ 递归** (W17) | 函数 `def` + `if` 出口条件 + `return` | W03 条件 + W08 函数 | ✓ 全部前置覆盖 |
-| **加餐④ `@lru_cache`** (W17) | 装饰器 / 函数作为值 | W08 函数（高阶函数） | ✓ 前置覆盖（高级装饰器在 S3 介绍）|
-
-**结论**：W01-W13 已学完的 Python 基础知识，**完整覆盖** 4 个加餐课全部内容。
-
-#### 详细核对（每个加餐课 5 节制 + weekend）
-
-**加餐① 二分 + Big O**（W14，5 节制 + weekend）：
-- S1 雪地寻宝：`if/else` 条件判断、整数比较（前置 W03 + W01）
-- S2 Big O：基础算术（前置 W01-W02）
-- S3 二分写代码：`while` 循环 + 列表下标（前置 W05 + W06）
-- S4 二分实战：列表 CRUD（前置 W06）
-- S5 选对算法：函数 `def` + 列表（前置 W08 + W06）
-- Weekend 词典寻宝赛：综合应用
-
-**加餐② 贪心算法**（W15，5 节制 + weekend）：
-- S1 永远挑最大：`for` + 列表 append（前置 W04 + W06）
-- S2 贪心 vs 暴力：函数 + 循环（前置 W08 + W04）
-- S3 贪心失败场景：条件比较（前置 W03）
-- S4 活动选择：列表 + 排序（前置 W06）
-- S5 巡逻排班项目：综合
-- Weekend 找零比赛：综合
-
-**加餐③ 数组 vs 链表 + 选择排序**（W16，5 节制 + weekend）：
-- S1 数组 vs 链表概念：列表索引（前置 W06）
-- S2 Python list 内部：`for` 循环 + 列表（前置 W04 + W06）
-- S3 数组 vs 链表性能：列表 + `for`（前置 W06 + W04）
-- S4 选择排序：变量交换 + `for`（前置 W04 + W01）
-- S5 选型工具：`if` + 列表（前置 W03 + W06）
-- Weekend 排序比赛：综合
-
-**加餐④ 递归 + 记忆化**（W17，5 节制 + weekend）：
-- S1 函数调自己：`def` + `if` 出口 + `return`（前置 W08 + W03）
-- S2 调用栈可视化：`def` + 列表（W08 + W06）
-- S3 递归树：`def` + `if`（W08 + W03）
-- S4 `@lru_cache`：函数作为参数（前置 W08 高阶函数 S4）
-- S5 递归解迷宫：综合
-- Weekend 递归 vs 迭代：综合
-
-#### 结论
-
-✅ **所有 4 个加餐课的 Python 前置知识 = W01-W13 全部学完覆盖**。
-✅ 加餐可放心安排在 W14-W17（学期末大作业形式）。
-✅ 中间间隔 1 周 Python 基础课（猴哥 2026-10-19 指示"两节算法加餐课要间隔一节 Python 基础课"——这里 W14 → W15 间隔是 W14 加餐 → W15 加餐，违反指示）。
-
-**⚠️ 间隔问题**：当前结构 W14-W17 是 4 周加餐连续（违反"两节加餐间隔 1 周基础课"指示）。如要前插到 W06/W09/W12/W14 + 间隔，需要重排 W06-W13 5 节制结构（覆盖 IcePaw dev owner 范围），待猴哥拍板。
-
-### W14 · 加餐①：二分查找 + Big O（前置 W05 猜数字 + W08 函数）
+### W06 · 加餐①：二分查找 + Big O（前置 W05 猜数字 + W08 函数）
 | 节 | 主题 | slug |
 |---|---|---|
 | S1 | 二分查找：每次砍一半（雪地寻宝）| `binary-search` |
@@ -206,7 +61,29 @@
 | S5 | 选对算法：复杂度在真实场景 | `algorithm-compare` |
 | 🏠 周末 | 词典寻宝赛 + 读代码挑战 | `treasure` |
 
-### W15 · 加餐②：贪心算法（前置 W04 循环 + W06 列表 + W08 函数）
+### W07 · 列表：一串数据（前置 W06 加餐①）
+| 节 | 主题 | slug |
+|---|---|---|
+| S1 | 列表是什么：一个变量装一批 | `list-intro` |
+| S2 | 增删改查四大操作 | `list-ops` |
+| S3 | 遍历 + 统计（max/min/sum/平均）| `list-iterate` |
+| S4 | 嵌套：字典里的列表 + 实战宠物图鉴 | `list-slice` |
+| S5 | 列表综合 + 数据结构选型 | `list-summary` |
+| 🏠 周末 | 购物清单完整版（add / remove / save）| `list-shopping-cart` |
+
+### W08 · 🏆 项目周：画地图（前置 W07 列表）
+| 节 | 主题 | slug |
+|---|---|---|
+| S1 | 画地图：先想后写 | `cat-adv-map` |
+| S2 | 设计图：功能 + 数据 + 函数 + 界面 | `cat-adv-design` |
+| S3 | 最小骨架：让空房子通电 | `cat-adv-skeleton` |
+| S4 | 逐块实现：每天搬两块 | `cat-adv-block` |
+| S5 | save/load：让作品活下去 | `cat-adv-save` |
+| 🏠 周末 | 打磨 + 家人对战赛 | `cat-adventure` |
+
+## 第三阶段：算法加餐 + 视觉 + 创作 + 毕业（W09-W13，5 节制 + 周末）
+
+### W09 · 加餐②：贪心算法（前置 W04 循环 + W06/W07 列表 + W08 函数）
 | 节 | 主题 | slug |
 |---|---|---|
 | S1 | 贪心 ①：永远挑最大的硬币 | `greedy-coin` |
@@ -216,7 +93,27 @@
 | S5 | 贪心 ⑤：项目（巡逻排班游戏）| `greedy-patrol-game` |
 | 🏠 周末 | 找零比赛：贪心 vs 暴力 | `greedy-coin-game` |
 
-### W16 · 加餐③：数组 vs 链表 + 选择排序（前置 W07 列表）
+### W10 · 函数 def：打包一段代码（前置 W07/W08 列表/画地图 + W09 加餐②）
+| 节 | 主题 | slug |
+|---|---|---|
+| S1 | def 初见：为什么要打包 | `function-def` |
+| S2 | 参数：凹槽 + 默认值 + 关键字 | `function-params` |
+| S3 | 返回值：return + 作用域 | `function-return` |
+| S4 | 高阶函数：map / filter / sorted | `function-higher-order` |
+| S5 | 递归入门：函数调自己 | `function-recursion-intro` |
+| 🏠 周末 | 改造冒险游戏：用函数重构 | `function-adventure-refactor` |
+
+### W11 · turtle 海龟登场：编程画画（前置 W10 函数）
+| 节 | 主题 | slug |
+|---|---|---|
+| S1 | 前进 + 转弯：画正方形 | `turtle-basics` |
+| S2 | 颜色 + 速度 + 粗细 + 填充 | `turtle-style` |
+| S3 | 循环画图：正多边形 → 雪花 → 螺旋 | `turtle-loops` |
+| S4 | 实战：签名 + 装饰画 | `turtle-projects` |
+| S5 | turtle + 函数：画分形（snowflake）| `turtle-fractal` |
+| 🏠 周末 | 用 turtle 画一幅完整的画（签名！）| `turtle-gallery` |
+
+### W12 · 加餐③：数组 vs 链表 + 选择排序（前置 W06 列表）
 | 节 | 主题 | slug |
 |---|---|---|
 | S1 | 数组 vs 链表：两种"排队"方式 | `array-vs-list` |
@@ -226,7 +123,39 @@
 | S5 | 数组 vs 链表 ⑤：数据结构选型小工具 | `data-structure-picker` |
 | 🏠 周末 | 排序比赛：选择 vs Python 内置 | `sort-race` |
 
-### W17 · 加餐④：递归 + 记忆化（前置 W08 函数）
+### W13 · 字典：用名字找东西（前置 W12 加餐③）
+| 节 | 主题 | slug |
+|---|---|---|
+| S1 | 字典基础：键值对 | `dict-intro` |
+| S2 | 嵌套：字典里的列表 | `dict-nested` |
+| S3 | 遍历：把字典抖出来 | `dict-codex` |
+| S4 | 嵌套：字典里的字典 | `dict-vs-list` |
+| S5 | 宠物图鉴：函数 + 字典合体 | `dict-config` |
+| 🏠 周末 | 宠物图鉴完整版 | `dict-codex-final` |
+
+**通过标准：100+ 行自己写的代码，能讲清每一部分，报错自己修。**
+
+## 第四阶段：算法加餐 ④ + 基础 + 毕业（W14-W17）
+
+> W14 加餐④ 递归 + W15 random + W16 毕业选题 + W17 毕业项目
+> 加餐 ①/②/③ 已前插到 W06/W09/W12（详 §二 §三）
+> 风格：Grokking Algorithms 中文版（参考 Aditya Bhargava 2016《Grokking Algorithms》/ 中文版《算法图解》）
+
+### 📚 加餐课知识依赖表（2026-10-19 猴哥要求梳理）
+
+> **目标**：确认每个加餐课用到的 Python 知识已经在前面课程学完。
+
+| 加餐课 | 位置 | 用到的 Python 模块 | 前置周 | 状态 |
+|---|---|---|---|---|
+| **加餐① 二分** | W06 | `if` 条件 / `while` 循环 / 列表下标 / 变量 / 函数 `def` | W03 + W05 + W07 列表 + W10 def | ✓ 全部前置覆盖 |
+| **加餐② 贪心** | W09 | `if` 比较 / `for` 循环 / 列表遍历 / 函数 `def` | W03 + W04 + W07 + W10 | ✓ 全部前置覆盖 |
+| **加餐③ 数组 + 排序** | W12 | 列表索引 + 插入/删除 + 比较 + 交换 + for | W04 + W07 | ✓ 全部前置覆盖 |
+| **加餐④ 递归** | W14 | `def` + `if` 出口 + `return` | W03 + W10 def | ✓ 全部前置覆盖 |
+| **加餐④ `@lru_cache`** | W14 | 装饰器 / 函数作为值 | W10 高阶函数 | ✓ 前置覆盖 |
+
+**结论**：W01-W13 已学完的 Python 基础知识，**完整覆盖** 4 个加餐课全部内容。
+
+### W14 · 加餐④：递归 + 记忆化（前置 W10 def + W13 字典）
 | 节 | 主题 | slug |
 |---|---|---|
 | S1 | 递归 ①：函数调用自己 | `recursion-mirror` |
@@ -235,10 +164,36 @@
 | S4 | 递归 ④：lru_cache 实战 | `recursion-optimize` |
 | S5 | 递归 ⑤：项目（递归解迷宫）| `recursion-maze` |
 | 🏠 周末 | 递归 vs 迭代：何时用哪个 | `recursion-vs-iteration` |
-自选主题（游戏 / turtle 画集 / 实用工具 / 数据小报表），从设计图 → 逐块完成 → 写作品说明 → 家族展示会。
-**通过标准：100+ 行自己写的代码，能讲清每一部分，报错自己修。**
 
----
+### W15 · random 三招：让电脑扔骰子（前置 W10/W11 函数/海龟 + W14 加餐④）
+| 节 | 主题 | slug |
+|---|---|---|
+| S1 | random.choice / randint | `random-basic` |
+| S2 | random + 字典：随机抽题 | `random-quiz` |
+| S3 | random + 函数：石头剪刀布 | `random-game` |
+| S4 | 实战：文字 RPG 战斗 | `random-rpg` |
+| S5 | random.seed：可复现的"随机" | `random-seed` |
+| 🏠 周末 | 文字 RPG 完整版 + 战斗系统 | `random-rpg-final` |
+
+### W16 · 🏆 毕业选题：四选一（前置 W13 字典 + W15 random）
+| 节 | 主题 | slug |
+|---|---|---|
+| S1 | 毕业选题：四选一（游戏 / turtle / 工具 / 数据）| `grad-topic` |
+| S2 | 设计图：先想后写 | `grad-design` |
+| S3 | 最小骨架 + 第一块 | `grad-skeleton` |
+| S4 | 逐块实现：每天搬两块 | `grad-block` |
+| S5 | save/load：让作品活下去 | `grad-save` |
+| 🏠 周末 | 打磨 + 家人对战赛 | `grad-final` |
+
+### W17 · 🏆 毕业项目 L1-L3（3 节制，前置 W16 毕业选题）
+| 课 | 主题 | slug |
+|---|---|---|
+| L01 | 选题 + 设计图 | `grad-topic-final` |
+| L02 | 实现 + 调试 | `grad-implement` |
+| L03 | 演示 + 讲给家人听（费曼输出）| `grad-demo` |
+| 🏠 周末 | 家族展示会 | `grad-showcase` |
+
+**通过标准：100+ 行自己写的代码，能讲清每一部分，报错自己修。**
 
 ## 进度表（两位学员各一份，学完一格勾一格）
 
