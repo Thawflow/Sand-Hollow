@@ -145,8 +145,8 @@ Sand-Hollow/
 
 学员作业存到自己目录下：
 
-- 上手练习：`{W##}-L##-practice.py`（如 `W01-L01-practice.py`）
-- 课后作业：`{W##}-L##-homework.py`（如 `W01-L02-homework.py`）
+- 上手练习：`{W##}-L##-practice.py`（如 `W01-L01-practice.py`）— **v1.9 退役**（W02-W12 直接做 homework）
+- 课后作业：`{W##}-L##-homework.py`（W01/W13，如 `W01-L02-homework.py`） / `{W##}-S#-homework.py`（W02-W12 v1.9，如 `W02-S1-homework.py`）
 
 全部平铺在 `thawpaw/homework/` 一层，**不建周子目录**。旧命名保留兼容，新课按新约定。
 
@@ -155,7 +155,7 @@ Sand-Hollow/
 1. 在 Thonny 写代码 / 跑通
 2. 保存到 `~/Sand-Hollow/{学员文件夹}/homework/`
 3. **交完跟 mentor 说一声**才批改（不发 = 没交）
-4. mentor 在 `{学员文件夹}/reviews/{W##}-L##-review.md` 写评语
+4. mentor 在 `{学员文件夹}/reviews/{W##}-L##-review.md` 写评语（W02-W12 v1.9 用 `{W##}-S#-review.md`）
 5. tracker 自动记录练习时长与活跃度（不进 Git）
 
 > ⚠️ 学员文件夹已 `.gitignore`，**作业不会 commit 到 GitHub**。本地独有，私密保存。

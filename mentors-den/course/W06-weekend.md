@@ -15,7 +15,7 @@
 
 ## 二、项目 A：基础购物清单（25 分钟）
 
-> 📁 项目存 `~/Sand-Hollow/<你的学员名>/homework/`，新建 `shopping_list.py`。
+> 📁 项目存 `~/learning-homework/<你的学员名>/homework/`，新建 `shopping_list.py`。
 
 需求：
 
