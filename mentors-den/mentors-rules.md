@@ -142,7 +142,7 @@ v1 即日生效（14:00 首课前）；v1.8 起改为**单签 + chatroom review*
 |---|---|---|
 | **课表** | tpg-hq Worker + PG KV `/learning/*` | 课程内容存储 + 发布；admin 平台管理 |
 | **公开站点** | GitHub Pages `Thawflow/Sand-Hollow` → `learning.thawflow.com` | 学员看到的学习首页 |
-| **私有作业区** | `~/Sand-Hollow/<学员名>/`（学员本机，**不在** git；旧路径 `~/learning-homework/` 仍兼容）| 学员提交 + mentor 评语落地 |
+| **私有作业区** | `~/Sand-Hollow/<学员名>/`（学员本机，**不在** git）| 学员提交 + mentor 评语落地 |
 | **出勤采集** | `~/.openclaw/sandbox-practice/tracker.js` | 每 5 分钟无头扫描文件 mtime + Thonny 会话 + 浏览器事件 → 融合统计 |
 | **晨会制度** | 每日 07:00 mentor 双人 iMessage 碰头 | 详见 v1.5 ⑪ |
 | **即时通讯** | iMessage / SkyClan Chatroom / 用户主通道 | 通知学员交付、催办、庆功 |

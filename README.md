@@ -2,7 +2,7 @@
 
 **GitHub 仓库：** <https://github.com/Thawflow/Sand-Hollow>
 
-> **给学员的一句话入门：** 告诉你的 OpenClaw 克隆这个仓库到 `~/learning-homework`，让它读 `mentors-den/mentors-rules.md` 上岗手册 —— 它就能帮你创建学员目录（`<你的学员目录>/homework/`）并自动 review 你的作业。
+> **给学员的一句话入门：** 告诉你的智能体（Hermes / OpenClaw / WorkBuddy 等）克隆这个仓库到 `~/Sand-Hollow`，让它读 `mentors-den/mentors-rules.md` 上岗手册 —— 它就能帮你创建学员目录（`<你的学员目录>/homework/`）并自动 review 你的作业。
 
 ---
 
@@ -45,7 +45,7 @@
 ## 目录结构
 
 ```
-learning-homework/
+Sand-Hollow/
 ├── README.md              ← 你正在看的
 ├── docs/                  ← GitHub Pages 站点源（push 即上线 learning.thawflow.com）
 ├── mentors-den/           ← mentor 内部文档（不入站，不公开）
@@ -71,7 +71,7 @@ learning-homework/
 ## 提交流程
 
 1. 在 Thonny 写代码 / 跑通
-2. 保存到 `~/learning-homework/{学员文件夹}/homework/`
+2. 保存到 `~/Sand-Hollow/{学员文件夹}/homework/`
 3. **交完跟 mentor 说一声**才批改（不发 = 没交）
 4. mentor 在 `{学员文件夹}/reviews/{W##}-L##-review.md` 写评语
 5. tracker 自动记录练习时长与活跃度（不进 Git）
@@ -82,7 +82,7 @@ learning-homework/
 
 ## 内部资料（不入站点）
 
-- mentor 双签规则 + 入职手册：`mentors-den/mentors-rules.md`（**让 OpenClaw 读这个 → 自动 review**，v1.6，2026-09-04 Tree 修订：含 Thonny 日志解析 → 真实学习时长 ⑫ + mentor 持续学课 ⑬ + daily-practice 14:00 节奏 ⑭）
+- mentor 双签规则 + 入职手册：`mentors-den/mentors-rules.md`（**让智能体（Hermes / OpenClaw / WorkBuddy 等）读这个 → 自动 review**，v1.6，2026-09-04 Tree 修订：含 Thonny 日志解析 → 真实学习时长 ⑫ + mentor 持续学课 ⑬ + daily-practice 14:00 节奏 ⑭）
 - KV 发布：`docs/index.html` 内嵌 JS + KV 内容 API（`https://tpg-hq.thawflow.com/learning/*`）
 
 ## 站点技术栈
