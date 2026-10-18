@@ -1,213 +1,90 @@
-<!-- slug: recursion-vs-iteration -->
-# W17-weekend · 递归 vs 迭代: 何时用哪个
+<!-- slug: grad-showcase -->
+# W13-weekend · 🎓 毕业展
 
-> **一句话核心**: **写时用递归(清晰), 生产用迭代(快)**.AI 工程师"看菜吃饭"——树/图递归, 循环迭代.
-
-> **每日节奏(v1.9): ** 周末项目 ≈60 分钟(纯动手, 没阅读)
-> **写代码时间** —— 设计、写、调试
-> 难度: ⭐⭐⭐ · 前置: W16-S1 + W16-S3
+> 用时：60-120 分钟 · 难度：⭐⭐⭐⭐ · 前置：W12 三课
 
 ---
 
-> **📂 课前准备 · 随堂练习文件**: 先在 Thonny `文件 → 新建`, 立刻 `文件 → 另存为...` 存为 `~/sand-hollow/<你的学员名>/homework/W16-weekend-practice.py`.周末代码都写在这里.
+## 一、本周回顾（3 分钟）
 
-## ⓪ 🤖 课前 AI 一分钟 · 第 39 颗: 递归 = 清晰, 迭代 = 性能(3 分钟)
+- W12-L01：选题 + 设计图
+- W12-L02：逐块实现 + 跑通
+- W12-L03：作品说明 + 家族展示
 
-今天的周末: 递归(清晰)和迭代(快)PK.
+今天是毕业展——**正式向家人完整演示 + 庆祝**。
 
-**AI 工程师的"看菜吃饭"**: 
-- **递归**: 问题天然"分形"(树、图、分治)—— 清晰胜过性能
-- **迭代**: 性能压倒一切(训练 AI 跑亿次)—— 速度胜过清晰
+## 二、毕业展流程（60 分钟）
 
-**今日口诀**: **写时用递归(清晰), 生产用迭代(快)**.
+### 第一段：5 分钟自我介绍 + 项目概述
 
-**⚔️ 判一判**: 
+讲三件事：
 
-> 1. 递归比迭代总是慢
-> 2. 递归对树/图问题特别合适
+1. 这是什么（功能 + 解决的问题）
+2. 我怎么做的（设计图 → 逐块 → 跑通）
+3. 我学到了什么（最大收获 + 还想改进）
 
-<details><summary>答案</summary>
+### 第二段：10 分钟现场演示
 
-**1.** ✗ 编译器优化(如尾递归)后差距小; **2.** ✓ 树/图天然分形.
+完整跑一遍项目：
 
-</details>
+- 启动 → 主菜单 → 核心功能 → 保存 → 退出 → 重启看加载
+- **故意出错一次**（如输入无效值），展示程序怎么应对
+- **展示一个亮点**（最让你自豪的部分）
 
----
+### 第三段：5 分钟家人上手
 
-## 一、项目: 递归 vs 迭代(60 分钟)
+让家人自己试一遍，看他们能不能独立完成一个核心任务。
 
-写 4 个函数(每个问题两个版本): 
-1. `factorial_recursive(n)` / `factorial_iterative(n)`
-2. `fib_recursive(n, memo)` / `fib_iterative(n)`
-3. `sum_list_recursive(arr)` / `sum_list_iterative(arr)`
-4. `reverse_string_recursive(s)` / `reverse_string_iterative(s)`
+### 第四段：10 分钟反馈 + 改进
 
-跑 5 组输入, 比较时间和正确性.
+让家人说：
 
-## 二、阶乘(5 分钟)
+- 哪里不清楚？
+- 哪里做得好？
+- 哪里想改？
 
-```python
-def factorial_recursive(n):
-    if n == 0: return 1
-    return n * factorial_recursive(n - 1)
+**当场改 2-3 处**，展示你能「听完即改」。
 
-def factorial_iterative(n):
-    result = 1
-    for i in range(1, n + 1):
-        result = result * i
-    return result
+### 第五段：5 分钟庆祝 🎉
 
-print(factorial_recursive(10))   # 3628800
-print(factorial_iterative(10))   # 3628800
-```
+毕业了！给自己和家人一个庆祝仪式：
 
-## 三、斐波那契(10 分钟)
+- 拍一张你和家人的合影
+- 把作品 git commit 一笔：「毕业项目 v1.0」
+- 写一句话给未来的自己（保存到 `life/`）
 
-```python
-def fib_recursive(n, memo={}):
-    if n in memo: return memo[n]
-    if n == 0 or n == 1: return n
-    memo[n] = fib_recursive(n - 1, memo) + fib_recursive(n - 2, memo)
-    return memo[n]
+## 三、毕业标准（自助验收）
 
-def fib_iterative(n):
-    if n == 0 or n == 1: return n
-    a, b = 0, 1
-    for _ in range(n - 1):
-        a, b = b, a + b
-    return b
+- [ ] 项目 100+ 行代码（不算注释和空行）
+- [ ] 项目能跑通，零崩溃
+- [ ] README 完整 + 演示成功
+- [ ] 至少 2 个家人看过
+- [ ] 反馈改了一轮
+- [ ] git commit 落档毕业版本
 
-print(fib_recursive(20))   # 6765
-print(fib_iterative(20))   # 6765
-```
+## 四、W12 + 12 周全周自查
 
-**关键**: 迭代版用两个变量滚动, O(N) 时间 O(1) 空间.
+- [ ] W12 毕业项目 100+ 行 + 跑通 + 家人演示
+- [ ] 12 周课程全部完成（W01-W12）
+- [ ] 我能给完全不懂编程的人讲清我的项目
+- [ ] 我知道接下来想学什么（Web？游戏？数据分析？）
 
-## 四、示例演算: factorial(5)(3 分钟)
+## 五、🎓 毕业赠言
 
-| 步骤 | 递归 | 迭代 |
-|---|---|---|
-| 1 | factorial(5) → 5 × factorial(4) | result=1, i=1, result=1 |
-| 2 | factorial(4) → 4 × factorial(3) | result=1, i=2, result=2 |
-| 3 | factorial(3) → 3 × factorial(2) | result=2, i=3, result=6 |
-| 4 | factorial(2) → 2 × factorial(1) | result=6, i=4, result=24 |
-| 5 | factorial(1) → 1 × factorial(0) | result=24, i=5, result=120 |
-| 6 | factorial(0) → 1 | — |
-| **结果** | 120 | 120 |
+12 周前你连 print 都不会，现在你能做一个完整作品给别人用。这中间的每个 print、每个 for、每个 bug、每个 fix，都是你自己的。
 
-两种都正确.迭代版**不展开调用栈**, 省内存.
+Python 是个工具，但**学会「拆解问题 → 写代码 → 测试 → 改进」这套思维**，比 Python 本身更重要。
 
-## 五、深入了解: 尾递归优化(3 分钟)
+接下来你可以选：
 
-**尾递归**: 递归调用是函数的**最后一个操作**.
+- **Web 开发**（Flask / Django）—— 做网站
+- **数据分析**（pandas）—— 处理 Excel / 数据
+- **游戏开发**（Pygame）—— 做真游戏
+- **AI / 机器学习**（scikit-learn）—— 让程序学
+- **自动化脚本**—— 解放双手
 
-```python
-# Normal recursion (factorial(5) = 5 * factorial(4), last op is multiply)
-def factorial(n):
-    if n == 0: return 1
-    return n * factorial(n - 1)
+**任何方向，方法都一样**：拆解 + 写 + 测 + 改。
 
-# Tail recursion (recursive call is the last op)
-def factorial_tail(n, acc=1):
-    if n == 0: return acc
-    return factorial_tail(n - 1, n * acc)
-```
+🎓 毕业快乐！
 
-**优势**: 编译器可以把尾递归**转成循环**(不爆栈).
-
-**Python 不支持**: CPython 没做尾递归优化, 所以尾递归还是会爆栈.
-
-**Scala/Haskell/Erlang** 等函数式语言都支持——这是为什么它们爱递归.
-
-## 六、何时用: 选递归 vs 迭代(3 分钟)
-
-| 场景 | 选 | 原因 |
-|---|---|---|
-| 树/图遍历 | 递归 | 代码清晰 3-5 倍 |
-| 阶乘/斐波那契/求和 | 迭代 | 性能 + 不爆栈 |
-| 大数据(10⁶+ 元素)| 迭代 | 递归爆栈 |
-| 教学/作业 | 递归 | 体现算法思想 |
-| 生产 AI 系统 | 迭代 + 缓存 | 性能压倒一切 |
-
-**AI 工程师的金科玉律**: **树/图递归, 循环迭代.**
-
-## 七、跑比赛(10 分钟)
-
-```python
-import time
-
-def time_it(fn, *args):
-    start = time.time()
-    result = fn(*args)
-    return time.time() - start, result
-
-# Test cases
-for n in [10, 50, 100, 500, 1000]:
-    t1, r1 = time_it(fib_recursive, n)
-    t2, r2 = time_it(fib_iterative, n)
-    print(f'fib({n:4d}): rec={t1:.6f}s iter={t2:.6f}s')
-```
-
-跑一下.看差距.
-
-## 八、读代码挑战(10 分钟)
-
-找出下面代码里的 2 个 bug: 
-
-```python
-def fib_iterative_buggy(n):
-    a, b = 0, 1
-    for i in range(n):       # bug 1?
-        a, b = b, a + b
-    return a                  # bug 2?
-```
-
-<details><summary>提示</summary>
-
-1. `range(n)` 多算一次——应该是 `range(n - 1)`(或者从 i=1 开始)
-2. `return a`——应该是 `return b`(最后一次 b 才是 fib(n))
-
-</details>
-
-## 九、提交(5 分钟)
-
-存到 `W16-weekend-practice.py`.跟 mentor 说"**修完了**".
-
-## 十、反思(5 分钟)
-
-- 递归: 清晰, 但慢(除非缓存)
-- 迭代: 快, O(N) 时间 O(1) 空间
-- AI 工程师: 树/图用递归, 循环用迭代
-
----
-
-## ✅ 周末自查
-
-- [ ] 写好 4 对函数(递归/迭代各 4)
-- [ ] 跑过 5 组测试, 看到差距
-- [ ] 找到并修了 2 个 bug
-- [ ] 存到 `W16-weekend-practice.py`
-
-四格全勾 → 周末完成.W16 加餐④ 收官!
-
----
-
-## 👀 C++ 认脸时刻(1 分钟 · 只看不敲)
-
-```cpp
-int fib_iterative(int n) {
-    if (n == 0 || n == 1) return n;
-    int a = 0, b = 1;
-    for (int i = 2; i <= n; i++) {
-        int c = a + b;
-        a = b;
-        b = c;
-    }
-    return b;
-}
-```
-
-三个认脸: 
-- C++ 变量要 `int` 声明
-- `int c = a + b; a = b; b = c;` 三个变量滚动(Python 用 `a, b = b, a + b` 一行)
-- `for (int i = 2; i <= n; i++)` = `for i in range(2, n + 1)`
+—— 你的 mentor + Python 课教学组

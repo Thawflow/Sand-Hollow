@@ -1,90 +1,128 @@
-<!-- slug: grad-showcase -->
-# W13-weekend · 🎓 毕业展
+<!-- slug: dict-codex-final -->
+# W10-weekend · 用 turtle 画一幅完整的画（签名！）
 
-> 用时：60-120 分钟 · 难度：⭐⭐⭐⭐ · 前置：W12 三课
+> 用时：60-90 分钟 · 难度：⭐⭐⭐ · 前置：W09 三课
 
 ---
 
-## 一、本周回顾（3 分钟）
+## 一、本周武功盘点（3 分钟）
 
-- W12-L01：选题 + 设计图
-- W12-L02：逐块实现 + 跑通
-- W12-L03：作品说明 + 家族展示
+- W09-L01：forward / left / right + 正多边形
+- W09-L02：pencolor / fillcolor / pensize + 填充
+- W09-L03：循环画图（多边形族 / 雪花 / 螺旋）
 
-今天是毕业展——**正式向家人完整演示 + 庆祝**。
+今天画一幅**完整的画**——能签上名字、给家人看那种。
 
-## 二、毕业展流程（60 分钟）
+## 二、项目：自由创作（60 分钟）
 
-### 第一段：5 分钟自我介绍 + 项目概述
+> 📁 项目存 `~/learning-homework/<你的学员名>/homework/`，新建 `my_art.py`。
 
-讲三件事：
+任选一题（也可自己设计）：
 
-1. 这是什么（功能 + 解决的问题）
-2. 我怎么做的（设计图 → 逐块 → 跑通）
-3. 我学到了什么（最大收获 + 还想改进）
+### 选项 A：彩色曼陀罗
 
-### 第二段：10 分钟现场演示
+```python
+import turtle
+import random
 
-完整跑一遍项目：
+t = turtle.Turtle()
+t.speed(0)
+t.pensize(2)
 
-- 启动 → 主菜单 → 核心功能 → 保存 → 退出 → 重启看加载
-- **故意出错一次**（如输入无效值），展示程序怎么应对
-- **展示一个亮点**（最让你自豪的部分）
+colors = ["red", "orange", "yellow", "green", "blue", "purple", "pink"]
 
-### 第三段：5 分钟家人上手
+# Draw 12 petals
+for petal in range(12):
+    t.pencolor(random.choice(colors))
+    t.fillcolor(random.choice(colors))
+    t.begin_fill()
+    for i in range(3):
+        t.forward(80)
+        t.left(120)
+    t.end_fill()
+    t.left(30)
 
-让家人自己试一遍，看他们能不能独立完成一个核心任务。
+turtle.done()
+```
 
-### 第四段：10 分钟反馈 + 改进
+### 选项 B：星空
 
-让家人说：
+```python
+import turtle
+import random
 
-- 哪里不清楚？
-- 哪里做得好？
-- 哪里想改？
+t = turtle.Turtle()
+t.speed(0)
+t.penup()
 
-**当场改 2-3 处**，展示你能「听完即改」。
+# 100 random stars
+for star in range(100):
+    x = random.randint(-200, 200)
+    y = random.randint(-200, 200)
+    size = random.randint(2, 8)
+    color = random.choice(["white", "yellow", "lightyellow", "lightblue"])
 
-### 第五段：5 分钟庆祝 🎉
+    t.goto(x, y)
+    t.pendown()
+    t.pencolor(color)
+    t.dot(size)  # small filled circle
+    t.penup()
 
-毕业了！给自己和家人一个庆祝仪式：
+# Moon
+t.goto(150, 150)
+t.pendown()
+t.fillcolor("lightyellow")
+t.begin_fill()
+t.circle(40)
+t.end_fill()
 
-- 拍一张你和家人的合影
-- 把作品 git commit 一笔：「毕业项目 v1.0」
-- 写一句话给未来的自己（保存到 `life/`）
+turtle.done()
+```
 
-## 三、毕业标准（自助验收）
+### 选项 C：自定义（推荐）
 
-- [ ] 项目 100+ 行代码（不算注释和空行）
-- [ ] 项目能跑通，零崩溃
-- [ ] README 完整 + 演示成功
-- [ ] 至少 2 个家人看过
-- [ ] 反馈改了一轮
-- [ ] git commit 落档毕业版本
+画你想画的东西：
 
-## 四、W12 + 12 周全周自查
+- 一只卡通动物（猫/狗/鱼）
+- 一棵树（树干 + 树叶圆圈）
+- 一辆汽车（矩形 + 圆形轮子）
+- 一栋房子 + 花园 + 太阳
+- 你名字的首字母装饰版
 
-- [ ] W12 毕业项目 100+ 行 + 跑通 + 家人演示
-- [ ] 12 周课程全部完成（W01-W12）
-- [ ] 我能给完全不懂编程的人讲清我的项目
-- [ ] 我知道接下来想学什么（Web？游戏？数据分析？）
+## 三、签名（5 分钟）
 
-## 五、🎓 毕业赠言
+画完给作品签上名字：
 
-12 周前你连 print 都不会，现在你能做一个完整作品给别人用。这中间的每个 print、每个 for、每个 bug、每个 fix，都是你自己的。
+```python
+import turtle
+# ... your drawing ...
 
-Python 是个工具，但**学会「拆解问题 → 写代码 → 测试 → 改进」这套思维**，比 Python 本身更重要。
+# Signature
+t.penup()
+t.goto(-200, -250)
+t.pendown()
+t.pencolor("black")
+t.write("By [your name], Sep 2026", font=("Arial", 12, "normal"))
 
-接下来你可以选：
+turtle.done()
+```
 
-- **Web 开发**（Flask / Django）—— 做网站
-- **数据分析**（pandas）—— 处理 Excel / 数据
-- **游戏开发**（Pygame）—— 做真游戏
-- **AI / 机器学习**（scikit-learn）—— 让程序学
-- **自动化脚本**—— 解放双手
+`t.write()` 是 turtle 的「写字」功能，可以写 ASCII 文字（中文需要换字体）。
 
-**任何方向，方法都一样**：拆解 + 写 + 测 + 改。
+## 四、验收标准（自助验收）
 
-🎓 毕业快乐！
+- [ ] 画作能完整跑通，无报错
+- [ ] 至少用了 3 种颜色（线条或填充）
+- [ ] 用到循环画图（不只是画静态形状）
+- [ ] 签名落档
+- [ ] 给家人 / 朋友看过，至少 1 人说「好看」
 
-—— 你的 mentor + Python 课教学组
+## 五、W09 全周自查
+
+- [ ] L01：forward / left / right + 正方形
+- [ ] L02：pencolor / fillcolor + 填充
+- [ ] L03：循环画图（多边形 / 雪花 / 螺旋）
+- [ ] 周末：画了一幅完整画作 + 签名
+- [ ] 我能给家人解释「turtle = 程序画画的小海龟」
+
+W09 毕业 🎨 → 进入 W10「字典：名字 → 东西的魔法地图」。W06 学的列表用索引 `[0]`、`[1]`，字典用「名字」找东西——像查电话簿。

@@ -1,165 +1,115 @@
-<!-- slug: sort-race -->
-# W16-weekend · 排序比赛：选择 vs Python 内置
+<!-- slug: grad-final -->
+# W12-weekend · 打磨 + 家人对战赛
 
-> **一句话核心**：**学算法是理解原理；生产用标准库**。Python `sort()` 用 Timsort，N=5000 时比选择排序快 1000 倍。
-
-> **每日节奏（v1.9）：** 周末项目 ≈60 分钟
-> **写代码时间**
-> 难度：⭐⭐⭐ · W16 加餐③ 周末
+> 用时：60-90 分钟 · 难度：⭐⭐⭐ · 前置：W11 三课
 
 ---
 
-> **📂 课前准备**：存为 `~/sand-hollow/<你的学员名>/homework/W16-weekend-practice.py`。
+## 一、本周武功盘点（3 分钟）
 
-## ⓪ 🤖 课前 AI 一分钟 · 第 36 颗：自己造轮子 vs 用标准库（3 分钟）
+- W11-L01：random 模块（randint / choice / shuffle / sample）
+- W11-L02：石头剪刀布（多局 + 计分 + emoji）
+- W11-L03：文字 RPG 战斗（玩家 + 敌人 + 升级）
 
-**AI 工程师的金科玉律**：**永远先试标准库**。
+今天：打磨 + 邀请家人对战。
 
-**今日口诀**：**学算法 = 理解原理；生产 = 用标准库**。
+## 二、打磨清单（30 分钟）
 
-**⚔️ 判一判**：
-
-> 1. 自己写算法永远比标准库快
-> 2. Python list.sort() 用 C 实现
-
-<details><summary>答案</summary>
-
-**1.** ✗ 标准库经过千锤百炼；**2.** ✓ Python 调用 C 实现的 Timsort。
-
-</details>
-
----
-
-## 一、项目：排序比赛（60 分钟）
-
-写两个排序函数：
-1. `selection_sort(arr)` —— 上节学的
-2. `builtin_sort(arr)` —— 用 `arr.sort()` 或 `sorted(arr)`
-
-跑 5 组输入，比较哪个快多少倍。
-
-## 二、选择排序（10 分钟）
+### 打磨 1：菜单清晰
 
 ```python
-def selection_sort(arr):
-    '''In-place selection sort.'''
-    arr = list(arr)   # don't modify original
-    n = len(arr)
-    for i in range(n - 1):
-        min_idx = i
-        for j in range(i + 1, n):
-            if arr[j] < arr[min_idx]:
-                min_idx = j
-        if min_idx != i:
-            arr[i], arr[min_idx] = arr[min_idx], arr[i]
-    return arr
+def main():
+    print("=== Game Menu ===")
+    print("1. Single battle")
+    print("2. Tournament (5 battles)")
+    print("3. Quit")
+
+    choice = input("> ").strip()
+    if choice == "1":
+        play_round()
+    elif choice == "2":
+        play_tournament()
+    elif choice == "3":
+        print("Bye!")
 ```
 
-## 三、内置排序（5 分钟）
+### 打磨 2：清晰反馈
+
+每一步都要 print 让玩家知道发生了什么：
 
 ```python
-def builtin_sort(arr):
-    '''Use Python built-in sort (Timsort).'''
-    return sorted(arr)
+# Before:
+enemy["hp"] -= dmg
+
+# After:
+old_hp = enemy["hp"]
+enemy["hp"] -= dmg
+print(f"You hit {enemy['name']} for {dmg}! ({old_hp} -> {enemy['hp']})")
 ```
 
-## 四、跑比赛（15 分钟）
+### 打磨 3：保存战绩
 
 ```python
-import time
-import random
+import json
+import os
 
-def time_sort(fn, arr):
-    start = time.time()
-    fn(arr)
-    return time.time() - start
+STATS_FILE = "rpg_stats.json"
 
-print(f'{"N":>6s} {"selection":>12s} {"builtin":>12s} {"ratio":>8s}')
-for n in [100, 500, 1000, 2000, 5000]:
-    data = [random.randint(0, 1000000) for _ in range(n)]
-    s = time_sort(selection_sort, data)
-    b = time_sort(builtin_sort, data)
-    print(f'{n:6d} {s:12.4f}s {b:12.4f}s {s/b:8.0f}x')
+def save_stats(stats):
+    with open(STATS_FILE, "w") as f:
+        json.dump(stats, f)
+
+def load_stats():
+    if os.path.exists(STATS_FILE):
+        with open(STATS_FILE) as f:
+            return json.load(f)
+    return {"wins": 0, "losses": 0, "highest_level": 1}
 ```
 
-## 五、深入了解：Timsort 为什么快（3 分钟）
+### 打磨 4：随机事件
 
-**Timsort = 归并排序 + 插入排序混合**（2002 年 Tim Peters 为 Python 发明）。
-
-**优势**：
-1. **自适应**：检测"已排好序"段（run）
-2. **稳定**：相等元素保持原顺序
-3. **C 实现 + 高度优化**
-4. **最坏 O(N log N)**
-
-## 六、何时用（3 分钟）
-
-| 场景 | 用什么 |
-|---|---|
-| 生产代码 | 标准库 |
-| 学习算法 | 自己写 |
-| 性能关键 + 标准库不够 | 自己写 |
-| 嵌入式 / 硬件 | 自己写 |
-
-**默认答案**：**用标准库**。90% 情况标准库足够。
-
-## 七、读代码挑战（10 分钟）
-
-找出 2 个 bug：
+战斗间隙可触发随机事件：
 
 ```python
-def selection_sort_buggy(arr):
-    n = len(arr)
-    for i in range(n):           # bug 1?
-        min_idx = 0
-        for j in range(1, n):    # bug 2?
-            if arr[j] < arr[min_idx]:
-                min_idx = j
-        arr[i], arr[min_idx] = arr[min_idx], arr[i]
-    return arr
+def random_event(player):
+    roll = random.random()
+    if roll < 0.3:
+        print("You found a herb! +30 HP")
+        player["hp"] = min(player["max_hp"], player["hp"] + 30)
+    elif roll < 0.4:
+        print("You tripped! -10 HP")
+        player["hp"] = max(1, player["hp"] - 10)
+    # 60% chance of nothing
 ```
 
-<details><summary>提示</summary>
+## 三、家人对战赛（30 分钟）
 
-1. `for i in range(n)`——应该是 `range(n - 1)`
-2. `for j in range(1, n)`——应该是 `range(i + 1, n)`
+### 流程
 
-</details>
+1. 给家人演示你的 RPG 战斗，让他们玩 1-2 局
+2. 听他们反馈：哪里卡？哪里好？
+3. 改一轮（同样只改细节，不重写）
 
-## 八、提交（5 分钟）
+### 常见反馈
 
-存到 `W16-weekend-practice.py`。跟 mentor 说"**修完了**"。
+- 「我看不懂能选什么」 → 加选项提示
+- 「战斗太短不过瘾」 → 加更多敌人 / 加 boss
+- 「死了想重来」 → 加重玩机制
+- 「想升级但不知道规则」 → 加 help 命令
 
-## 九、反思（5 分钟）
+## 四、验收标准（自助验收）
 
-- 选择排序：O(N²)，简单，自己写
-- Python sort：O(N log N)，Timsort，标准库
-- 差距：N=5000 时约 1000 倍
+- [ ] 打磨清单至少做 2 项
+- [ ] 至少 2 个真人玩过
+- [ ] 反馈改一轮（至少 3 处）
+- [ ] 玩家能完整通关 + 升级
 
----
+## 五、W11 全周自查
 
-## ✅ 周末自查
+- [ ] L01：random 模块四件套
+- [ ] L02：石头剪刀布
+- [ ] L03：文字 RPG 战斗
+- [ ] 周末：打磨 + 2 真人测试 + 改一轮
+- [ ] 我能给家人完整玩一局 RPG
 
-- [ ] 写好两个排序函数
-- [ ] 跑过 5 组测试
-- [ ] 找到并修了 2 个 bug
-- [ ] 存到 `W16-weekend-practice.py`
-
----
-
-## 👀 C++ 认脸时刻
-
-```cpp
-#include <algorithm>
-#include <vector>
-int main() {
-    std::vector<int> arr = {3, 1, 4, 1, 5, 9, 2, 6};
-    std::sort(arr.begin(), arr.end());   // O(N log N)
-    return 0;
-}
-```
-
-三个认脸：
-- `std::sort(begin, end)` 排序
-- `arr.begin() / .end()` = 迭代器
-- Python `arr.sort()` 等价
+W11 毕业 🎮 → 进入 W12「🏆 毕业项目 🎓」。自选主题，从设计图到作品，100+ 行代码，向家人展示。

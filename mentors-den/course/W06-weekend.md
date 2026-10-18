@@ -1,190 +1,179 @@
-<!-- slug: list-shopping-cart -->
-# W06-weekend · 电子购物清单
+<!-- slug: treasure -->
+# W06-weekend · 词典寻宝赛 + 读代码挑战
 
-> 用时：60-90 分钟 · 难度：⭐⭐⭐ · 前置：W06 三课
+> **一句话核心**：造一个寻宝游戏，让电脑二分 vs 顺序，看谁赢。理解边界 bug 怎么写错二分查找。
+
+> **每日节奏（v1.9）：** 周末项目 ≈60 分钟（纯动手，没阅读）
+> **写代码时间** —— 设计、写、调试
+> 难度：⭐⭐⭐⭐ · 前置：W06 五节全过
 
 ---
 
-## 一、本周武功盘点（3 分钟）
+> **📂 课前准备 · 随堂练习文件**：先在 Thonny `文件 → 新建`，立刻 `文件 → 另存为...` 存为 `~/sand-hollow/<你的学员名>/homework/W06-weekend-practice.py`。周末代码都写在这里。
 
-- 列表：一个变量装一批数据
-- 增删改查：append / insert / remove / pop / clear / 索引赋值 / in / index / count
-- 统计：sum / max / min / len + 累加器套路
-- 过滤：循环 + if + count / 新列表
+## ⓪ 🤖 课前 AI 一分钟 · 第 30 颗：AI = 搜索 + 优化（3 分钟）
 
-今天把它们组装成「**电子购物清单**」——从游戏里的商店数据到现实的购物需求，都能用列表管起来。
+今天的周末：建一个词典寻宝游戏，数你的代码跑几步，跟同学比一比。
 
-## 二、项目 A：基础购物清单（25 分钟）
+**AI 大部分就是搜索 + 优化**：推荐系统 = 搜"和你像的人"；导航系统 = 搜"最短路径"；聊天机器人 = 搜"最合适的回答"。都建立在今天的二分 + Big O 上。
 
-> 📁 项目存 `~/learning-homework/<你的学员名>/homework/`，新建 `shopping_list.py`。
+**今日口诀**：**最快的算法是不用跑的算法**。缓存、预计算、排序一次。AI 工程师 90% 的优化花在这。
 
-需求：
+**⚔️ 判一判**：
 
-- 空列表起步
-- 菜单循环：add / list / remove / quit
-- add：input 物品名，append 到列表
-- list：打印所有物品（带编号）
-- remove：input 物品名，remove 第一个匹配
-- quit：退出
+> 1. AI 大部分就是搜索算法
+> 2. 排序数据是浪费（二分要排好序，但排序贵）
 
-参考实现：
+<details><summary>答案</summary>
 
-```python
-print("=== Shopping List ===")
+**1.** ✓ 搜索 + 排序 + 检索 = AI 工作量的 90%；**2.** ✗ 排一次，查多次，永远更便宜。AI 工程师默认先排序。
 
-items = []
+</details>
 
-while True:
-    action = input("\n(add/list/remove/quit): ").strip()
+---
 
-    if action == "add":
-        name = input("Item name: ").strip()
-        items.append(name)
-        print(f"Added '{name}'")
-    elif action == "list":
-        if not items:
-            print("List is empty")
-        else:
-            for i, item in enumerate(items):
-                print(f"{i+1}. {item}")
-    elif action == "remove":
-        name = input("Item to remove: ").strip()
-        if name in items:
-            items.remove(name)
-            print(f"Removed '{name}'")
-        else:
-            print(f"'{name}' not in list")
-    elif action == "quit":
-        print(f"\nFinal list ({len(items)} items):")
-        for i, item in enumerate(items):
-            print(f"{i+1}. {item}")
-        break
-    else:
-        print("Unknown action, try again")
-```
+## 一、项目：词典寻宝赛（60 分钟）
 
-### 拆解
+建一个 3 轮寻宝游戏：
+1. 玩家在 10000 词词典里选一个秘密词
+2. 电脑用二分查找找它，数猜了几次
+3. 电脑用顺序查找，数猜了几次
+4. 比一比：二分最多 14 步，顺序最多 10000 步——二分完胜！
 
-- **`.strip()`**：去掉输入前后的空格（防止 "add " 输入被误判）
-- **`enumerate(items)`**：自动编号（i 从 0 开始，加 1 变 1-N）
-- **三层 if / elif / else**：动作分发
-- **`if not items:`**：空列表判定（空 = falsy）
-
-## 三、项目 B：价格 + 总价（25 分钟）
-
-> 📁 同目录新建 `shopping_with_prices.py`。
-
-需求：在 A 基础上，每个物品有「名字 + 价格」，最后打印总价。
-
-参考实现：
+## 二、分步走（10 分钟）
 
 ```python
-print("=== Shopping List with Prices ===")
+import random
 
-items = []  # Each item: [name, price]
+# Step 1: make a 10000-word dictionary (simplified)
+dictionary = [f'word{i:05d}' for i in range(10000)]
 
-while True:
-    action = input("\n(add/list/remove/total/quit): ").strip()
+# Step 2: player picks a secret word
+print('Pick a secret word between word00000 and word09999')
+print('(type any number 0-9999)')
+secret_num = int(input('Your choice: '))
+secret_word = dictionary[secret_num]
+print(f'Secret set: {secret_word}')
+input('Press Enter when ready...')
 
-    if action == "add":
-        name = input("Item name: ").strip()
-        price = float(input("Price: "))
-        items.append([name, price])
-        print(f"Added '{name}' at {price}")
-    elif action == "list":
-        if not items:
-            print("List is empty")
+# Step 3: computer uses binary search
+def binary_search_count(word_list, target):
+    low = 0
+    high = len(word_list) - 1
+    count = 0
+    while low <= high:
+        mid = (low + high) // 2
+        count = count + 1
+        if word_list[mid] == target:
+            return count
+        elif word_list[mid] < target:
+            low = mid + 1
         else:
-            for i, (name, price) in enumerate(items):
-                print(f"{i+1}. {name} - ${price:.2f}")
-    elif action == "remove":
-        idx = int(input("Item number to remove: ")) - 1
-        if 0 <= idx < len(items):
-            removed = items.pop(idx)
-            print(f"Removed '{removed[0]}'")
-        else:
-            print("Invalid number")
-    elif action == "total":
-        total = sum(price for name, price in items)
-        print(f"Total: ${total:.2f}")
-    elif action == "quit":
-        break
-    else:
-        print("Unknown action")
+            high = mid - 1
+    return -1
+
+# Step 4: computer uses linear search
+def linear_search_count(word_list, target):
+    count = 0
+    for i in range(len(word_list)):
+        count = count + 1
+        if word_list[i] == target:
+            return count
+    return -1
+
+# Run both
+binary_guesses = binary_search_count(dictionary, secret_word)
+linear_guesses = linear_search_count(dictionary, secret_word)
+
+print(f'\nResults:')
+print(f'  Binary search: {binary_guesses} guesses')
+print(f'  Linear search: {linear_guesses} guesses')
+print(f'  Linear is {linear_guesses / binary_guesses:.0f}x slower than binary')
 ```
 
-### 关键技巧
+## 三、跑一下看差距（10 分钟）
 
-- **嵌套列表** `[[name, price], ...]`：每个 item 是两元素列表
-- **`for i, (name, price) in enumerate(items):`**：元组拆包，直接拿到名字和价格
-- **`sum(price for name, price in items)`**：生成器 + sum，按价格累加
-- **`float(input("Price: "))`**：输入转浮点数（W02-L01 学的）
+跑代码。试几个秘密数字：
+- 0（第一个词）
+- 9999（最后一个词）
+- 5000（中间）
+- 随机
 
-## 四、项目 C：分类清单（25 分钟）
+注意：二分**永远 ≤14 步**。顺序跟秘密数字**成正比**。
 
-> 📁 同目录新建 `shopping_categorized.py`。
+## 四、加分：读代码挑战（15 分钟）
 
-需求：物品分「食品 / 日用品 / 其他」三类，分类统计。
-
-参考实现：
+不看运行结果，找出下面代码里的 3 个 bug：
 
 ```python
-print("=== Categorized Shopping List ===")
-
-food = []
-daily = []
-other = []
-
-while True:
-    action = input("\n(add/list/total/quit): ").strip()
-
-    if action == "add":
-        name = input("Item name: ").strip()
-        category = input("Category (food/daily/other): ").strip()
-        if category == "food":
-            food.append(name)
-        elif category == "daily":
-            daily.append(name)
+def binary_search_buggy(arr, target):
+    low = 0
+    high = len(arr)          # bug 1?
+    while low < high:         # bug 2?
+        mid = (low + high) / 2  # bug 3?
+        if arr[mid] == target:
+            return mid
+        elif arr[mid] > target:
+            high = mid
         else:
-            other.append(name)
-        print(f"Added '{name}' to {category}")
-    elif action == "list":
-        print("\n--- Food ---")
-        for i, item in enumerate(food):
-            print(f"{i+1}. {item}")
-        print("--- Daily ---")
-        for i, item in enumerate(daily):
-            print(f"{i+1}. {item}")
-        print("--- Other ---")
-        for i, item in enumerate(other):
-            print(f"{i+1}. {item}")
-    elif action == "total":
-        print(f"Food: {len(food)}, Daily: {len(daily)}, Other: {len(other)}")
-        print(f"Grand total items: {len(food) + len(daily) + len(other)}")
-    elif action == "quit":
-        break
+            low = mid + 1
+    return -1
 ```
 
-### 拆解
+找出每个 bug。**然后修，再跑**。
 
-- **三个列表**：一个分类一个列表，简单直观
-- **`len(列表)`**：分类计数
-- **未来升级**：用字典 `{food: [], daily: [], other: []}` 更优雅（W10 学）
+<details><summary>提示</summary>
 
-## 五、验收标准（自助验收）
+1. `high = len(arr)`——应该是 `len(arr) - 1`（少减一错误，跳过最后一个）
+2. `while low < high`——应该是 `while low <= high`（漏掉 low == high 的情况）
+3. `/ 2`——应该是 `// 2`（整除；Python 这里也能跑，但惯例用整除）
 
-- [ ] 三个项目（A 基础 / B 价格 / C 分类）至少做两个
-- [ ] add / list / remove / quit 都跑通
-- [ ] add 一个，输入错误动作（比如 `xxx`），看到「Unknown action」分支
-- [ ] 删一个不存在的物品，看到正确报错（不崩）
-- [ ] 给家人用过这个清单，至少加 5 个真实物品
+</details>
 
-## 六、W06 全周自查
+## 五、提交（5 分钟）
 
-- [ ] L01：列表创建 + 索引（从 0 开始）+ for 遍历
-- [ ] L02：增删改查四件套：append / remove / pop / 索引赋值 / in / count
-- [ ] L03：sum / max / min / len + filter 模式 + list comprehension 能读懂
-- [ ] 周末：购物清单 A + B 至少完成，能给家人用
-- [ ] 我能给家人解释「一个列表管一批数据，循环一遍处理完」
+存到 `W06-weekend-practice.py`。跟 mentor 说"**修完了**"。
 
-W06 毕业 🎓 → 进入 W07「🏆 项目周：文字冒险游戏」。三天搭骨架 + 周末打磨，把 W01-W06 全部功夫串成一个完整的可玩游戏。
+## 六、反思（5 分钟）
+
+这周学了什么？
+- 二分查找：每步砍一半，O(log n)
+- Big O：数据翻倍时步数怎么涨
+- 选算法：先量，别猜
+- AI 就建立在这些基本功上
+
+下周：W07 列表（list）——存一堆值，循环遍历它们。有了二分查找基础，你会明白为什么排好序的列表能二分。
+
+---
+
+## ✅ 周末自查
+
+- [ ] 建好词典寻宝赛，跑过
+- [ ] 试过 3+ 个秘密数字，看到二分永远 ≤14
+- [ ] 找到并修了 3 个 bug
+- [ ] 存到 `W06-weekend-practice.py`
+
+四格全勾 → 周末完成。下周：W07。
+
+---
+
+## 👀 C++ 认脸时刻（1 分钟 · 只看不敲）
+
+```cpp
+#include <iostream>
+#include <vector>
+int main() {
+    std::vector<int> arr = {0, 1, 2, 3, 4, 5};
+    int target = 3;
+    // C++23 has std::find (linear); binary_search returns bool
+    bool found = std::binary_search(arr.begin(), arr.end(), target);
+    auto it = std::lower_bound(arr.begin(), arr.end(), target);
+    int index = it - arr.begin();   // 3
+    std::cout << "found=" << found << " index=" << index << std::endl;
+}
+```
+
+三个认脸：
+- `std::lower_bound` 返回第一个 ≥ target 的迭代器
+- `it - arr.begin()` = 下标（指针算术）
+- 跟 Python 的 `bisect.bisect_left(arr, target)` 一个意思

@@ -1,128 +1,125 @@
-<!-- slug: dict-codex-final -->
-# W10-weekend · 用 turtle 画一幅完整的画（签名！）
+<!-- slug: function-adventure-refactor -->
+# W08-weekend · 用函数改造冒险游戏里的重复代码
 
-> 用时：60-90 分钟 · 难度：⭐⭐⭐ · 前置：W09 三课
+> 用时：60-90 分钟 · 难度：⭐⭐⭐ · 前置：W08 三课
 
 ---
 
 ## 一、本周武功盘点（3 分钟）
 
-- W09-L01：forward / left / right + 正多边形
-- W09-L02：pencolor / fillcolor / pensize + 填充
-- W09-L03：循环画图（多边形族 / 雪花 / 螺旋）
+- def 函数定义：写一次，处处调用
+- 参数：挖凹槽 + 默认值 + 关键字调用
+- return：函数交货，调用方能接力
 
-今天画一幅**完整的画**——能签上名字、给家人看那种。
+今天把这些用上——把 W07 猫咪冒险岛里的「复制粘贴」抽成函数。
 
-## 二、项目：自由创作（60 分钟）
+## 二、项目：函数化改造（40 分钟）
 
-> 📁 项目存 `~/learning-homework/<你的学员名>/homework/`，新建 `my_art.py`。
+> 📁 项目存 `~/learning-homework/<你的学员名>/homework/`，新建 `cat_adventure_v4.py`（基于 W07 改）。
 
-任选一题（也可自己设计）：
+### 改造 1：抽 show_room 函数
 
-### 选项 A：彩色曼陀罗
-
-```python
-import turtle
-import random
-
-t = turtle.Turtle()
-t.speed(0)
-t.pensize(2)
-
-colors = ["red", "orange", "yellow", "green", "blue", "purple", "pink"]
-
-# Draw 12 petals
-for petal in range(12):
-    t.pencolor(random.choice(colors))
-    t.fillcolor(random.choice(colors))
-    t.begin_fill()
-    for i in range(3):
-        t.forward(80)
-        t.left(120)
-    t.end_fill()
-    t.left(30)
-
-turtle.done()
-```
-
-### 选项 B：星空
+每个房间的 print 重复结构，**抽成一个函数**：
 
 ```python
-import turtle
-import random
-
-t = turtle.Turtle()
-t.speed(0)
-t.penup()
-
-# 100 random stars
-for star in range(100):
-    x = random.randint(-200, 200)
-    y = random.randint(-200, 200)
-    size = random.randint(2, 8)
-    color = random.choice(["white", "yellow", "lightyellow", "lightblue"])
-
-    t.goto(x, y)
-    t.pendown()
-    t.pencolor(color)
-    t.dot(size)  # small filled circle
-    t.penup()
-
-# Moon
-t.goto(150, 150)
-t.pendown()
-t.fillcolor("lightyellow")
-t.begin_fill()
-t.circle(40)
-t.end_fill()
-
-turtle.done()
+def show_room(name, description, choices):
+    print(f"\n--- {name} ---")
+    print(description)
+    print(f"Choices: {choices}")
+    return input("> ").strip().lower()
 ```
 
-### 选项 C：自定义（推荐）
-
-画你想画的东西：
-
-- 一只卡通动物（猫/狗/鱼）
-- 一棵树（树干 + 树叶圆圈）
-- 一辆汽车（矩形 + 圆形轮子）
-- 一栋房子 + 花园 + 太阳
-- 你名字的首字母装饰版
-
-## 三、签名（5 分钟）
-
-画完给作品签上名字：
+调用：
 
 ```python
-import turtle
-# ... your drawing ...
-
-# Signature
-t.penup()
-t.goto(-200, -250)
-t.pendown()
-t.pencolor("black")
-t.write("By [your name], Sep 2026", font=("Arial", 12, "normal"))
-
-turtle.done()
+if room == "shrine":
+    choice = show_room(
+        "Cat Shrine",
+        "You stand at the old shrine. Paths lead north and east.",
+        "(north/east)",
+    )
 ```
 
-`t.write()` 是 turtle 的「写字」功能，可以写 ASCII 文字（中文需要换字体）。
+跑两遍：相同 print 结构，输入不同的 choice。
+
+### 改造 2：抽 print_status 函数
+
+玩家状态经常要 print：
+
+```python
+def print_status(player):
+    print(f"\n=== {player['name']} ===")
+    print(f"HP: {player['hp']}/{player['max_hp']}")
+    print(f"ATK: {player['attack']}")
+    print(f"DEF: {player['defense']}")
+    if player["inventory"]:
+        print(f"Inventory: {', '.join(player['inventory'])}")
+    else:
+        print("Inventory: (empty)")
+```
+
+战斗前后各调一次。
+
+### 改造 3：抽 use_item 函数（已 W07 写过）
+
+复用 W07-L03 的版本，加 return True/False。
+
+### 改造 4：抽 save_game / load_game（进阶）
+
+```python
+import json
+
+def save_game(player, room):
+    data = {"player": player, "room": room}
+    with open("save.json", "w") as f:
+        json.dump(data, f)
+    print("Game saved!")
+
+def load_game():
+    with open("save.json") as f:
+        data = json.load(f)
+    print("Game loaded!")
+    return data["player"], data["room"]
+```
+
+`json.dump` / `json.load` 是 Python 自带的「对象 ↔ 文件」转换。**重点不是 JSON 本身，是 use 函数 + 文件读写 + try-except 错误处理**。
+
+主循环里：
+
+```python
+if choice == "save":
+    save_game(player, room)
+elif choice == "load":
+    player, room = load_game()
+```
+
+## 三、实战：清点重复（20 分钟）
+
+把 W07 的 v3 找一遍「重复出现 2 次以上」的代码段：
+
+| 重复模式 | 抽函数 |
+|---|---|
+| `print(f"\n--- {name} ---")` 多次 | `show_room()` |
+| `print(f"HP: {hp}/{max}")` 多次 | `print_status()` |
+| 战斗后回血判断 | `clamp(value, max)`（封顶）|
+| 玩家 + 敌人攻击伤害公式 | `calc_dmg(attacker_atk, defender_def)` |
+
+把每处都抽出来，**改造前后跑通测试**，确认行为一致。
 
 ## 四、验收标准（自助验收）
 
-- [ ] 画作能完整跑通，无报错
-- [ ] 至少用了 3 种颜色（线条或填充）
-- [ ] 用到循环画图（不只是画静态形状）
-- [ ] 签名落档
-- [ ] 给家人 / 朋友看过，至少 1 人说「好看」
+- [ ] 至少抽 3 个函数（show_room / print_status / 至少一个战斗相关）
+- [ ] 每个函数有 def + 文档（"""一句话说清做什么"""）
+- [ ] 函数改造前后跑通测试，行为不变
+- [ ] 调用方代码可读性明显提升（少 30%+ 行数）
+- [ ] 进阶：save_game / load_game 跑通
 
-## 五、W09 全周自查
+## 五、W08 全周自查
 
-- [ ] L01：forward / left / right + 正方形
-- [ ] L02：pencolor / fillcolor + 填充
-- [ ] L03：循环画图（多边形 / 雪花 / 螺旋）
-- [ ] 周末：画了一幅完整画作 + 签名
-- [ ] 我能给家人解释「turtle = 程序画画的小海龟」
+- [ ] L01：def 写函数，调用加 ()
+- [ ] L02：参数 / 关键字参数 / 默认值 分得清
+- [ ] L03：return vs print 分得清，能写提前退出
+- [ ] 周末：至少 3 个函数抽出来，代码更清爽
+- [ ] 我能给家人解释「函数 = 写一次、处处调用、还能交货」
 
-W09 毕业 🎨 → 进入 W10「字典：名字 → 东西的魔法地图」。W06 学的列表用索引 `[0]`、`[1]`，字典用「名字」找东西——像查电话簿。
+W08 毕业 🎓 → 进入 W09「turtle：编程画画」。**视觉化编程**登场——前面的代码都是数字 + 文字，turtle 让你看到自己写的代码画出一幅画。

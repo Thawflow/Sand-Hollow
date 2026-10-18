@@ -1,153 +1,190 @@
-<!-- slug: cat-adventure -->
-# W07-weekend · 猫咪冒险岛 · 打磨 + 多人测试
+<!-- slug: list-shopping-cart -->
+# W06-weekend · 电子购物清单
 
-> 用时：90-120 分钟 · 难度：⭐⭐⭐⭐ · 前置：W07 三课
+> 用时：60-90 分钟 · 难度：⭐⭐⭐ · 前置：W06 三课
 
 ---
 
 ## 一、本周武功盘点（3 分钟）
 
-- L1 画地图 + 最小骨架
-- L2 玩家状态（字典）+ 战斗雏形
-- L3 道具系统 + Boss + 完整流程
+- 列表：一个变量装一批数据
+- 增删改查：append / insert / remove / pop / clear / 索引赋值 / in / index / count
+- 统计：sum / max / min / len + 累加器套路
+- 过滤：循环 + if + count / 新列表
 
-今天把游戏打磨到「**家人愿意完整玩一局**」的程度，然后请 3 个真人测一遍。
+今天把它们组装成「**电子购物清单**」——从游戏里的商店数据到现实的购物需求，都能用列表管起来。
 
-## 二、打磨清单（30 分钟）
+## 二、项目 A：基础购物清单（25 分钟）
 
-按优先级做这几件——每件都是「从能玩到好玩」的关键：
+> 📁 项目存 `~/learning-homework/<你的学员名>/homework/`，新建 `shopping_list.py`。
 
-### 打磨 1：清晰的提示文案
+需求：
 
-每个房间的 `print` 至少要说清：
+- 空列表起步
+- 菜单循环：add / list / remove / quit
+- add：input 物品名，append 到列表
+- list：打印所有物品（带编号）
+- remove：input 物品名，remove 第一个匹配
+- quit：退出
 
-- **你现在在哪**（房间名）
-- **你看到什么**（环境 + 敌人 + 道具）
-- **你能做什么**（可输入的选项）
-
-❌ Bad：
-
-```python
-print("Forest")
-choice = input("> ")
-```
-
-✅ Good：
+参考实现：
 
 ```python
-print("\n--- Whispering Forest ---")
-print("Tall oaks block the sky. A gray wolf snarls at you.")
-print("Choices: (fight/run)")
-choice = input("> ")
+print("=== Shopping List ===")
+
+items = []
+
+while True:
+    action = input("\n(add/list/remove/quit): ").strip()
+
+    if action == "add":
+        name = input("Item name: ").strip()
+        items.append(name)
+        print(f"Added '{name}'")
+    elif action == "list":
+        if not items:
+            print("List is empty")
+        else:
+            for i, item in enumerate(items):
+                print(f"{i+1}. {item}")
+    elif action == "remove":
+        name = input("Item to remove: ").strip()
+        if name in items:
+            items.remove(name)
+            print(f"Removed '{name}'")
+        else:
+            print(f"'{name}' not in list")
+    elif action == "quit":
+        print(f"\nFinal list ({len(items)} items):")
+        for i, item in enumerate(items):
+            print(f"{i+1}. {item}")
+        break
+    else:
+        print("Unknown action, try again")
 ```
 
-### 打磨 2：输入容错
+### 拆解
 
-用户可能输入 `Fight`（大写）/ ` fight `（带空格）/ `gg`（瞎打）。
+- **`.strip()`**：去掉输入前后的空格（防止 "add " 输入被误判）
+- **`enumerate(items)`**：自动编号（i 从 0 开始，加 1 变 1-N）
+- **三层 if / elif / else**：动作分发
+- **`if not items:`**：空列表判定（空 = falsy）
+
+## 三、项目 B：价格 + 总价（25 分钟）
+
+> 📁 同目录新建 `shopping_with_prices.py`。
+
+需求：在 A 基础上，每个物品有「名字 + 价格」，最后打印总价。
+
+参考实现：
 
 ```python
-choice = input("> ").strip().lower()
+print("=== Shopping List with Prices ===")
+
+items = []  # Each item: [name, price]
+
+while True:
+    action = input("\n(add/list/remove/total/quit): ").strip()
+
+    if action == "add":
+        name = input("Item name: ").strip()
+        price = float(input("Price: "))
+        items.append([name, price])
+        print(f"Added '{name}' at {price}")
+    elif action == "list":
+        if not items:
+            print("List is empty")
+        else:
+            for i, (name, price) in enumerate(items):
+                print(f"{i+1}. {name} - ${price:.2f}")
+    elif action == "remove":
+        idx = int(input("Item number to remove: ")) - 1
+        if 0 <= idx < len(items):
+            removed = items.pop(idx)
+            print(f"Removed '{removed[0]}'")
+        else:
+            print("Invalid number")
+    elif action == "total":
+        total = sum(price for name, price in items)
+        print(f"Total: ${total:.2f}")
+    elif action == "quit":
+        break
+    else:
+        print("Unknown action")
 ```
 
-**两招搞定**：`strip()` 去前后空格，`lower()` 全小写。然后所有 if 都跟小写比。
+### 关键技巧
 
-### 打磨 3：回血 / 加攻击有反馈
+- **嵌套列表** `[[name, price], ...]`：每个 item 是两元素列表
+- **`for i, (name, price) in enumerate(items):`**：元组拆包，直接拿到名字和价格
+- **`sum(price for name, price in items)`**：生成器 + sum，按价格累加
+- **`float(input("Price: "))`**：输入转浮点数（W02-L01 学的）
 
-不能默默改数据，必须 print：
+## 四、项目 C：分类清单（25 分钟）
+
+> 📁 同目录新建 `shopping_categorized.py`。
+
+需求：物品分「食品 / 日用品 / 其他」三类，分类统计。
+
+参考实现：
 
 ```python
-if item["effect"] == "heal":
-    old = player["hp"]
-    player["hp"] = min(player["max_hp"], player["hp"] + item["value"])
-    gained = player["hp"] - old
-    print(f"Used {item['name']}! +{gained} HP (now {player['hp']}/{player['max_hp']})")
+print("=== Categorized Shopping List ===")
+
+food = []
+daily = []
+other = []
+
+while True:
+    action = input("\n(add/list/total/quit): ").strip()
+
+    if action == "add":
+        name = input("Item name: ").strip()
+        category = input("Category (food/daily/other): ").strip()
+        if category == "food":
+            food.append(name)
+        elif category == "daily":
+            daily.append(name)
+        else:
+            other.append(name)
+        print(f"Added '{name}' to {category}")
+    elif action == "list":
+        print("\n--- Food ---")
+        for i, item in enumerate(food):
+            print(f"{i+1}. {item}")
+        print("--- Daily ---")
+        for i, item in enumerate(daily):
+            print(f"{i+1}. {item}")
+        print("--- Other ---")
+        for i, item in enumerate(other):
+            print(f"{i+1}. {item}")
+    elif action == "total":
+        print(f"Food: {len(food)}, Daily: {len(daily)}, Other: {len(other)}")
+        print(f"Grand total items: {len(food) + len(daily) + len(other)}")
+    elif action == "quit":
+        break
 ```
 
-**显示「变了多少」+ 「现在是多少」**——玩家一眼看到反馈。
+### 拆解
 
-### 打磨 4：保存最佳战绩
-
-把分数（通关剩余 HP）写到文件：
-
-```python
-# After victory
-score = player["hp"] * 10 + player["attack"]
-with open("best_score.txt", "a") as f:
-    f.write(f"{score}\n")
-
-# Show top 3
-with open("best_score.txt") as f:
-    scores = sorted([int(line) for line in f], reverse=True)
-print("\n=== Top Scores ===")
-for i, s in enumerate(scores[:3]):
-    print(f"{i+1}. {s}")
-```
-
-跟 W05-weekend 排行榜同款套路。
-
-### 打磨 5：ASCII 标题
-
-```python
-print("""
- /\_/\  
-( o.o ) 
- > ^ < 
-=== Cat Adventure ===
-""")
-```
-
-简单 ASCII 猫脸，让开场有仪式感。
-
-## 三、邀请 3 个真人测（30 分钟）
-
-**这是项目周最重要的一步**——自己测和自己玩是两回事。
-
-### 测试流程
-
-找 3 个不会编程的家人/朋友，让他们各自完整玩一局：
-
-1. 你在旁边观察 + 记笔记（**不提示**）
-2. 看他们卡在哪、问什么问题、笑/吐槽在哪
-3. 玩完问三个问题：
-   - 「你最喜欢哪个部分？」
-   - 「哪个地方最让你卡住？」
-   - 「你会想再玩一次吗？」
-
-### 收集反馈
-
-记下每个人的回答 + 卡点。下一步就是根据反馈改。
-
-### 常见反馈模式
-
-- **「我看不懂能做什么」** → print 文案不够清楚（打磨 1 没做到位）
-- **「输了不知道发生了什么」** → game_over 太突然，加死亡描述
-- **「打完 Boss 没什么成就感」** → 加胜利徽章 + 通关动画
-- **「我想存个档下次玩」** → W10 字典学了可以加 save/load
-
-## 四、根据反馈改一轮（30 分钟）
-
-按反馈优先级（影响最大 → 最易改）排：
-
-1. **卡死的地方**（如果有人走不出去 = 严重 bug，必修）
-2. **看不懂的提示**（改成清楚的文案）
-3. **想要的彩蛋**（如果简单就加）
-
-**这一轮不要重写，只改细节。**项目周不是重写周。
+- **三个列表**：一个分类一个列表，简单直观
+- **`len(列表)`**：分类计数
+- **未来升级**：用字典 `{food: [], daily: [], other: []}` 更优雅（W10 学）
 
 ## 五、验收标准（自助验收）
 
-- [ ] 打磨清单 5 项至少做 3 项
-- [ ] 至少 3 个真人测过，记下反馈
-- [ ] 根据反馈改了至少 3 处
-- [ ] 你能向家人 / 朋友完整演示一局，零崩溃
-- [ ] 测的人里至少 1 个说「想再玩一次」或「想推荐给别人」
+- [ ] 三个项目（A 基础 / B 价格 / C 分类）至少做两个
+- [ ] add / list / remove / quit 都跑通
+- [ ] add 一个，输入错误动作（比如 `xxx`），看到「Unknown action」分支
+- [ ] 删一个不存在的物品，看到正确报错（不崩）
+- [ ] 给家人用过这个清单，至少加 5 个真实物品
 
-## 六、W07 全周自查
+## 六、W06 全周自查
 
-- [ ] L1：地图设计 + 最小骨架 3 个房间跑通
-- [ ] L2：玩家字典 + 战斗函数 + game_over 跑通
-- [ ] L3：道具 + Boss + victory 完整流程跑通
-- [ ] 周末：打磨清单 5 项中至少 3 项 + 3 真人测试 + 反馈改一轮
-- [ ] 我能给 mentor 演示一局完整通关
+- [ ] L01：列表创建 + 索引（从 0 开始）+ for 遍历
+- [ ] L02：增删改查四件套：append / remove / pop / 索引赋值 / in / count
+- [ ] L03：sum / max / min / len + filter 模式 + list comprehension 能读懂
+- [ ] 周末：购物清单 A + B 至少完成，能给家人用
+- [ ] 我能给家人解释「一个列表管一批数据，循环一遍处理完」
 
-W07 毕业 🏆 → 进入 W08「函数：自制积木」。W02-W06 写的代码经常重复——今天学一招让代码「写一次，处处调用」。
+W06 毕业 🎓 → 进入 W07「🏆 项目周：文字冒险游戏」。三天搭骨架 + 周末打磨，把 W01-W06 全部功夫串成一个完整的可玩游戏。

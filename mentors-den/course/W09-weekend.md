@@ -1,179 +1,217 @@
-<!-- slug: turtle-gallery -->
-# W09-weekend · 词典寻宝赛 + 读程序挑战
+<!-- slug: greedy-coin-game -->
+# W15-weekend · 找零比赛：贪心 vs 暴力
 
-> 用时：60-90 分钟 · 难度：⭐⭐⭐⭐ · 前置：W09 三课
+> **一句话核心**：**最好的工程师不是用最复杂的算法，是用最合适的算法**。先贪心，失败再升级。
+
+> **每日节奏（v1.9）：** 周末项目 ≈60 分钟（纯动手，没阅读）
+> **写代码时间** —— 设计、写、调试
+> 难度：⭐⭐⭐ · 前置：W09-S1 + W09-S3
 
 ---
 
-## 一、本周武功盘点（3 分钟）
+> **📂 课前准备 · 随堂练习文件**：先在 Thonny `文件 → 新建`，立刻 `文件 → 另存为...` 存为 `~/sand-hollow/<你的学员名>/homework/W09-weekend-practice.py`。周末代码都写在这里。
 
-- 二分查找：有序 + 能跳中间 → 每次砍一半，7 次搞定 100 格
-- `binary_search` 函数：low / high / mid 三兄弟 + `//` 整除 + `mid ± 1`
-- 快慢尺：数据翻倍，步数翻倍（跟着涨）/ 只加 1（砍半）/ 翻 4 倍（平方涨）
+## ⓪ 🤖 课前 AI 一分钟 · 第 33 颗：AI 工程师 = 选对算法（3 分钟）
 
-今天两件事：**A 一场正经比赛** + **B 一种新题型**（读别人的程序，猜它干什么）。
+今天的周末：建一个找零比赛场。贪心算法 vs 暴力算法，赛跑找最优解。
 
-## 二、项目 A：部族名册寻宝赛（35 分钟）
+**AI 工程师每天做的事**：选对算法。**先试最简单（贪心），不行就升级（动态规划、搜索）**。这是 AI 工程师的肌肉记忆。
 
-> 📁 项目存 `~/learning-homework/<你的学员名>/homework/`，新建 `roster_race.py`。
+**今日口诀**：**最好的工程师不是用最复杂的算法，是用最合适的算法**。今天你练这招。
 
-场景：四大部族的联合名册（第一步先造一份**有序**的大名单），族长报出一只猫的名字，看谁最快找到它在第几 位。
+**⚔️ 判一判**：
 
-**第 1 步 · 造名册（5 分钟）**
+> 1. 暴力算法永远没价值
+> 2. AI 工程师选算法时考虑性能和正确性
 
-```python
-import random
+<details><summary>答案</summary>
 
-def make_roster(n):
-    """造一份 n 只猫的有序名册：名字由 cat + 编号 组成"""
-    names = ["cat" + str(i) for i in range(1, n + 1)]   # W06 列表推导预备版
-    return names                                          # cat1, cat2, ... 天生有序
+**1.** ✗ 暴力是黄金标准（用来测试贪心对错）；**2.** ✓ 永远 2 选 1：快但可能错（贪心），还是慢但保证对（暴力）？
 
-roster = make_roster(1000)
-```
+</details>
 
-**第 2 步 · 两名选手同场竞技（15 分钟）**
+---
 
-把 W13-L02 的两个函数搬进来（这次**自己默写**，不许翻笔记——这是周末项目的规矩），然后：
+## 一、项目：找零比赛（60 分钟）
 
-```python
-target = random.choice(roster)          # 族长随机点名
+写两个找零函数：
+1. `greedy_change(amount, coins)` —— 永远挑最大
+2. `brute_change(amount, coins)` —— 试所有组合找最少
 
-slow_steps = slow_search(target, roster)
-fast_steps = binary_search(target, roster)
-print(f"目标 {target}：逐格搜 {slow_steps} 步，二分 {fast_steps} 步")
-```
+跑 5 组输入，比较：
+- 贪心选了 N 枚
+- 暴力选了 M 枚
+- 谁赢？
 
-**第 3 步 · 全场大奖赛（15 分钟）**
-
-随机点 100 次名，两名选手各记总步数：
+## 二、贪心函数（10 分钟）
 
 ```python
-slow_total, fast_total = 0, 0
-for i in range(100):
-    target = random.choice(roster)
-    slow_total += slow_search(target, roster)
-    fast_total += binary_search(target, roster)
-print(f"100 场总步数：逐格 {slow_total} 步 vs 二分 {fast_total} 步")
+def greedy_change(amount, coins):
+    '''Return a list of coins that sums to amount using greedy.'''
+    result = []
+    for coin in coins:
+        while amount >= coin:
+            result.append(coin)
+            amount = amount - coin
+    return result
 ```
 
-**验收提问（mentor 会问）：**
-
-1. 逐格的平均步数大约是多少？（提示：随机点名，平均走到名单一半偏后的位置）
-2. 二分的步数为什么几乎不波动？
-3. 名册从 1000 扩到 8000，两位选手的总步数各怎么变？（先用翻倍问题预测，再实测）
-
-## 三、项目 B：读程序挑战——新题型登场（25 分钟）
-
-从今天起，周末项目多一种题型：**读一段别人写好的程序，推理它的输出**。不运行，先猜，再验证。这是检验"真懂还是假懂"的试金石（也是很多编程能力测评的标准题型）。
-
-### 第 1 题 · 它在干什么？
+## 三、暴力函数（15 分钟）
 
 ```python
-def mystery(numbers):
-    low, high = 0, len(numbers) - 1
-    while low <= high:
-        mid = (low + high) // 2
-        if numbers[mid] == 7:
-            return mid
-        elif numbers[mid] < 7:
-            low = mid + 1
-        else:
-            high = mid - 1
-    return -1
+def brute_change(amount, coins):
+    '''
+    Try every combination, return the shortest.
+    Exponential: only works for small amount and small coin set.
+    '''
+    best = None
+    def try_combinations(remaining, coins, current):
+        nonlocal best
+        if remaining == 0:
+            if best is None or len(current) < len(best):
+                best = list(current)   # copy
+            return
+        if remaining < 0:
+            return
+        if best is not None and len(current) >= len(best):
+            return   # prune: cannot beat current best
+        for i, coin in enumerate(coins):
+            current.append(coin)
+            try_combinations(remaining - coin, coins[i:], current)
+            current.pop()
 
-print(mystery([1, 3, 5, 7, 9, 11, 13]))
+    try_combinations(amount, coins, [])
+    return best if best is not None else []
 ```
 
-先答三个小问（写在注释里）：① 它找的是什么？② 返回的数字是什么意思？③ 输出是几？
+**技巧**：先 sort coins（最大到最小），同时 `coins[i:]` 让后面递归只看当前和更小的硬币，避免重复。
 
-### 第 2 题 · 一步一追踪
+## 四、跑比赛（10 分钟）
 
 ```python
-x, y = 1, 100
-steps = 0
-while x < y:
-    x = x * 2
-    steps = steps + 1
-print(steps)
+tests = [
+    (87, [100, 50, 10]),       # 8.7 yuan
+    (60, [40, 30, 10]),        # 6 jiao (greedy fails)
+    (99, [50, 30, 10, 1]),     # 9.9 yuan
+    (200, [100, 50, 20, 10, 5]),  # 20 yuan
+    (1000, [500, 200, 100, 50, 20, 10, 5, 1]),  # 100 yuan
+]
+
+for amount, coins in tests:
+    sorted_coins = sorted(coins, reverse=True)
+    g = greedy_change(amount, sorted_coins)
+    b = brute_change(amount, sorted_coins)
+    winner = 'greedy win' if len(g) == len(b) else f'brute {len(b)} coins vs greedy {len(g)} coins'
+    print(f'amount={amount:4d}  greedy={len(g):2d}  brute={len(b):2d}  winner={winner}')
 ```
 
-输出是几？这段程序和本周哪个概念是"一体两面"？（提示：反着数一遍 2 的连乘）
+跑一下。看哪些 case 贪心赢，哪些 case 暴力赢。
 
-### 第 3 题 · 找茬题
+## 五、示例演算：amount=60, coins=[40, 30, 10]（3 分钟）
 
-下面的二分查找有**一处 bug**，会导致某个目标永远找不到。找出它，说清什么情况下翻车：
+**贪心**：
+- 40 + 10 + 10 = 60 (3 枚)
+
+**暴力**（试所有组合）：
+- 30 + 30 = 60 (2 枚) ✓ 最优
+- 40 + 10 + 10 = 60 (3 枚)
+- 10 + 10 + 10 + 10 + 10 + 10 = 60 (6 枚)
+
+**暴力赢**——贪心用了 3 枚，最优 2 枚。
+
+## 六、深入了解：暴力为什么仍有用（3 分钟）
+
+**暴力算法 = 黄金标准**——慢但保证对。3 个用途：
+
+1. **测试贪心对错**：暴力找最优，贪心 vs 暴力 = 反例检测
+2. **小数据 baseline**：n < 20 时暴力足够，不必优化
+3. **教学**：暴力最直观，先写暴力再优化
+
+**真实案例**：
+- **单元测试**：永远拿"已知答案"测试代码（参考实现是暴力）
+- **算法竞赛**：小数据暴力得部分分，大数据再优化
+- **AI debug**：用暴力结果对比 ML 输出，看偏差
+
+**没学暴力的 AI 工程师 = 不会"找反例"的工程师**。
+
+## 七、何时用：算法选择的决策树（3 分钟）
+
+```
+data small (< 20)?
+  yes -> brute force
+  no -> greedy
+       if counter-example?
+         yes -> dynamic programming
+         no -> greedy OK
+```
+
+**永远先试最简单的**——别上来就动归/搜索。
+
+## 八、读代码挑战（10 分钟）
+
+找出下面代码里的 2 个 bug：
 
 ```python
-def buggy_search(name, roster):
-    low, high = 0, len(roster) - 1
-    while low < high:                    # ← 盯着这行和正常版比
-        mid = (low + high) // 2
-        if roster[mid] == name:
-            return mid
-        elif roster[mid] < name:
-            low = mid
-        else:
-            high = mid
-    return -1
+def greedy_change_buggy(amount, coins):
+    result = []
+    for coin in coins:           # bug 1?
+        if amount < coin:        # bug 2?
+            continue
+        while amount >= coin:
+            result.append(coin)
+            amount = amount - coin
+    return result
 ```
 
-### 验证方式
+<details><summary>提示</summary>
 
-三题全部**先笔答再运行**。运行结果和笔答一致才算过关；不一致的话，错在哪一步，回头补哪一步。
+1. `for coin in coins`——如果 `coins` 没排好序（不是从大到小），贪心就失败。应该 `sorted(coins, reverse=True)`
+2. `if amount < coin: continue`——可以工作，但当 amount > 0 但所有 coin 都 > amount 时，函数返回 `[]`，应该至少报错"无法找零"
 
-## 四、讲给家人听（15 分钟，本周最重要的一环）
+</details>
 
-本周验收有一道**口头题**，讲给家里人听（爸妈、爷爷奶奶、AI 分身都行）：
+## 九、提交（5 分钟）
 
-> "为什么在 100 万个东西里找一个，最多只要问 20 次？"
+存到 `W09-weekend-practice.py`。跟 mentor 说"**修完了**"。
 
-规则：不许说"就是二分查找"这种术语甩锅，要用**自己的比方**（雪原、词典、猜数字都行）把家里人讲到点头为止。家人没听懂 = 重讲，换比方。
+## 十、反思（5 分钟）
 
-讲完让听的人签个名（或录一段 30 秒的语音），写进作业文件最后一行。
+- 贪心：快，O(n)，但不一定对
+- 暴力：慢，O(2^n)，但保证对
+- AI 工程师的"肌肉记忆"：先试贪心，失败再升级
 
-## 五、🤖 AI 常识胶囊 · 第 4 颗：开源 vs 闭源 + 1 分钟小演讲（约 5 分钟）
+下周：W10（还是 Python 基础，函数与模块）。
 
-本周口头题讲给家人听，胶囊也升级一颗"面试真题"级——2026 年清华附 AI 营面试真考过：
+---
 
-> 面试官：未来五年，你更看好**开源**还是**闭源**？
+## ✅ 周末自查
 
-先懂词：
+- [ ] 写好两个找零函数
+- [ ] 跑过 5 组测试，看到贪心赢和暴力赢的 case
+- [ ] 找到并修了 2 个 bug
+- [ ] 存到 `W09-weekend-practice.py`
 
-- **开源**：代码公开，人人能看、能改、能自己搭（DeepSeek 的模型、手机的安卓系统）
-- **闭源**：只给你用，不给看内部（很多收费软件、部分商业 AI）
+四格全勾 → 周末完成。下周：W10。
 
-没有标准答案，考的是**你怎么想**。用「**观点一句 + 理由两句 + 例子一句**」的 1 分钟结构，讲给家人听，请他们当面试官。
+---
 
-**⚔️ 判一判**
-
-1. 开源软件就是免费的、没人管的软件。
-2. DeepSeek 的模型是开源的。
-
-**答案**：1 ✗（开源有"许可证"规矩、有社区维护，"开放"≠"随便拿"；很多开源软件由很厉害的团队维护）；2 ✓（DeepSeek 把模型公开了，全世界的人都能下载研究——这正是它出名的原因之一）。
-
-## 六、👀 C++ 认脸时刻（1 分钟 · 只看不敲）
-
-今天大奖赛"记总步数"的累加器，C++ 版：
+## 👀 C++ 认脸时刻（1 分钟 · 只看不敲）
 
 ```cpp
-int steps[5] = {7, 8, 7, 9, 7};    // 二分 5 局各用几步
-int total = 0;
-for (int i = 0; i < 5; i = i + 1)
-    total = total + steps[i];       // 累加器模式（W04 的老朋友）
+#include <iostream>
+#include <vector>
+#include <algorithm>
+int main() {
+    std::vector<int> coins = {1, 5, 10, 25};
+    int amount = 41;
+    std::sort(coins.rbegin(), coins.rend());   // sort descending
+    // coins is now {25, 10, 5, 1}
+    std::cout << "sorted descending" << std::endl;
+    return 0;
+}
 ```
 
-- **认脸①**：`int steps[5] = {…}`——数组（列表的 C++ 亲戚）可以带"出厂设置"
-- **认脸②**：`steps[i]` 下标从 **0** 开始数——和 Python 一样，两边通用
-- **认脸③**：整数 ÷ 整数自动整除：`38 / 5` 得 `7`，不是 `7.6`
-
-## 七、自查清单
-
-- [ ] 项目 A 跑通 100 场大奖赛，三个验收提问答得出
-- [ ] 默写 `binary_search` 一次成功（没翻笔记）
-- [ ] 读程序三题全部"先笔答后验证"，笔答全对或搞懂了错在哪
-- [ ] 口头题完成，家人点头 + 签名
-- [ ] 🚀 加速挑战：把项目 A 的名册扩到 100 万，两位选手再赛一场（先预测二分总步数会不会超过 2000，再实测）
-- [ ] 🤖 AI 胶囊第 4 颗拿下：判断题 2 道全对 + 1 分钟"开源 vs 闭源"小演讲完成（家人当了一次面试官）
-
-> 📚 配套阅读：《算法图解》第 1 章整章（含章末练习，喜欢挑战的同学可以试试 1.1-1.4 题）
+三个认脸：
+- `std::sort(begin, end)` 排序
+- `rbegin()` / `rend()` 反向迭代器（Python 的 `reversed`）
+- 跟 Python 的 `sorted(coins, reverse=True)` 等价
