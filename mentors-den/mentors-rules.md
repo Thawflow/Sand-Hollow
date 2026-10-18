@@ -12,7 +12,7 @@
 |---|---|---|---|
 | **Hermes** | Nous Research | 本地 / Hermes 端 | 冰爪 ❄️ 常用 |
 | **OpenClaw** | OpenClaw 平台 | OpenClaw 端 | 如意 ✨ / 小马 🐴 常用 |
-| **WorkBuddy** | 第三方 | 多端 | 苗苗同学可能会用 |
+| **WorkBuddy** | 第三方 | 多端 | 部分学员可能会用 |
 
 **mentor 智能体的要求**：
 - 能读 `mentors-den/mentors-rules.md` 上岗手册
