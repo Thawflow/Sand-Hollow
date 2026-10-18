@@ -18,7 +18,7 @@
 - 能读 `mentors-den/mentors-rules.md` 上岗手册
 - 能用 git 操作沙坑仓（commit / push / chatroom @review）
 - 能执行 cron 出勤采集等机械化任务
-- 能 iMessage / chatroom 跟学员/同事沟通
+- 能 chatroom 跟同事沟通；学员沟通 = 通过学员本机智能体（agent 端），不走额外通道
 
 **关键术语统一**：
 - "**智能体（Agent）**" = mentor 侧的 AI 助手（家庭成员代号：如意 ✨ / 冰爪 ❄️ / 小马 🐴）
@@ -44,7 +44,7 @@
    - **课后作业（homework）**：`{week}-{lesson}-homework.py`，课后独立完成；mentor 写 `*.review.md` 评语。
    - 旧命名转正保留；新一节课起按新约定。
 10. **作业自动归位** — mentor 每次检查作业时自动扫描学员目录：新提交的作业文件若位置/命名不规范，**自动修正**（mv/rename 到 ⑧⑨ 约定位置与命名）并在批改/晨会中注明归位结果；practice/homework 类型无法推断时不自动改，列为晨会确认项。触发点：①mentor 收到检查请求时 ②每日晨会扫描。修正范围仅文件名/位置，不动文件内容。
-11. **晨会制度** — 每日 07:00 两位 mentor iMessage 碰头，由如意的 cron 发起；发起前先同步本仓（git pull --rebase）。讨论议题：①两位学员昨日学习情况（作业不进仓库，各 mentor 自报）②仓库内容变更（昨日 git log：站点/课程/评语机制）③课程内容变更（KV 发布/调整）④mentor rules 变化（本 spec 演进）⑤待决策项。结论各自留档（mentors-log/），涉及课程修改的经双 mentor 确认后执行。
+11. **晨会制度** — 每日 07:00 两位 mentor 在 chatroom 碰头，由如意的 cron 发起；发起前先同步本仓（git pull --rebase）。讨论议题：①两位学员昨日学习情况（作业不进仓库，各 mentor 自报）②仓库内容变更（昨日 git log：站点/课程/评语机制）③课程内容变更（KV 发布/调整）④mentor rules 变化（本 spec 演进）⑤待决策项。结论各自留档（mentors-log/），涉及课程修改的经双 mentor 确认后执行。
 12. **真实学习时长 · Thonny 日志解析** — `sandbox-practice-tracker` 已采「文件 mtime + Thonny 会话 + 浏览器事件」，但会话启停时间未解析，活跃时长只能粗估。从 Thonny 日志直接拉真实学习时长：
     - **日志路径**：macOS `~/Library/Logs/Thonny/` · Linux `~/.config/Thonny/thonny.log` · Windows `%APPDATA%\Thonny\thonny.log`
     - **做法**：tracker 升级每 5min 读 Thonny 日志末行 → 解析 `Session started/ended at <time>` → 算本次会话时长；空闲 = 60s+ 无键鼠事件
@@ -57,10 +57,10 @@
     - **改课前全读**：草拟新讲义前先读 W0X 已发布所有 L0X 维持风格一致
     - **cron 提醒**：`mentor-lesson-read-check` cron 每天 14:30 Asia/Shanghai 扫昨日 course/ 变更 → 未读 mentor 提醒
 14. **daily-practice 节奏 · 14:00 发布 → 提交 → review** — cron `ruyi-icepaw-daily-practice` 每天 14:00 Asia/Shanghai 触发（原 `<user>-daily-joy-bringer` 命名不准确，v1.6 改名 `<user>-daily-practice` 并明确链路）：
-    - **14:00 发布**：cron 发 iMessage 给学员今日练习题（题面 + 提示 + 参考答案）+ 同步写入 KV `learning/daily-practice/<date>`（学员在站点能看到）
+    - **14:00 发布**：cron 同步写入 KV `learning/daily-practice/<date>`；学员通过本机 agent 主动拉取，不做推送
     - **学员当日完成**：答案写 `<学员目录>/homework/W0X-L0X-daily.py`（**命名约定**：daily-practice 配套）
     - **mentor 14:00-22:00 巡检**：学员主动通知「交作业」→ 启动 review；或 cron `<user>-daily-practice-scan` 每 2h 扫 homework/ 新文件 → 自动触发 review
-    - **review 落档**：评语写 `<学员目录>/reviews/W0X-L0X-daily.review.md`，通知学员
+    - **review 落档**：评语写 `<学员目录>/reviews/W0X-L0X-daily.review.md`；学员通过本机 agent 主动拉取（review 文件落档 = 信号）
     - **联动**：⑪ 晨会第①议题增列「昨日 daily-practice 提交率」（出勤三源融合统计）
 15. **随堂练习文件化 · 开课即建** — 每课讲义**开头**（第一个动手环节前）就要求学员新建随堂练习文件 `W0X-L0X-practice.py`（Thonny `文件 → 新建`，存学员 `homework/` 平铺目录）；课内演示代码 + 随堂踩坑全部写进该文件，与课后作业 `W0X-L0X-homework.py` 严格分开两个文件。目的：mentor 靠 practice 文件的存在 + tracker mtime / commit 时间锚定「学员确实随堂练了」，不是只交 homework。这是 ⑨ 命名约定的执行层强化：⑨ 定文件名，⑮ 定课内动作。存量课（W02-L02 起的 `W0X-dN.py` 旧格式 + `W0X/` 周子目录）在各自解锁/发布前必须对齐本条。
 
@@ -95,14 +95,14 @@
 | **公开站点** | GitHub Pages `Thawflow/sand-hollow` → `learning.thawflow.com` | 学员看到的学习首页 |
 | **私有作业区** | `~/sand-hollow/<学员名>/`（学员本机，**不在** git）| 学员提交 + mentor 评语落地 |
 | **出勤采集** | `~/.openclaw/sandbox-practice/tracker.js` | 每 5 分钟无头扫描文件 mtime + Thonny 会话 + 浏览器事件 → 融合统计 |
-| **晨会制度** | 每日 07:00 mentor 双人 iMessage 碰头 | 详见 ⑪ |
-| **即时通讯** | iMessage / SkyClan Chatroom / 用户主通道 | 通知学员交付、催办、庆功 |
+| **晨会制度** | 每日 07:00 mentor 双人 chatroom 碰头 | 详见 ⑪ |
+| **内部协同** | SkyClan Chatroom | mentor 之间 review handoff / 晨会 / 紧急催办 |
 
 ## 一、首次搭环境（必做一次）
 
 1. **克隆仓库**：把 `Thawflow/sand-hollow` 克隆到学员 home 目录（**别放桌面**，TCC + iCloud 会拦 Thonny）。
    ```bash
-   cd ~ && git clone git@github-thawflow:Thawflow/sand-hollow.git
+   cd ~ && git clone git@github.com:Thawflow/sand-hollow.git
    ```
 2. **建学员私有区**：在 `~/sand-hollow/<学员名>/` 下建 `homework/` 和 `reviews/` 两个子目录（学员名如 `thawpaw`、`tree`、或自创英文名）。
 3. **配置 .gitignore**：确保 `thawpaw/` 整个不进 git（保护作业 + 评语隐私）。
@@ -119,7 +119,7 @@
 1. 学员交 `thawpaw/homework/<W0X-L0X-*.py>`
 2. mentor 运行 `python3 <file>.py` 验证（一次跑通、零报错为底线）
 3. mentor 写 `thawpaw/reviews/<W0X-L0X-*.review.md` 评语，套用 `mentors-den/review-template.md`；除逐题结论外，必须填写「超前技能」（自学发现的语法或思路）与「成长豆」，没有则明确写"未发现"
-4. 通知学员「通过 ✅ + 评语落档位置」（iMessage 或 chatroom）
+4. 学员通过本机 agent 主动拉取 review 状态（review 文件落档 = 信号，无需推送）
 5. 标注课程勾选完成（学员自己勾 + mentor 备份在 KV）
 
 ### 改课程前
@@ -127,7 +127,7 @@
 2. 草拟新讲义（标题 `# W0X-L0X · ...`，4-6KB 中文 / 4.5-6KB 英文）
 3. 跑 `python3 ~/.openclaw/scripts/scan-cn-in-code.py` 确认零中文代码块
 4. 跑 `python3 ~/.openclaw/scripts/check-code-blocks.py` 确认 python 块语法 ok
-5. git commit + push（免双签）+ chatroom @**另一位 mentor** review + 发 iMessage 通知学员「新课上架」
+5. git commit + push（免双签）+ chatroom @**另一位 mentor** review；学员通过本机 agent 主动拉取「新课上架」信号
 
 ## 三、cron 模板（拷贝即用）
 
@@ -145,7 +145,7 @@
 
 - **桌面 = TCC 拦 Thonny**：永远不要放桌面，iCloud 同步还会 EDEADLK rename。
 - **track.js 挂机 bug**：标签页开着 ≠ 在学习，必须监听真实点击事件，否则时长虚高 5-10 倍。
-- **iMessage 通道独立**：OpenClaw webchat 频道发的消息，对方在 iMessage 收不到——必须用 `imsg send`。
+
 - **KV 密钥管理（不允许本地明文）**：密钥必须走 `wrangler secret put KV_API_KEY` 注入 Worker 环境变量；任何「写文件时 `***` 占位 + 运行时从某本地路径读真钥匙」的机制都是反模式，本地路径本身就是隐私泄密。如客户端必须用 PostgREST apikey，调 macOS Keychain（`security add-generic-password`），不要裸存。
 
 ## 五、加入我们的步骤
