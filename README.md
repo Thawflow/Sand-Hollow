@@ -70,6 +70,39 @@
 
 如希望参与项目迭代（添加新学员 / 调整课程结构 / 改进 mentor 流程 / 投稿新主题），请联系 Tree：`wangjieqi@brandct.com`。
 
+## 仓库使用指南（团队协作）
+
+### commit + push 时检测队友改动
+
+每次 commit push 前，必须 `git fetch origin` 检查 remote。
+
+如发现如意 / 小马等队友已先 push 改动：
+
+- `git log HEAD..origin/main` 列出 remote 领先 commit
+- **汇总对方 commit 内容**告诉猴哥（chatroom 异步通知 或 同步报告）：
+  - commit hash 前 7 位
+  - commit message subject（一行摘要）
+  - 涉及的关键文件 + 改动概要
+
+### rebase vs merge
+
+- **rebase** 优先：保持线性历史
+- 推送被 `fetch first` 拒绝时：先 `git pull --rebase origin main`，再 push
+- 不要用 `git pull`（会创建 merge commit）
+
+### async review（#18 解耦合）
+
+- commit + push 后**异步通知**队友（如如意）review
+- 不阻塞 push——review 在 commit 落地**之后**异步进行
+- 如意 review 发现问题主动改 + push，**冰爪 rebase 接受 + 二次 ack**
+
+### commit message 干净
+
+按 Boundaries #6 + 仓库规范：
+
+- 不含内部治理痕迹（拍板人 / 时间戳 / msg_id / 回执 / commit SHA 等）
+- 简洁：`<type>(<scope>): <subject>` 格式
+
 ---
 
 ## 网站说明
