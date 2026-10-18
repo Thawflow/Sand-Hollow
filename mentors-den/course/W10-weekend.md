@@ -1,5 +1,27 @@
-<!-- slug: function-adventure-refactor -->
-# W08-weekend · 用函数改造冒险游戏里的重复代码
+<!-- slug: function-adventure-refactor, type: project -->
+## ⓪ 🤖 课前 AI 一分钟 · 第 36 颗：AI 也会"工程化"——实战重构（3 分钟）
+
+> **第 36 颗**
+
+AI 模型上线 = 完整工程化（train/eval/save/load 拆函数）。**实战重构**是 AI 工程师的核心能力。
+
+**今日口诀**：AI 模型上线 = 完整工程化（train/eval/save/load 拆函数）。
+
+**⚔️ 判一判**（AI 营线上测评题型热身，先自己答再看答案）：
+
+> 1. AI 训练要拆 train/eval 函数
+> 2. 实战重构 = 工程化
+
+<details><summary>答案</summary>
+
+**1.** ✓ def train(); def eval(); def save()  
+**2.** ✓ 重复代码变函数 = 重构
+
+</details>
+
+---
+
+# W10-weekend · 用函数改造冒险游戏里的重复代码
 
 > 用时：60-90 分钟 · 难度：⭐⭐⭐ · 前置：W08 三课
 
@@ -123,3 +145,27 @@ elif choice == "load":
 - [ ] 我能给家人解释「函数 = 写一次、处处调用、还能交货」
 
 W08 毕业 🎓 → 进入 W09「turtle：编程画画」。**视觉化编程**登场——前面的代码都是数字 + 文字，turtle 让你看到自己写的代码画出一幅画。
+
+
+## 👀 C++ 认脸时刻（1 分钟 · 只看不敲）
+
+C++ 的对应写法：
+
+```cpp
+#include <iostream>
+void train() { std::cout << "training..." << std::endl; }
+void eval()  { std::cout << "eval..." << std::endl; }
+void save()  { std::cout << "save..." << std::endl; }
+int main() {
+    train(); eval(); save();
+    return 0;
+}
+```
+
+三个认脸：
+
+1. 3 个函数 = 工程化
+2. main 里调用 3 个步骤
+3. Python 一样：def train/eval/save()
+
+> AI 营笔试的编程题用 C++ 出。不用会写，**认得脸**就行。

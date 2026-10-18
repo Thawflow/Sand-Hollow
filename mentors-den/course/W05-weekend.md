@@ -1,3 +1,26 @@
+<!-- slug: guess-game, type: project -->
+## ⓪ 🤖 课前 AI 一分钟 · 第 18 颗：AI 也会"反复玩"——再来一局（3 分钟）
+
+> **第 18 颗**
+
+AI 训练 = 反复用同一数据集训练。猜数字"再来一局"= **外层 while True** + 内层游戏逻辑。
+
+**今日口诀**：AI 训练 = 反复用同一数据集训练。
+
+**⚔️ 判一判**（AI 营线上测评题型热身，先自己答再看答案）：
+
+> 1. 猜数字"再来一局"用外层 while True
+> 2. AI 训练也用外层 epoch 循环
+
+<details><summary>答案</summary>
+
+**1.** ✓ while True: play(); if input("再来？") != "y": break  
+**2.** ✓ for epoch in range(100):
+
+</details>
+
+---
+
 # W05-weekend · 打磨猜数字：限 5 次 + 计分 + 再来一局
 
 > 用时：60-90 分钟 · 难度：⭐⭐⭐⭐ · 前置：W05 三课
@@ -164,3 +187,29 @@ with open("leaderboard.txt") as f:
 - [ ] 我能给家人玩这个游戏，零报错、零崩溃
 
 W05 毕业 🎓 → 进入 W06「列表：一串数据」。一个变量装多个数据，班级成绩、商品清单、玩家背包，全都用列表。
+
+
+## 👀 C++ 认脸时刻（1 分钟 · 只看不敲）
+
+C++ 的对应写法：
+
+```cpp
+#include <iostream>
+int main() {
+    while (true) {
+        std::cout << "play once" << std::endl;
+        char again;
+        std::cin >> again;
+        if (again != 'y') break;
+    }
+    return 0;
+}
+```
+
+三个认脸：
+
+1. `while (true)` 无限循环（Python 是 `while True:`）
+2. `if (again != 'y') break;` 退出
+3. 外层 while + 内层游戏 = "再来一局"
+
+> AI 营笔试的编程题用 C++ 出。不用会写，**认得脸**就行。

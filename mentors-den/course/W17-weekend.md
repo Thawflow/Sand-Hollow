@@ -1,5 +1,27 @@
-<!-- slug: grad-showcase -->
-# W13-weekend · 🎓 毕业展
+<!-- slug: grad-showcase, type: project -->
+## ⓪ 🤖 课前 AI 一分钟 · 第 64 颗：AI 也会"毕业展"——作品展示（3 分钟）
+
+> **第 64 颗**
+
+AI 工程师 = 毕业展（展板 + demo + Q&A）。Python 毕业展 = **🎓 毕业展**。
+
+**今日口诀**：AI 工程师 = 毕业展（展板 + demo + Q&A）。
+
+**⚔️ 判一判**（AI 营线上测评题型热身，先自己答再看答案）：
+
+> 1. 毕业展要展示作品
+> 2. AI 工程师也要 demo
+
+<details><summary>答案</summary>
+
+**1.** ✓ 展板 + 演示 + Q&A  
+**2.** ✓ final showcase
+
+</details>
+
+---
+
+# W17-weekend · 🎓 毕业展
 
 > 用时：60-120 分钟 · 难度：⭐⭐⭐⭐ · 前置：W12 三课
 
@@ -88,3 +110,24 @@ Python 是个工具，但**学会「拆解问题 → 写代码 → 测试 → �
 🎓 毕业快乐！
 
 —— 你的 mentor + Python 课教学组
+
+
+## 👀 C++ 认脸时刻（1 分钟 · 只看不敲）
+
+C++ 的对应写法：
+
+```cpp
+#include <iostream>
+int main() {
+    std::cout << "🎓 毕业展！" << std::endl;
+    return 0;
+}
+```
+
+三个认脸：
+
+1. 🎓 毕业标志
+2. 作品展示
+3. Python 一样：print("🎓 毕业展！")
+
+> AI 营笔试的编程题用 C++ 出。不用会写，**认得脸**就行。

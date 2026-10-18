@@ -1,5 +1,27 @@
-<!-- slug: list-shopping-cart -->
-# W06-weekend · 电子购物清单
+<!-- slug: list-shopping-cart, type: project -->
+## ⓪ 🤖 课前 AI 一分钟 · 第 24 颗：AI 也会"购物清单"——增删改查综合（3 分钟）
+
+> **第 24 颗**
+
+AI 推荐系统 = 增删改查用户偏好。购物清单项目 = **完整 CRUD 项目**。
+
+**今日口诀**：AI 推荐系统 = 增删改查用户偏好。
+
+**⚔️ 判一判**（AI 营线上测评题型热身，先自己答再看答案）：
+
+> 1. 购物清单 = list 增删改查
+> 2. AI 推荐系统本质也是增删改查
+
+<details><summary>答案</summary>
+
+**1.** ✓ items = []; items.append(x); items.remove(x); ...  
+**2.** ✓ user_preferences.append(item)
+
+</details>
+
+---
+
+# W07-weekend · 电子购物清单
 
 > 用时：60-90 分钟 · 难度：⭐⭐⭐ · 前置：W06 三课
 
@@ -188,3 +210,27 @@ while True:
 - [ ] 我能给家人解释「一个列表管一批数据，循环一遍处理完」
 
 W06 毕业 🎓 → 进入 W07「🏆 项目周：文字冒险游戏」。三天搭骨架 + 周末打磨，把 W01-W06 全部功夫串成一个完整的可玩游戏。
+
+
+## 👀 C++ 认脸时刻（1 分钟 · 只看不敲）
+
+C++ 的对应写法：
+
+```cpp
+#include <iostream>
+#include <vector>
+int main() {
+    std::vector<std::string> cart = {"apple", "milk"};
+    cart.push_back("bread");
+    for (auto& x : cart) std::cout << x << " ";
+    return 0;
+}
+```
+
+三个认脸：
+
+1. `std::vector<std::string>` 字符串列表
+2. `cart.push_back("bread")` 加
+3. for 循环遍历
+
+> AI 营笔试的编程题用 C++ 出。不用会写，**认得脸**就行。

@@ -1,5 +1,5 @@
-<!-- slug: sort-race -->
-# W16-weekend · 排序比赛：选择 vs Python 内置
+<!-- slug: sort-race, type: addon -->
+# W12-weekend · 排序比赛：选择 vs Python 内置
 
 > **一句话核心**：**学算法是理解原理；生产用标准库**。Python `sort()` 用 Timsort，N=5000 时比选择排序快 1000 倍。
 

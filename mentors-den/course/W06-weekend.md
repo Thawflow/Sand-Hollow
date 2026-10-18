@@ -1,4 +1,4 @@
-<!-- slug: treasure -->
+<!-- slug: treasure, type: addon -->
 # W06-weekend · 词典寻宝赛 + 读代码挑战
 
 > **一句话核心**：造一个寻宝游戏，让电脑二分 vs 顺序，看谁赢。理解边界 bug 怎么写错二分查找。

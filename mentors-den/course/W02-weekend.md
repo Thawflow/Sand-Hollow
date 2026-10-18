@@ -1,3 +1,4 @@
+<!-- slug: name-lab, type: project -->
 # W02-weekend · 名字实验室 + 单价订单计算器
 
 > 用时：40-60 分钟 · 难度：⭐⭐⭐ · 前置：W02 三课

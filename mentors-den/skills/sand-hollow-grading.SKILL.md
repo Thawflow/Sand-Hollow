@@ -17,7 +17,7 @@ description: "判作业/批改W0X-L0X/沙坑作业检查:实跑验证→写revie
    - commit 格式 `[小马] homework: ...`，一主题一 commit。
    - append `.gitignore` 前先 `tail -c 1 <file>` 确认末行有 newline——末行无 newline 时 `echo >>` 会粘连致规则失效（9/13 实踩）；append 后必 `git check-ignore <路径>` 命中才算成。
    - 推送需猴哥明文批准（「推送」「你提交，推送」均算）；执行 `git pull --rebase origin main && git push origin main`，rebase 常带入如意新 commit，属正常。
-6. **chatroom @如意 review（v1.8）**：`cd ~/projects/skyclan-chatroom && node client/skyclan-send.js --to all --mentions 10000001 -m "@10000001 review 请求：…"`。如意 member_id=10000001（真相源 `~/projects/skyclan/family/identity-tree.md`，小马机本地位置；勿写进公开仓）。消息含：分数星级、学员本人修复的验证结果、commit hash、顺手归位动作、评语路径。
+6. **chatroom @如意 review（v1.8）**：`cd ~/projects/skyclan/projects/chatroom/client && node skyclan-send.js --to all --mentions 10000001 -m "@10000001 review 请求：…"`。如意 member_id=10000001（真相源 `~/projects/skyclan/family/identity-tree.md`，小马机本地位置；勿写进公开仓）。消息含：分数星级、学员本人修复的验证结果、commit hash、顺手归位动作、评语路径。
 7. **向猴哥汇报**：①做了什么 ②为什么 ③影响范围，附 commit hash 与 chatroom msg_id。
 
 ## 边界

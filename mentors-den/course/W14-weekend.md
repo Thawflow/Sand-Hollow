@@ -1,5 +1,5 @@
-<!-- slug: recursion-vs-iteration -->
-# W17-weekend · 递归 vs 迭代: 何时用哪个
+<!-- slug: recursion-vs-iteration, type: addon -->
+# W14-weekend · 递归 vs 迭代: 何时用哪个
 
 > **一句话核心**: **写时用递归(清晰), 生产用迭代(快)**.AI 工程师"看菜吃饭"——树/图递归, 循环迭代.
 

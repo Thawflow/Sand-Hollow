@@ -1,5 +1,5 @@
-<!-- slug: greedy-coin-game -->
-# W15-weekend · 找零比赛：贪心 vs 暴力
+<!-- slug: greedy-coin-game, type: addon -->
+# W09-weekend · 找零比赛：贪心 vs 暴力
 
 > **一句话核心**：**最好的工程师不是用最复杂的算法，是用最合适的算法**。先贪心，失败再升级。
 

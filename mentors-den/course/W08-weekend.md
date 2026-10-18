@@ -1,5 +1,27 @@
-<!-- slug: cat-adventure -->
-# W07-weekend · 猫咪冒险岛 · 打磨 + 多人测试
+<!-- slug: cat-adventure, type: project -->
+## ⓪ 🤖 课前 AI 一分钟 · 第 30 颗：AI 也会"打磨"——多人测试（3 分钟）
+
+> **第 30 颗**
+
+AI 模型上线前 = 多人测试（找 bug/调优）。**多人测试** = 收集反馈 → 改进。
+
+**今日口诀**：AI 模型上线前 = 多人测试（找 bug/调优）。
+
+**⚔️ 判一判**（AI 营线上测评题型热身，先自己答再看答案）：
+
+> 1. AI 模型要测试
+> 2. 多人测试找 bug
+
+<details><summary>答案</summary>
+
+**1.** ✓ A/B testing  
+**2.** ✓ beta testing
+
+</details>
+
+---
+
+# W08-weekend · 猫咪冒险岛 · 打磨 + 多人测试
 
 > 用时：90-120 分钟 · 难度：⭐⭐⭐⭐ · 前置：W07 三课
 
@@ -151,3 +173,28 @@ print("""
 - [ ] 我能给 mentor 演示一局完整通关
 
 W07 毕业 🏆 → 进入 W08「函数：自制积木」。W02-W06 写的代码经常重复——今天学一招让代码「写一次，处处调用」。
+
+
+## 👀 C++ 认脸时刻（1 分钟 · 只看不敲）
+
+C++ 的对应写法：
+
+```cpp
+#include <iostream>
+#include <vector>
+int main() {
+    std::vector<int> feedback = {5, 4, 3, 5, 4};
+    int sum = 0;
+    for (int s : feedback) sum += s;
+    std::cout << "avg = " << sum / feedback.size() << std::endl;
+    return 0;
+}
+```
+
+三个认脸：
+
+1. 收集反馈评分
+2. `sum / feedback.size()` 算平均
+3. Python 一样：sum(feedback) / len(feedback)
+
+> AI 营笔试的编程题用 C++ 出。不用会写，**认得脸**就行。

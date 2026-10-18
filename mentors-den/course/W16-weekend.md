@@ -1,5 +1,27 @@
-<!-- slug: grad-final -->
-# W12-weekend · 打磨 + 家人对战赛
+<!-- slug: grad-final, type: project -->
+## ⓪ 🤖 课前 AI 一分钟 · 第 60 颗：AI 也会"打磨"——家人对战（3 分钟）
+
+> **第 60 颗**
+
+AI 上线前 = 收集用户反馈打磨。Python 毕业 = **家人对战赛** 收集体验。
+
+**今日口诀**：AI 上线前 = 收集用户反馈打磨。
+
+**⚔️ 判一判**（AI 营线上测评题型热身，先自己答再看答案）：
+
+> 1. 家人对战 = 收集反馈
+> 2. AI 模型要用户测试
+
+<details><summary>答案</summary>
+
+**1.** ✓ play with family, collect feedback  
+**2.** ✓ beta testing
+
+</details>
+
+---
+
+# W16-weekend · 打磨 + 家人对战赛
 
 > 用时：60-90 分钟 · 难度：⭐⭐⭐ · 前置：W11 三课
 
@@ -113,3 +135,28 @@ def random_event(player):
 - [ ] 我能给家人完整玩一局 RPG
 
 W11 毕业 🎮 → 进入 W12「🏆 毕业项目 🎓」。自选主题，从设计图到作品，100+ 行代码，向家人展示。
+
+
+## 👀 C++ 认脸时刻（1 分钟 · 只看不敲）
+
+C++ 的对应写法：
+
+```cpp
+#include <iostream>
+#include <vector>
+int main() {
+    std::vector<int> feedback = {5, 4, 5, 3, 5};
+    int sum = 0;
+    for (int s : feedback) sum += s;
+    std::cout << "avg = " << sum / feedback.size() << std::endl;
+    return 0;
+}
+```
+
+三个认脸：
+
+1. 收集反馈评分
+2. 算平均
+3. Python 一样：sum(feedback) / len(feedback)
+
+> AI 营笔试的编程题用 C++ 出。不用会写，**认得脸**就行。
