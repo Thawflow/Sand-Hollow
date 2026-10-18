@@ -1,3 +1,4 @@
+<!-- slug: dict-codex-final -->
 # W10-weekend · 用 turtle 画一幅完整的画（签名！）
 
 > 用时：60-90 分钟 · 难度：⭐⭐⭐ · 前置：W09 三课

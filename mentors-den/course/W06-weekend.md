@@ -1,3 +1,4 @@
+<!-- slug: list-shopping-cart -->
 # W06-weekend · 电子购物清单
 
 > 用时：60-90 分钟 · 难度：⭐⭐⭐ · 前置：W06 三课

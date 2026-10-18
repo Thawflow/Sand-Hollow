@@ -1,3 +1,4 @@
+<!-- slug: function-adventure-refactor -->
 # W08-weekend · 用函数改造冒险游戏里的重复代码
 
 > 用时：60-90 分钟 · 难度：⭐⭐⭐ · 前置：W08 三课

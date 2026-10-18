@@ -1,3 +1,4 @@
+<!-- slug: random-rpg-final -->
 # W11-weekend · 宠物图鉴 v1：完整版
 
 > 用时：60-90 分钟 · 难度：⭐⭐⭐ · 前置：W10 三课

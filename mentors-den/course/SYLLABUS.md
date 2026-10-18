@@ -153,21 +153,30 @@
 | 节 | 主题 | slug |
 |---|---|---|
 | S1 | 贪心 ①：永远挑最大的硬币 | `greedy-coin` |
-| S3 | 贪心 ②：贪心失败的场景 | `greedy-coin-fail` |
+| S2 | 贪心 ②：贪心实战 + 改进（贪心 vs 暴力）| `greedy-coin-practice` |
+| S3 | 贪心 ③：贪心失败的场景 | `greedy-coin-fail` |
+| S4 | 贪心 ④：活动选择问题 | `greedy-activity` |
+| S5 | 贪心 ⑤：项目（巡逻排班游戏）| `greedy-patrol-game` |
 | 🏠 周末 | 找零比赛：贪心 vs 暴力 | `greedy-coin-game` |
 
 ### W16 · 加餐③：数组 vs 链表 + 选择排序（前置 W07 列表）
 | 节 | 主题 | slug |
 |---|---|---|
 | S1 | 数组 vs 链表：两种"排队"方式 | `array-vs-list` |
-| S3 | 选择排序：每次挑最小的放前面 | `selection-sort` |
+| S2 | Python list 内部实现（动态数组）| `list-internals` |
+| S3 | 数组 vs 链表 ③：选择排序 | `selection-sort` |
+| S4 | 数组 vs 链表 ④：性能实测 | `array-vs-list-benchmark` |
+| S5 | 数组 vs 链表 ⑤：数据结构选型小工具 | `data-structure-picker` |
 | 🏠 周末 | 排序比赛：选择 vs Python 内置 | `sort-race` |
 
 ### W17 · 加餐④：递归 + 记忆化（前置 W08 函数）
 | 节 | 主题 | slug |
 |---|---|---|
 | S1 | 递归 ①：函数调用自己 | `recursion-mirror` |
-| S3 | 递归 ②：递归树与记忆化 | `recursion-tree` |
+| S2 | 递归 ②：调用栈可视化 | `recursion-visualize` |
+| S3 | 递归 ③：递归树与记忆化 | `recursion-tree` |
+| S4 | 递归 ④：lru_cache 实战 | `recursion-optimize` |
+| S5 | 递归 ⑤：项目（递归解迷宫）| `recursion-maze` |
 | 🏠 周末 | 递归 vs 迭代：何时用哪个 | `recursion-vs-iteration` |
 自选主题（游戏 / turtle 画集 / 实用工具 / 数据小报表），从设计图 → 逐块完成 → 写作品说明 → 家族展示会。
 **通过标准：100+ 行自己写的代码，能讲清每一部分，报错自己修。**
