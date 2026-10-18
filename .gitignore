@@ -8,3 +8,5 @@ mentors-log/
 
 __pycache__/
 .githooks/commit-msg-patterns
+# 2026-10-18 沙坑 agent-required 政策上线：内部 sandbox mail 状态不入公开仓
+.mailbox-state.json
