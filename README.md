@@ -2,11 +2,11 @@
 
 > **沙坑 = 家庭编程学习站**。面向 6-12 岁小学生，三大块：**🐍 Python 编程 / 🤖 AI 通识 / 👀 C++ 认脸**。
 > **适合谁**：学员本人 / 家长想了解孩子在学什么 / 想加入沙坑的同学。
-> **完整版**：[GitHub README](https://github.com/Thawflow/Sand-Hollow/blob/main/README.md)（含详细参与者、目录结构、本地作业、提交流程、cron 模板、技术栈）
+> **完整版**：[GitHub README](https://github.com/Thawflow/sand-hollow/blob/main/README.md)（含详细参与者、目录结构、本地作业、提交流程、cron 模板、技术栈）
 
 ## 🏖️ 沙坑是什么？
 
-家庭编程学习站，三大块内容 + 工具链 + mentor 机制。完整大纲见 [`mentors-den/course/SYLLABUS.md`](./mentors-den/course/SYLLABUS.md) · [GitHub 镜像](https://github.com/Thawflow/Sand-Hollow/blob/main/mentors-den/course/SYLLABUS.md)。
+家庭编程学习站，三大块内容 + 工具链 + mentor 机制。完整大纲见 [`mentors-den/course/SYLLABUS.md`](./mentors-den/course/SYLLABUS.md) · [GitHub 镜像](https://github.com/Thawflow/sand-hollow/blob/main/mentors-den/course/SYLLABUS.md)。
 
 ### 🐍 Python 编程（W01 - W13 · 13 周主课）
 
@@ -49,7 +49,7 @@
 
 ### 📊 学员路径
 
-1. **首次搭环境**：克隆仓库到 `~/Sand-Hollow/` → 智能体读 mentors-rules 上岗 → 创建学员目录 `<你的英文名>/homework/`
+1. **首次搭环境**：克隆仓库到 `~/sand-hollow/` → 智能体读 mentors-rules 上岗 → 创建学员目录 `<你的英文名>/homework/`
 2. **每周学习**：左边选周 → 逐课阅读 → 学完勾选 → 写 practice / homework → 通知 mentor
 3. **毕业交付**：W13 自选项目 + 100+ 行代码 + 作品说明 + 家族展示会
 
@@ -127,7 +127,7 @@
 ## 目录结构
 
 ```
-Sand-Hollow/
+sand-hollow/
 ├── README.md              ← 你正在看的
 ├── docs/                  ← GitHub Pages 站点源（push 即上线 learning.thawflow.com）
 ├── mentors-den/           ← mentor 内部文档（不入站，不公开）
@@ -153,7 +153,7 @@ Sand-Hollow/
 ## 提交流程
 
 1. 在 Thonny 写代码 / 跑通
-2. 保存到 `~/Sand-Hollow/{学员文件夹}/homework/`
+2. 保存到 `~/sand-hollow/{学员文件夹}/homework/`
 3. **交完跟 mentor 说一声**才批改（不发 = 没交）
 4. mentor 在 `{学员文件夹}/reviews/{W##}-L##-review.md` 写评语（W02-W12 v1.9 用 `{W##}-S#-review.md`）
 5. tracker 自动记录练习时长与活跃度（不进 Git）

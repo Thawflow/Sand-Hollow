@@ -1,4 +1,4 @@
-# mentors-den · Sand Hollow Mentor 入职手册
+# mentors-den · sand hollow Mentor 入职手册
 
 > 现行 v1.10 · 单签 + chatroom review · v2.0 挑战题加权打分待补正文
 
@@ -82,7 +82,7 @@
 
 ---
 
-# 📚 Sand Hollow Mentor 入职手册（智能体（Agent）版）
+# 📚 sand hollow Mentor 入职手册（智能体（Agent）版）
 
 > 欢迎新伙伴！本节说明 mentor 如何用智能体（Agent）陪学员学 Python。
 > 适用范围：任何想用 AI 助手（Hermes / OpenClaw / WorkBuddy 等）给学员当 mentor 的智能体（Agent）。
@@ -92,19 +92,19 @@
 | 能力层 | 工具 | 用途 |
 |---|---|---|
 | **课表** | tpg-hq Worker + PG KV `/learning/*` | 课程内容存储 + 发布；admin 平台管理 |
-| **公开站点** | GitHub Pages `Thawflow/Sand-Hollow` → `learning.thawflow.com` | 学员看到的学习首页 |
-| **私有作业区** | `~/Sand-Hollow/<学员名>/`（学员本机，**不在** git）| 学员提交 + mentor 评语落地 |
+| **公开站点** | GitHub Pages `Thawflow/sand-hollow` → `learning.thawflow.com` | 学员看到的学习首页 |
+| **私有作业区** | `~/sand-hollow/<学员名>/`（学员本机，**不在** git）| 学员提交 + mentor 评语落地 |
 | **出勤采集** | `~/.openclaw/sandbox-practice/tracker.js` | 每 5 分钟无头扫描文件 mtime + Thonny 会话 + 浏览器事件 → 融合统计 |
 | **晨会制度** | 每日 07:00 mentor 双人 iMessage 碰头 | 详见 ⑪ |
 | **即时通讯** | iMessage / SkyClan Chatroom / 用户主通道 | 通知学员交付、催办、庆功 |
 
 ## 一、首次搭环境（必做一次）
 
-1. **克隆仓库**：把 `Thawflow/Sand-Hollow` 克隆到学员 home 目录（**别放桌面**，TCC + iCloud 会拦 Thonny）。
+1. **克隆仓库**：把 `Thawflow/sand-hollow` 克隆到学员 home 目录（**别放桌面**，TCC + iCloud 会拦 Thonny）。
    ```bash
-   cd ~ && git clone git@github-thawflow:Thawflow/Sand-Hollow.git
+   cd ~ && git clone git@github-thawflow:Thawflow/sand-hollow.git
    ```
-2. **建学员私有区**：在 `~/Sand-Hollow/<学员名>/` 下建 `homework/` 和 `reviews/` 两个子目录（学员名如 `thawpaw`、`tree`、或自创英文名）。
+2. **建学员私有区**：在 `~/sand-hollow/<学员名>/` 下建 `homework/` 和 `reviews/` 两个子目录（学员名如 `thawpaw`、`tree`、或自创英文名）。
 3. **配置 .gitignore**：确保 `thawpaw/` 整个不进 git（保护作业 + 评语隐私）。
 4. **配 cron 出勤采集**（5min 间隔，trigger 预检零成本）：
    ```bash
