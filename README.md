@@ -1,8 +1,57 @@
 # 🏖️ 沙坑训练场 · learning.thawflow.com
 
-**GitHub 仓库：** <https://github.com/Thawflow/Sand-Hollow>
+> **沙坑 = 家庭编程学习站**。面向 6-12 岁小学生，三大块：**🐍 Python 编程 / 🤖 AI 通识 / 👀 C++ 认脸**。
+> **适合谁**：学员本人 / 家长想了解孩子在学什么 / 想加入沙坑的同学。
+> **完整版**：[GitHub README](https://github.com/Thawflow/Sand-Hollow/blob/main/README.md)（含详细参与者、目录结构、本地作业、提交流程、cron 模板、技术栈）
 
-> **给学员的一句话入门：** 告诉你的智能体（Hermes / OpenClaw / WorkBuddy 等）克隆这个仓库到 `~/Sand-Hollow`，让它读 `mentors-den/mentors-rules.md` 上岗手册 —— 它就能帮你创建学员目录（`<你的学员目录>/homework/`）并自动 review 你的作业。
+## 🏖️ 沙坑是什么？
+
+家庭编程学习站，三大块内容 + 工具链 + mentor 机制。完整大纲见 [`mentors-den/course/SYLLABUS.md`](./mentors-den/course/SYLLABUS.md) · [GitHub 镜像](https://github.com/Thawflow/Sand-Hollow/blob/main/mentors-den/course/SYLLABUS.md)。
+
+### 🐍 Python 编程（W01 - W13 · 13 周主课）
+
+- **W01 起步**：print / 变量 / input / Thonny IDE
+- **W02 数字与字符串**：类型 / 转换 / f-string
+- **W03 条件**：if / elif / else / and / or
+- **W04 循环**：for / range / 累加器 / 嵌套
+- **W05 while**：条件循环 / break / 猜数字完整版
+- **W06 列表**：增删改查 / 遍历 / max/min/sum/平均
+- **W07 🏆 项目周「猫咪冒险岛」**：用上 W01-W06 全部功夫搭 3 天游戏
+- **W08 函数**：def / 参数 / 返回值 / 改造重复代码
+- **W09 二分（算法加餐①）**：每次砍一半 / 词典寻宝赛
+- **W10 turtle 画画**：前进/转弯/颜色/循环画雪花
+- **W11 字典**：键值对 / 嵌套 / 宠物图鉴
+- **W12 随机与游戏**：random / 石头剪刀布 / 文字 RPG
+- **W13 🎓 毕业项目**：自选主题，100+ 行代码 + 作品说明 + 家族展示会
+
+**算法加餐**（穿插）：二分 / 递归 / 数组 vs 链表 + 选择排序 / 贪心（猫武士场景）
+
+### 🤖 AI 通识（贯穿 + 独立胶囊）
+
+- **每课尾 3 分钟 AI 常识胶囊**（清华附 AI 营 20 道判断题对齐）
+- **核心主题**：什么是 LLM / token / hallucination / 训练数据 / 开源 vs 闭源 / 算力 / 隐私 / 责任
+- **W09 实战**：调用 OpenAI / 本地 LLM
+- **deep dive**：DeepSeek / ChatGPT 原理 + 伦理边界
+
+### 👀 C++ 认脸（同步孪生边栏）
+
+- **每课 5 行只读 C++ 代码**——目的：AI 营笔试 C++ 语法认脸不陌生
+- **不是深学 C++**——只"看到不害怕"
+- 与 Python 主课同步对照，标"对比锚"
+
+### 🛠 工具链与机制
+
+- **本地 IDE**：Thonny（macOS / Windows）
+- **进度跟踪**：tracker 每 5min 采文件 mtime + Thonny 会话 + 浏览器事件 → 融合统计
+- **mentor 智能体**：Hermes / OpenClaw / WorkBuddy 等任一，**24h 内 review** 学员作业
+- **节奏**：每课 30-45 分钟；两位学员各一份进度表，13 周主课 + 算法加餐
+- **学习姿势**：分屏边看边练（左边本站 / 右边 Thonny）
+
+### 📊 学员路径
+
+1. **首次搭环境**：克隆仓库到 `~/Sand-Hollow/` → 智能体读 mentors-rules 上岗 → 创建学员目录 `<你的英文名>/homework/`
+2. **每周学习**：左边选周 → 逐课阅读 → 学完勾选 → 写 practice / homework → 通知 mentor
+3. **毕业交付**：W13 自选项目 + 100+ 行代码 + 作品说明 + 家族展示会
 
 ---
 
