@@ -201,7 +201,8 @@ function lessonCacheAdd(w){
 }
 
 async function fetchJSON(url,timeout){
-  const ctl=new AbortController();const t=setTimeout(()=>ctl.abort(),timeout||10000);
+  // CF Worker 冷启动实测随机 3-35s（连 /test 这种不碰 KV 的路由也挂）→ 默认超时放宽
+  const ctl=new AbortController();const t=setTimeout(()=>ctl.abort(),timeout||30000);
   try{const r=await fetch(url,{signal:ctl.signal});return await r.json();}finally{clearTimeout(t);}
 }
 // —— 治转圈三件套（2026-09-02 连夜修）：本地缓存秒开 + 双域名竞速 + 后台静默刷新 ——
@@ -215,11 +216,12 @@ function posResolve(){const p=posGet();if(!p||!weeksData.length)return null;cons
 // 滚到上次停留的课（lesson 级恢复）：复用侧边栏 lesson-link 同款 scrollIntoView 模式，元素不存在时 no-op
 function _scrollToLesson(lid){setTimeout(()=>{const t=document.querySelector('#content .md[data-lid="'+lid+'"]');if(t)t.scrollIntoView({behavior:'smooth',block:'start'})},80)}
 function raceJSON(path,timeout){
-  const bases=[API,'https://tpg-hq.icepaw.workers.dev'];
+  // 只用自定义域名：workers.dev 的 AAAA 记录被 DNS 污染，实测 100% 不可达
+  const bases=[API];
   return new Promise((res,rej)=>{
     let pend=bases.length,won=false;
     for(const b of bases){
-      fetchJSON(b+path,timeout||8000).then(j=>{
+      fetchJSON(b+path,timeout||30000).then(j=>{
         if(won)return;
         if(j&&j.ok!==false){won=true;res(j)}
         else if(--pend===0)rej(new Error('api ok:false'));
@@ -455,7 +457,11 @@ $('#bt').textContent=BUILD_TIME==='DEV'?'DEV build':'v'+BUILD_TIME;
 // ════════════════════════════════════════════════
 // ── 登录 / 注册：一人一号（游戏 ID = 学习 ID 绑定一起）──
 // ────────────────────────────────────────────────
-const CF_BASES=['https://tpg-hq.thawflow.com','https://tpg-hq.icepaw.workers.dev'];
+// 注意：tpg-hq.icepaw.workers.dev 的 AAAA 记录被 DNS 污染（指向非 CF 网段），
+// 实测 100% 不可达 → 只用自定义域名。
+// CF Worker 冷启动实测随机 3-35s（连 /test 这种不碰 KV 的路由也一样挂），
+// 所以超时放宽到 40s，失败重试 2 次（总预算 ~2 分钟）。
+const CF_BASES=['https://tpg-hq.thawflow.com'];
 const ACTIVE_KEY='thawpawActiveId';   // 与游戏小窝同一套 localStorage key
 const PLAYERS_KEY='thawpawPlayers';   // { id: {nickname, role, lastSeen} }
 const LEARN_KEY='learning-id';        // 沙坑课程进度用（与游戏 ID 同值）
@@ -480,31 +486,24 @@ function switchTab(which){
 }
 function fillRandomId(){$('#rg-id').value=randId();}
 async function cfPost(path,body){
-  // 双域名真竞速：自定义域名走 CF 橙云代理，实测 POST 约 40% 挂起；
-  // workers.dev 直连稳定 → 谁先回用谁（课程加载同款修法）
+  // 单域名串行重试（CF Worker 冷启动随机 3-35s，见 CF_BASES 注释）
   let lastErr=null;
   for(let attempt=0;attempt<3;attempt++){
     try{
       const ctl=new AbortController();
-      const timer=setTimeout(()=>ctl.abort(),10000);
+      const timer=setTimeout(()=>ctl.abort(),40000);
       try{
-        const ps=CF_BASES.map(base=>fetch(base+path,{
+        const res=await fetch(CF_BASES[0]+path,{
           method:'POST',headers:{'Content-Type':'application/json'},
           body:JSON.stringify(body),signal:ctl.signal
-        }).then(r=>r.json()).then(j=>({ok:true,j})).catch(e=>({ok:false,e})));
-        // 真竞速：任一域名先成功就返回，不等另一个（失败的那个不当终局）
-        const res=await new Promise(resolve=>{
-          let done=false;
-          ps.forEach(p=>p.then(v=>{if(!done&&v&&v.ok){done=true;resolve(v)}}));
-          setTimeout(()=>{if(!done){done=true;resolve({ok:false,timeout:true})}},10000);
-        });
-        if(res&&res.ok)return res.j;
-        lastErr=(res&&res.e)||new Error('timeout');
+        }).then(r=>r.json());
+        if(res&&res.ok!==false)return res;
+        lastErr=new Error((res&&res.error)||'bad response');
       }finally{clearTimeout(timer);}
     }catch(e){
       lastErr=e;
     }
-    if(attempt<2)await new Promise(r=>setTimeout(r,500*(attempt+1)));
+    if(attempt<2)await new Promise(r=>setTimeout(r,1000*(attempt+1)));
   }
   throw lastErr||new Error('network');
 }
@@ -513,21 +512,16 @@ async function cfGet(path){
   for(let attempt=0;attempt<3;attempt++){
     try{
       const ctl=new AbortController();
-      const timer=setTimeout(()=>ctl.abort(),10000);
+      const timer=setTimeout(()=>ctl.abort(),40000);
       try{
-        const ps=CF_BASES.map(base=>fetch(base+path,{signal:ctl.signal}).then(r=>r.json()).then(j=>({ok:true,j})).catch(e=>({ok:false,e})));
-        const res=await new Promise(resolve=>{
-          let done=false;
-          ps.forEach(p=>p.then(v=>{if(!done&&v&&v.ok){done=true;resolve(v)}}));
-          setTimeout(()=>{if(!done){done=true;resolve({ok:false,timeout:true})}},10000);
-        });
-        if(res&&res.ok)return res.j;
-        lastErr=(res&&res.e)||new Error('timeout');
+        const res=await fetch(CF_BASES[0]+path,{signal:ctl.signal}).then(r=>r.json());
+        if(res&&res.ok!==false)return res;
+        lastErr=new Error((res&&res.error)||'bad response');
       }finally{clearTimeout(timer);}
     }catch(e){
       lastErr=e;
     }
-    if(attempt<2)await new Promise(r=>setTimeout(r,500*(attempt+1)));
+    if(attempt<2)await new Promise(r=>setTimeout(r,1000*(attempt+1)));
   }
   throw lastErr||new Error('network');
 }
