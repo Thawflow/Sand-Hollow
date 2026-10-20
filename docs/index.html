@@ -68,6 +68,42 @@ h1{font-size:1.6rem}
 .md td,.md th{border:1px solid var(--border);padding:6px 10px}
 .hw{margin-top:20px;border-top:1px dashed var(--border);padding-top:16px;font-size:.85rem;color:var(--text2);line-height:1.8}
 .hw code{background:rgba(124,108,255,.12);border-radius:5px;padding:1px 6px;font-family:ui-monospace,Menlo,monospace;color:#c0b4ff}
+/* ── 登录门 / 注册门（游戏 ID 一人一号 · 学习 ID 与游戏 ID 绑定）── */
+.login-gate{position:fixed;inset:0;background:rgba(15,20,32,.96);backdrop-filter:blur(12px);z-index:200;display:flex;align-items:center;justify-content:center;padding:20px;animation:gate-in .35s ease both}
+@keyframes gate-in{from{opacity:0;transform:scale(.96)}to{opacity:1;transform:scale(1)}}
+.login-gate.hidden{display:none}
+.login-card{background:var(--card);border:1px solid var(--border);border-radius:18px;padding:30px 28px;max-width:400px;width:100%;box-shadow:0 14px 52px rgba(0,0,0,.55)}
+.login-card h2{font-size:1.15rem;margin-bottom:4px}
+.login-card .lg-sub{font-size:.82rem;color:var(--text2);margin-bottom:18px;line-height:1.6}
+.lg-tabs{display:flex;gap:6px;margin-bottom:16px;border-bottom:1px solid var(--border)}
+.lg-tab{flex:1;padding:9px 10px;border:none;background:none;color:var(--text2);font-size:.87rem;cursor:pointer;border-bottom:2px solid transparent;font-family:inherit}
+.lg-tab.active{color:var(--accent);border-bottom-color:var(--accent);font-weight:600}
+.lg-label{display:block;font-size:.75rem;color:var(--text2);margin:12px 0 6px;letter-spacing:.04em}
+.lg-input{width:100%;padding:11px 13px;background:var(--card2);border:1px solid var(--border);border-radius:9px;color:var(--text);font-size:.92rem;font-family:inherit;outline:none}
+.lg-input:focus{border-color:var(--accent)}
+.lg-input.mono{font-family:ui-monospace,Menlo,monospace;letter-spacing:.12em;text-align:center;font-size:1.05rem;font-weight:700}
+.lg-btn{width:100%;margin-top:14px;padding:12px;border:none;border-radius:10px;font-size:.9rem;font-weight:600;cursor:pointer;font-family:inherit;background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff}
+.lg-btn:disabled{opacity:.55;cursor:wait}
+.lg-btn.ghost{background:var(--card2);color:var(--text);border:1px solid var(--border)}
+.lg-btn.ghost:hover{border-color:var(--accent);color:var(--accent)}
+.lg-msg{margin-top:12px;padding:10px 12px;border-radius:8px;font-size:.82rem;display:none;line-height:1.6}
+.lg-msg.show{display:block}
+.lg-msg.err{background:rgba(255,107,129,.14);color:#ff8fa3}
+.lg-msg.ok{background:rgba(62,207,142,.14);color:var(--ok)}
+.lg-hint{font-size:.74rem;color:var(--text2);margin-top:14px;line-height:1.6}
+/* 顶栏 ID 徽章 */
+.id-badge{font-size:.76rem;padding:3px 11px;border-radius:12px;border:1px solid var(--border);color:var(--text2);cursor:pointer;white-space:nowrap;background:transparent;font-family:inherit}
+.id-badge:hover{border-color:var(--accent);color:var(--accent)}
+.id-badge.ok{border-color:rgba(62,207,142,.4);color:var(--ok)}
+/* 作业提交卡片 */
+.hw-upload{background:var(--card2);border:1px dashed var(--border);border-radius:12px;padding:14px;margin:14px 0 4px}
+.hw-upload h4{font-size:.9rem;margin-bottom:8px}
+.hw-upload .row{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:8px}
+.hw-upload textarea{width:100%;min-height:130px;padding:10px 12px;border-radius:9px;border:1px solid var(--border);background:var(--bg);color:var(--text);font-family:ui-monospace,Menlo,monospace;font-size:.8rem;resize:vertical}
+.hw-upload .btn{padding:8px 18px;border-radius:9px;border:none;background:var(--accent);color:#fff;font-size:.85rem;cursor:pointer;font-family:inherit}
+.hw-upload .btn:disabled{opacity:.5;cursor:wait}
+.hw-upload .note{font-size:.75rem;color:var(--text2);margin-top:6px}
+.hw-upload .ok-msg{color:var(--ok);font-size:.82rem;margin-top:8px;display:none}
 .empty{text-align:center;padding:60px 20px;color:var(--text2)}
 .empty .big{font-size:3rem;margin-bottom:12px}
 .spin{display:inline-block;width:22px;height:22px;border:3px solid var(--border);border-top-color:var(--accent);border-radius:50%;animation:r 0.8s linear infinite;margin:40px auto}
@@ -85,6 +121,8 @@ footer{text-align:center;color:var(--text2);font-size:.75rem;margin-top:30px}
   <header>
     <h1>🏖️ 沙坑训练场</h1>
     <span class="sub">Skyclan 家庭 12 周课程 · 一套材料，两位学员（ThawPaw 🐱 × Tree 🌳）</span>
+    <button class="id-badge" id="id-badge" title="点击切换账号">🔑 登录</button>
+    <button class="id-badge" id="mail-btn" title="信箱" style="display:none">✉ 信箱</button>
   </header>
   <div class="notice">
     <b>⭐ 最佳学习姿势 · 分屏边看边练：</b>左边开本站，右边开 Thonny，看一行写一行、写一行跑一行，不用靠记性来回切窗口。<br>
@@ -101,6 +139,40 @@ footer{text-align:center;color:var(--text2);font-size:.75rem;margin-top:30px}
     <main class="content" id="content"><div class="spin"></div></main>
   </div>
   <footer>🏖️ 沙坑训练场 · learning v1 · <span id="bt"></span></footer>
+</div>
+<!-- ── 登录门 / 注册门：一人一号（游戏 ID = 学习 ID）── -->
+<div class="login-gate" id="login-gate">
+  <div class="login-card">
+    <h2>🏖️ 沙坑训练场</h2>
+    <div class="lg-sub">一人一号 · 游戏存档和课程进度都在这个号里</div>
+    <div class="lg-tabs">
+      <button class="lg-tab active" id="tab-login" onclick="switchTab('login')">🔑 登录</button>
+      <button class="lg-tab" id="tab-reg" onclick="switchTab('reg')">✨ 注册新号</button>
+    </div>
+    <!-- 登录 -->
+    <div id="pane-login">
+      <label class="lg-label" for="lg-id">8 位数字 ID</label>
+      <input class="lg-input mono" id="lg-id" inputmode="numeric" maxlength="8" placeholder="24602243" autocomplete="off">
+      <label class="lg-label" for="lg-nick">昵称（= 密码）</label>
+      <input class="lg-input" id="lg-nick" placeholder="输入这个号的名字" autocomplete="off">
+      <button class="lg-btn" id="lg-login-btn" onclick="doLogin()">🔑 登录</button>
+      <button class="lg-btn ghost" onclick="switchTab('reg')">✨ 我还没有号</button>
+    </div>
+    <!-- 注册 -->
+    <div id="pane-reg" style="display:none">
+      <label class="lg-label" for="rg-id">8 位数字 ID</label>
+      <input class="lg-input mono" id="rg-id" inputmode="numeric" maxlength="8" placeholder="24602243" autocomplete="off">
+      <div class="row" style="display:flex;gap:8px;margin-top:8px">
+        <button class="lg-btn ghost" style="margin-top:0;flex:1" onclick="fillRandomId()">🎲 随机一个</button>
+        <button class="lg-btn ghost" style="margin-top:0;flex:1" onclick="fillRandomId()">✋ 自己填</button>
+      </div>
+      <label class="lg-label" for="rg-nick">名字（留空 = 学员XXXXXXXX）</label>
+      <input class="lg-input" id="rg-nick" placeholder="比如 Kaia" autocomplete="off">
+      <button class="lg-btn" id="lg-reg-btn" onclick="doRegister()">✨ 注册并进入</button>
+    </div>
+    <div class="lg-msg" id="lg-msg"></div>
+    <div class="lg-hint">已有游戏 ID 就直接用那个号登录 —— 游戏进度不会丢。<br>没号就注册一个，注册后这个号就是你在沙坑和游戏小窝的唯一身份。</div>
+  </div>
 </div>
 <script src="vendor/marked.min.js"></script>
 <script src="track.js?v=5" defer></script>
@@ -267,9 +339,16 @@ function renderWeek(w){
   for(const L of lessons){
     html+='<div class="lesson">'
       +'<div class="lesson-head"><span class="lt">'+(L.title||L.id)+'</span></div>'
-      +'<div class="md" data-lid="'+L.id+'">'+(window.marked?marked.parse(L.markdown||'内容待补'):'<pre>'+String(L.markdown||'内容待补').replace(/</g,'&lt;')+'</pre>')+'</div></div>';
+      +'<div class="md" data-lid="'+L.id+'">'+(window.marked?marked.parse(L.markdown||'内容待补'):'<pre>'+String(L.markdown||'内容待补').replace(/</g,'&lt;')+'</pre>')+'</div>'
+      +'<div class="hw-upload" data-lid="'+L.id+'">'
+      +'<h4>📝 交作业</h4>'
+      +'<textarea class="hw-code" placeholder="粘贴代码，或点「选 .py 文件」自动填入"></textarea>'
+      +'<div class="row" style="margin-top:8px"><button class="btn hw-file-btn">📄 选 .py 文件</button><button class="btn hw-send-btn">🚀 提交作业</button></div>'
+      +'<input type="file" class="hw-file" accept=".py,.txt" style="display:none">'
+      +'<div class="ok-msg" style="display:none"></div>'
+      +'</div></div>';
   }
-  html+='<div class="hw">🐾 <b>本周作业</b>：交到 <code>&lt;你的学员目录&gt;/homework/</code> 目录（每位学员用自己起的英文目录名，常见示例：<code>thawpaw/homework/</code>、<code>tree/homework/</code>；命名 <code>'+w.week_id+'-LXX-practice.py</code> 上手练习 / <code>'+w.week_id+'-LXX-homework.py</code> 课后作业，平铺不建周子目录）。<b>交完作业要跟各自的 mentor 说一声才会批改</b>（ThawPaw → IcePaw 检查 · Tree → 如意检查），评语出现在各自的 <code>reviews/</code> 目录。</div>';
+  html+='<div class="hw">🐾 <b>怎么交</b>：读完这周的课，在上面的「📝 交作业」里贴代码提交就行。提交完 mentor 会批改，评语会出现在你的账号信箱 ✉（首页右上角）。<br>文件名建议 <code>'+w.week_id+'-SXX-homework.py</code>。</div>';
   $('#content').innerHTML=html;
   // 课文内自查清单 checkbox：激活 marked 默认 disabled + 本机持久化（2026-08-30 Tree 反馈）
   // 注：本段必须活在 renderWeek 内——每次渲染后重新激活，放函数外只在首载空跑一次（本次修复的根因）
@@ -300,6 +379,47 @@ function renderWeek(w){
     renderWeeks();
   }
   syncDone();
+  // ── 交作业卡片接线（提交到 tpg-hq Worker，mentor 侧拉取批改）──
+  $('#content').querySelectorAll('.hw-upload').forEach(box=>{
+    const lid=box.dataset.lid;
+    const codeT=box.querySelector('.hw-code'),fileI=box.querySelector('.hw-file'),
+          sendB=box.querySelector('.hw-send-btn'),okM=box.querySelector('.ok-msg');
+    box.querySelector('.hw-file-btn').onclick=()=>fileI.click();
+    fileI.onchange=()=>{
+      const f=fileI.files[0];if(!f)return;
+      const r=new FileReader();
+      r.onload=()=>{codeT.value=String(r.result).slice(0,32*1024);codeT.placeholder=f.name};
+      r.readAsText(f);
+    };
+    sendB.onclick=async()=>{
+      const id=getActiveId();
+      if(!id){$('#login-gate').classList.remove('hidden');okM.style.display='block';okM.style.color='#ff8fa3';okM.textContent='先登录（右上角 🔑）';return}
+      const code=codeT.value.trim();
+      if(!code){okM.style.display='block';okM.style.color='#ff8fa3';okM.textContent='代码还空着～';return}
+      const weekId=(curWeek||'').toString();
+      const players=getPlayers();
+      const learner=(players[id]&&players[id].nickname)||id;
+      sendB.disabled=true;sendB.textContent='提交中…';
+      try{
+        const j=await cfPost('/learning/homework/submit',{
+          code:code, learner:learner, week:weekId, lesson:lid, filename:lid+'-homework.py'
+        });
+        okM.style.display='block';
+        if(j.ok){
+          okM.style.color='var(--ok)';
+          okM.textContent='✅ 作业已收到！mentor 会批改，评语稍后在信箱 ✉';
+          codeT.value='';
+        }else{
+          okM.style.color='#ff8fa3';
+          okM.textContent='❌ '+(j.error||'提交失败，稍后再试');
+        }
+      }catch(e){
+        okM.style.display='block';okM.style.color='#ff8fa3';
+        okM.textContent='网络不通 —— 保存好代码稍后再试';
+      }
+      sendB.disabled=false;sendB.textContent='🚀 提交作业';
+    };
+  });
   // 记录「学员停在的章节」（2026-09-08 v1.8）：intersection observer 50% 可见即写入 learning-pos；scroll position 也写
   try{
     if(typeof IntersectionObserver!=='undefined'){
@@ -331,6 +451,263 @@ function renderWeek(w){
 }
 loadIndex();
 $('#bt').textContent=BUILD_TIME==='DEV'?'DEV build':'v'+BUILD_TIME;
+
+// ════════════════════════════════════════════════
+// ── 登录 / 注册：一人一号（游戏 ID = 学习 ID 绑定一起）──
+// ────────────────────────────────────────────────
+const CF_BASES=['https://tpg-hq.thawflow.com','https://tpg-hq.icepaw.workers.dev'];
+const ACTIVE_KEY='thawpawActiveId';   // 与游戏小窝同一套 localStorage key
+const PLAYERS_KEY='thawpawPlayers';   // { id: {nickname, role, lastSeen} }
+const LEARN_KEY='learning-id';        // 沙坑课程进度用（与游戏 ID 同值）
+function lsGet(k){try{return localStorage.getItem(k)}catch(e){return null}}
+function lsSet(k,v){try{localStorage.setItem(k,v)}catch(e){}}
+function getPlayers(){try{return JSON.parse(localStorage.getItem(PLAYERS_KEY)||'{}')}catch(e){return {}}}
+function savePlayers(p){lsSet(PLAYERS_KEY,JSON.stringify(p))}
+function getActiveId(){return (lsGet(ACTIVE_KEY)||'').trim()}
+function isValidId(s){return /^\d{8}$/.test(String(s||''))}
+function randId(){return String(Math.floor(10000000+Math.random()*90000000))}
+function lgMsg(text,kind){
+  const m=$('#lg-msg');m.textContent=text;m.className='lg-msg show '+(kind||'');
+}
+function switchTab(which){
+  const login=which==='login';
+  $('#pane-login').style.display=login?'':'none';
+  $('#pane-reg').style.display=login?'none':'';
+  $('#tab-login').classList.toggle('active',login);
+  $('#tab-reg').classList.toggle('active',!login);
+  $('#lg-msg').className='lg-msg';
+  if(login)$('#lg-id').focus(); else $('#rg-id').focus();
+}
+function fillRandomId(){$('#rg-id').value=randId();}
+async function cfPost(path,body){
+  // 双域名真竞速：自定义域名走 CF 橙云代理，实测 POST 约 40% 挂起；
+  // workers.dev 直连稳定 → 谁先回用谁（课程加载同款修法）
+  let lastErr=null;
+  for(let attempt=0;attempt<3;attempt++){
+    try{
+      const ctl=new AbortController();
+      const timer=setTimeout(()=>ctl.abort(),10000);
+      try{
+        const ps=CF_BASES.map(base=>fetch(base+path,{
+          method:'POST',headers:{'Content-Type':'application/json'},
+          body:JSON.stringify(body),signal:ctl.signal
+        }).then(r=>r.json()).then(j=>({ok:true,j})).catch(e=>({ok:false,e})));
+        // 真竞速：任一域名先成功就返回，不等另一个（失败的那个不当终局）
+        const res=await new Promise(resolve=>{
+          let done=false;
+          ps.forEach(p=>p.then(v=>{if(!done&&v&&v.ok){done=true;resolve(v)}}));
+          setTimeout(()=>{if(!done){done=true;resolve({ok:false,timeout:true})}},10000);
+        });
+        if(res&&res.ok)return res.j;
+        lastErr=(res&&res.e)||new Error('timeout');
+      }finally{clearTimeout(timer);}
+    }catch(e){
+      lastErr=e;
+    }
+    if(attempt<2)await new Promise(r=>setTimeout(r,500*(attempt+1)));
+  }
+  throw lastErr||new Error('network');
+}
+async function cfGet(path){
+  let lastErr=null;
+  for(let attempt=0;attempt<3;attempt++){
+    try{
+      const ctl=new AbortController();
+      const timer=setTimeout(()=>ctl.abort(),10000);
+      try{
+        const ps=CF_BASES.map(base=>fetch(base+path,{signal:ctl.signal}).then(r=>r.json()).then(j=>({ok:true,j})).catch(e=>({ok:false,e})));
+        const res=await new Promise(resolve=>{
+          let done=false;
+          ps.forEach(p=>p.then(v=>{if(!done&&v&&v.ok){done=true;resolve(v)}}));
+          setTimeout(()=>{if(!done){done=true;resolve({ok:false,timeout:true})}},10000);
+        });
+        if(res&&res.ok)return res.j;
+        lastErr=(res&&res.e)||new Error('timeout');
+      }finally{clearTimeout(timer);}
+    }catch(e){
+      lastErr=e;
+    }
+    if(attempt<2)await new Promise(r=>setTimeout(r,500*(attempt+1)));
+  }
+  throw lastErr||new Error('network');
+}
+// 登录成功：写 localStorage（游戏小窝同 key 共享）+ 关门
+function acceptLogin(id,nickname,role){
+  const players=getPlayers();
+  players[id]=Object.assign(players[id]||{},{nickname:nickname,role:role||'player',lastSeen:Date.now()});
+  savePlayers(players);
+  lsSet(ACTIVE_KEY,id);   // 游戏小窝读这个 key
+  lsSet(LEARN_KEY,id);    // 沙坑课程进度
+  lsSet('learning-pid',id);
+  const badge=$('#id-badge');
+  badge.textContent='🆔 '+id+(nickname?' · '+nickname:'');
+  badge.classList.add('ok');
+  $('#login-gate').classList.add('hidden');
+  try{trackLogin(id)}catch(e){}
+  try{ensureMentorFriend(id,nickname)}catch(e){}
+}
+// 确保跟沙坑 mentor 门牌号是好友（否则 DM 发不出去）——失败不阻塞
+async function ensureMentorFriend(id,nickname){
+  try{
+    const fr=await cfPost('/friends/add',{id:id,nickname:nickname,targetId:'94568945'});
+    // 已被接受过 = 已是好友，直接返回；若是「好友请求已发送」= mentor 侧还需接受
+    if(fr&&fr.ok)return;
+  }catch(e){/* 静默 */}
+}
+async function trackLogin(id){
+  try{await cfPost('/track',{id:id,event:'login'})}catch(e){}
+}
+async function doLogin(){
+  const btn=$('#lg-login-btn');
+  const id=$('#lg-id').value.trim();
+  const nick=$('#lg-nick').value.trim();
+  if(!isValidId(id)){lgMsg('ID 必须是 8 位数字','err');return}
+  if(!nick){lgMsg('请输入这个号的名字（昵称就是密码）','err');return}
+  btn.disabled=true;btn.textContent='🔍 验证中…';
+  try{
+    const j=await cfPost('/verify',{id:id,nickname:nick});
+    if(j.ok){
+      acceptLogin(id,j.nickname||nick,j.role);
+      lgMsg('✅ 欢迎回来，'+(j.nickname||nick),'ok');
+      setTimeout(()=>$('#login-gate').classList.add('hidden'),600);
+    }else{
+      // 号在但昵称不对 → 可能是没注册过
+      const found=await cfGet('/lookup?id='+id).catch(()=>({found:false}));
+      if(found&&found.found){lgMsg('❌ 名字不对 —— 这个号的名字是「'+(getPlayers()[id]?getPlayers()[id].nickname:'（另一个名字）')+'」','err')}
+      else{lgMsg('❌ 这个号还没注册过，去「✨ 注册新号」开一个','err')}
+    }
+  }catch(e){
+    lgMsg('网络不通 —— 检查网络后重试','err');
+  }
+  btn.disabled=false;btn.textContent='🔑 登录';
+}
+async function doRegister(){
+  const btn=$('#lg-reg-btn');
+  const id=$('#rg-id').value.trim();
+  let nick=$('#rg-nick').value.trim();
+  if(!isValidId(id)){lgMsg('ID 必须是 8 位数字','err');return}
+  if(!nick){nick='学员'+id;}   // 留空 = 学员XXXXXXXX
+  btn.disabled=true;btn.textContent='✨ 注册中…';
+  try{
+    const j=await cfPost('/register',{id:id,nickname:nick});
+    if(j.ok){
+      acceptLogin(id,j.nickname||nick,'player');
+      lgMsg('✅ 账号开好了！这就是你的一人一号','ok');
+      setTimeout(()=>$('#login-gate').classList.add('hidden'),700);
+    }else{
+      if(/已被注册/.test(j.error||'')){
+        lgMsg('⚠️ 这个号已经有人用了 —— 去「🔑 登录」，或换个号','err');
+      }else{
+        lgMsg('❌ '+(j.error||'注册失败'),'err');
+      }
+    }
+  }catch(e){
+    lgMsg('网络不通 —— 检查网络后重试','err');
+  }
+  btn.disabled=false;btn.textContent='✨ 注册并进入';
+}
+// 顶栏徽章：点击 = 退出 / 换号
+function initLoginGate(){
+  const id=getActiveId();
+  if(id){
+    const p=getPlayers()[id];
+    const badge=$('#id-badge');
+    badge.textContent='🆔 '+id+(p&&p.nickname?' · '+p.nickname:'');
+    badge.classList.add('ok');
+    $('#login-gate').classList.add('hidden');
+  }else{
+    $('#login-gate').classList.remove('hidden');
+  }
+  $('#id-badge').onclick=()=>{
+    if(getActiveId()){
+      if(confirm('退出当前账号？（游戏进度仍保存在云端，重新登录就能拿回来）')){
+        localStorage.removeItem(ACTIVE_KEY);
+        location.reload();
+      }
+    }else{
+      $('#login-gate').classList.remove('hidden');
+    }
+  };
+  // 回车提交
+  ['lg-id','lg-nick'].forEach(id=>{
+    const el=document.getElementById(id);
+    if(el)el.addEventListener('keydown',e=>{if(e.key==='Enter')doLogin()});
+  });
+  ['rg-id','rg-nick'].forEach(id=>{
+    const el=document.getElementById(id);
+    if(el)el.addEventListener('keydown',e=>{if(e.key==='Enter')doRegister()});
+  });
+}
+initLoginGate();
+
+// ── 信箱：收 mentor 评语（DM 通道 · 门牌号 94568945 = 沙坑 mentor 信箱）──
+const MENTOR_ID='94568945';
+async function loadMail(){
+  const id=getActiveId();
+  if(!id){$('#mail-btn').style.display='none';return}
+  const players=getPlayers();
+  const nick=(players[id]&&players[id].nickname)||'';
+  if(!nick){$('#mail-btn').style.display='none';return}
+  $('#mail-btn').style.display='';
+  try{
+    const j=await cfGet('/dm/history?id='+id+'&nickname='+encodeURIComponent(nick)+'&with='+MENTOR_ID+'&since=0');
+    if(j.ok&&Array.isArray(j.messages)&&j.messages.length){
+      $('#mail-btn').textContent='✉ 信箱 ('+j.messages.length+')';
+      const last=j.messages[j.messages.length-1];
+      const box=document.createElement('div');
+      box.className='notice';
+      box.style.borderColor='rgba(91,157,255,.4)';
+      box.innerHTML='<b>✉ mentor 评语（最新）</b><br>'+String(last.content||'').replace(/</g,'&lt;').replace(/\n/g,'<br>')
+        +'<br><span style="font-size:.75rem;color:var(--text2)">'+String(last.time||'').slice(0,16).replace('T',' ')+' · '+String(last.fromName||'mentor')+'</span>';
+      const content=$('#content');
+      if(content&&!content.querySelector('.mail-latest')){
+        box.classList.add('mail-latest');
+        content.insertBefore(box,content.firstChild);
+      }
+    }
+  }catch(e){/* 静默 */}
+}
+function initMail(){
+  const btn=$('#mail-btn');
+  btn.onclick=()=>{
+    const id=getActiveId();
+    const players=getPlayers();
+    const nick=(players[id]&&players[id].nickname)||'';
+    if(!id||!nick){alert('先登录才能看信箱');return}
+    openMailModal(id,nick);
+  };
+  loadMail();
+  setInterval(loadMail,60000);
+}
+// 信箱弹窗：全部评语
+async function openMailModal(id,nick){
+  const old=document.getElementById('mail-modal');
+  if(old)old.remove();
+  const wrap=document.createElement('div');
+  wrap.id='mail-modal';
+  wrap.className='login-gate';
+  wrap.innerHTML='<div class="login-card" style="max-width:520px">'
+    +'<h2>✉ 信箱</h2><div class="lg-sub">mentor 批改后的评语</div>'
+    +'<div id="mail-list" style="max-height:60vh;overflow-y:auto;text-align:left;font-size:.86rem;line-height:1.8">加载中…</div>'
+    +'<button class="lg-btn ghost" onclick="document.getElementById(\'mail-modal\').remove()">关闭</button></div>';
+  document.body.appendChild(wrap);
+  try{
+    const j=await cfGet('/dm/history?id='+id+'&nickname='+encodeURIComponent(nick)+'&with='+MENTOR_ID+'&since=0');
+    const list=$('#mail-list');
+    if(j.ok&&Array.isArray(j.messages)&&j.messages.length){
+      list.innerHTML=j.messages.slice().reverse().map(m=>
+        '<div style="border-bottom:1px solid var(--border);padding:10px 0">'
+        +String(m.content||'').replace(/</g,'&lt;').replace(/\n/g,'<br>')
+        +'<div style="font-size:.72rem;color:var(--text2);margin-top:6px">'+String(m.time||'').slice(0,16).replace('T',' ')+' · '+String(m.fromName||'mentor')+'</div></div>'
+      ).join('');
+    }else{
+      list.innerHTML='<div style="color:var(--text2);text-align:center;padding:30px 0">还没有评语。交完作业等 mentor 批改，评语会出现在这里 ✉</div>';
+    }
+  }catch(e){
+    $('#mail-list').innerHTML='<div style="color:#ff8fa3">网络不通，稍后再试</div>';
+  }
+}
+initMail();
 </script>
 </body>
 </html>
