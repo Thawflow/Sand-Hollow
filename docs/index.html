@@ -15,7 +15,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="沙坑训练场">
-<script>var BUILD_TIME="20261020-2330"
+<script>var BUILD_TIME="20261022-1030"
 if('serviceWorker' in navigator){addEventListener('load',()=>navigator.serviceWorker.register('sw.js').catch(()=>{}))}</script>
 <style>
 :root{--bg:#0f1420;--card:#171e2e;--card2:#1e2740;--border:#2a3550;--text:#e8ecf4;--text2:#8b96ad;--accent:#5b9dff;--accent2:#7c6cff;--ok:#3ecf8e;--warn:#ffb454}
@@ -490,35 +490,43 @@ function switchTab(which){
   if(login)$('#lg-id').focus(); else $('#rg-id').focus();
 }
 function fillRandomId(){$('#rg-id').value=randId();}
+// 2026-10-22 如意改（post-push review 发现 5c770d0 的回归）：
+// 5c770d0 把 cfPost 也改成了域间并行竞速（Promise.any），但 **两个域是同一个 Worker
+// 的两个域名**（CF_BASES = tpg-hq.thawflow.com / tpg-hq.icepaw.workers.dev），
+// 也就是说健康状态下**两个 POST 会同时打到同一个后端**：
+//   · /learning/homework/submit → 同一次作业被记录两遍（mentor 批改看到重复条目）
+//   · /register → 同号重复写入
+// 这不是坏域才触发，是**平时每次提交都双写**。
+// 修法：**写操作回到串行**，但把单域超时从 40s 压到 8s —— 保留 ④ 要的
+// 「坏域不再烧满 40s 才回落」的收益（最坏 8s 回落），同时消除重复写。
+// 读操作（cfGet）无副作用，并行竞速保留不动。
+// 2026-10-22 补（龙井 review ② 二选一，选 a）：串行+8s 仍有缺口 —— 超时 abort ≠ 未送达，
+// 回退下域/重试会把「已落库只是回得慢」的写再执行一遍（实测 thawflow 首字节最慢 22.1s）。
+// 故写操作超时后**不回退、不重试**，直接抛错把「结果未知」交给用户（先刷新确认再手动重试）。
+const POST_BASE_TIMEOUT_MS=8000;
 async function cfPost(path,body){
-  // 2026-10-22 冰爪改（认龙井 review ④「双域串行 = 每次请求多烧一轮坏域重试」）：
-  // 旧版是**串行** for(attempt) × for(base) —— 若某域当小时线路不通，
-  // 每次请求都要先烧满那个域的 40s 超时才回落 → 与审计脚本撞穿 12min 预算同款形态。
-  // 改法：**域间并行竞速 + 先到先用**（Promise.any 语义）—— 好的域先回就用它，
-  // 坏域的慢响应自然被丢弃，不再拖慢整体；仍保留 attempt 轮次重试兜底。
+  // 写操作**不并行**：两个域指向同一 Worker，并行 = 同一请求被执行两次。
+  // 代价控制用「单域短超时 + 域序串行」，坏域最多烧 POST_BASE_TIMEOUT_MS 就回落。
   let lastErr=null;
   for(let attempt=0;attempt<3;attempt++){
-    // 域间并行：每个域一个 promise，谁先成功返回就用谁
-    const raced = CF_BASES.map(base => (async () => {
+    for(const base of CF_BASES){
       const ctl=new AbortController();
-      const timer=setTimeout(()=>ctl.abort(),40000);
+      const timer=setTimeout(()=>ctl.abort(),POST_BASE_TIMEOUT_MS);
       try{
         const res=await fetch(base+path,{
           method:'POST',headers:{'Content-Type':'application/json'},
           body:JSON.stringify(body),signal:ctl.signal
         }).then(r=>r.json());
         if(res&&res.ok!==false)return res;
-        throw new Error((res&&res.error)||'bad response');
+        lastErr=new Error((res&&res.error)||'bad response');
+      }catch(e){
+        // 写超时（abort）≠ 没送达：请求可能已落库、只是回得慢。此时回退其他域或重试
+        // = 可能把同一次写再执行一遍 —— 写操作一律停手，让用户先刷新确认结果再决定。
+        if(e&&e.name==='AbortError'){
+          throw new Error('提交超时：请求可能已送达，请先刷新确认是否已记录，没有记录再重试');
+        }
+        lastErr=e;
       }finally{clearTimeout(timer);}
-    })());
-    try{
-      // Promise.any：第一个 fulfilled 即返回；全部 reject 才抛
-      const res = await Promise.any(raced);
-      return res;
-    }catch(e){
-      // Promise.any 全失败时抛的是 AggregateError，真实原因在 e.errors 里
-      const errs = (e && e.errors) ? e.errors.filter(Boolean) : [e];
-      lastErr = errs[0] || e;
     }
     if(attempt<2)await new Promise(r=>setTimeout(r,1000*(attempt+1)));
   }
