@@ -491,24 +491,34 @@ function switchTab(which){
 }
 function fillRandomId(){$('#rg-id').value=randId();}
 async function cfPost(path,body){
-  // 串行重试：每轮先试主域，主域失败再试备域（10/20 23:4x 修正 —— 恢复 workers.dev 备域）
+  // 2026-10-22 冰爪改（认龙井 review ④「双域串行 = 每次请求多烧一轮坏域重试」）：
+  // 旧版是**串行** for(attempt) × for(base) —— 若某域当小时线路不通，
+  // 每次请求都要先烧满那个域的 40s 超时才回落 → 与审计脚本撞穿 12min 预算同款形态。
+  // 改法：**域间并行竞速 + 先到先用**（Promise.any 语义）—— 好的域先回就用它，
+  // 坏域的慢响应自然被丢弃，不再拖慢整体；仍保留 attempt 轮次重试兜底。
   let lastErr=null;
   for(let attempt=0;attempt<3;attempt++){
-    for(const base of CF_BASES){
+    // 域间并行：每个域一个 promise，谁先成功返回就用谁
+    const raced = CF_BASES.map(base => (async () => {
+      const ctl=new AbortController();
+      const timer=setTimeout(()=>ctl.abort(),40000);
       try{
-        const ctl=new AbortController();
-        const timer=setTimeout(()=>ctl.abort(),40000);
-        try{
-          const res=await fetch(base+path,{
-            method:'POST',headers:{'Content-Type':'application/json'},
-            body:JSON.stringify(body),signal:ctl.signal
-          }).then(r=>r.json());
-          if(res&&res.ok!==false)return res;
-          lastErr=new Error((res&&res.error)||'bad response');
-        }finally{clearTimeout(timer);}
-      }catch(e){
-        lastErr=e;
-      }
+        const res=await fetch(base+path,{
+          method:'POST',headers:{'Content-Type':'application/json'},
+          body:JSON.stringify(body),signal:ctl.signal
+        }).then(r=>r.json());
+        if(res&&res.ok!==false)return res;
+        throw new Error((res&&res.error)||'bad response');
+      }finally{clearTimeout(timer);}
+    })());
+    try{
+      // Promise.any：第一个 fulfilled 即返回；全部 reject 才抛
+      const res = await Promise.any(raced);
+      return res;
+    }catch(e){
+      // Promise.any 全失败时抛的是 AggregateError，真实原因在 e.errors 里
+      const errs = (e && e.errors) ? e.errors.filter(Boolean) : [e];
+      lastErr = errs[0] || e;
     }
     if(attempt<2)await new Promise(r=>setTimeout(r,1000*(attempt+1)));
   }
@@ -517,18 +527,21 @@ async function cfPost(path,body){
 async function cfGet(path){
   let lastErr=null;
   for(let attempt=0;attempt<3;attempt++){
-    for(const base of CF_BASES){
+    // 域间并行竞速（同 cfPost 理由：串行会先烧满坏域 40s 超时）
+    const raced = CF_BASES.map(base => (async () => {
+      const ctl=new AbortController();
+      const timer=setTimeout(()=>ctl.abort(),40000);
       try{
-        const ctl=new AbortController();
-        const timer=setTimeout(()=>ctl.abort(),40000);
-        try{
-          const res=await fetch(base+path,{signal:ctl.signal}).then(r=>r.json());
-          if(res&&res.ok!==false)return res;
-          lastErr=new Error((res&&res.error)||'bad response');
-        }finally{clearTimeout(timer);}
-      }catch(e){
-        lastErr=e;
-      }
+        const res=await fetch(base+path,{signal:ctl.signal}).then(r=>r.json());
+        if(res&&res.ok!==false)return res;
+        throw new Error((res&&res.error)||'bad response');
+      }finally{clearTimeout(timer);}
+    })());
+    try{
+      return await Promise.any(raced);
+    }catch(e){
+      const errs=(e&&e.errors)?e.errors.filter(Boolean):[e];
+      lastErr=errs[0]||e;
     }
     if(attempt<2)await new Promise(r=>setTimeout(r,1000*(attempt+1)));
   }
@@ -574,10 +587,16 @@ async function doLogin(){
       lgMsg('✅ 欢迎回来，'+(j.nickname||nick),'ok');
       setTimeout(()=>$('#login-gate').classList.add('hidden'),600);
     }else{
-      // 号在但昵称不对 → 可能是没注册过
-      const found=await cfGet('/lookup?id='+id).catch(()=>({found:false}));
-      if(found&&found.found){lgMsg('❌ 名字不对 —— 这个号的名字是「'+(getPlayers()[id]?getPlayers()[id].nickname:'（另一个名字）')+'」','err')}
-      else{lgMsg('❌ 这个号还没注册过，去「✨ 注册新号」开一个','err')}
+      // 2026-10-22 冰爪改（认龙井 review ②「失败分支回落显示昵称 = 枚举面」）：
+      // 旧版：登录失败 → 调 /lookup 判号是否存在 → 若存在则把**本机 localStorage 里
+      // 存过的该号昵称**直接显示出来（"这个号的名字是「XXX」"）。
+      // 危害：① 任何有该号记录的人登录失败即回显真名；② /lookup 的 found 差异
+      //   与 /verify 的「昵称不匹配」/「ID 不存在」文案差异**共同构成枚举 oracle**
+      //   —— 可逐号爆破「这个号存不存在 + 昵称叫什么」，且**不需猜对密码**。
+      // 修法（只动我 owner 域的前端；后端 /verify 文案差异属 thawpaw-games 域，另立）：
+      //   ① 不再回显任何昵称（哪怕本机存过）；② 不再用不同文案区分「号不存在」
+      //      与「名字不对」→ 统一为一句中性提示，避免存在性 oracle。
+      lgMsg('❌ 名字不对或该号未注册 —— 请确认后重试','err');
     }
   }catch(e){
     lgMsg('网络不通 —— 检查网络后重试','err');
