@@ -1,12 +1,35 @@
 #!/bin/bash
 # commit message 红线门禁（2026-09-23 教训：家庭成员真名曾入 message）
 # 模式表 .githooks/commit-msg-patterns 不入库（本身含真名，逐行一条固定串）
+#
+# 2026-10-21 冰爪修（当日自首：真名曾从 diff body 漏进仓）：
+#   旧判据只扫 "$1"（commit message 文本）→ commit body 与 diff 里的真名全部漏过。
+#   修法：message + 暂存区 diff body 一起扫（git diff --cached）。
+# 注意：patterns 文件本身含真名 → 只读入内存，绝不 echo / 不写进报错文案。
+#
+# 2026-10-22 冰爪修（squash 时自首：门禁把「删掉真名的 commit」也挡了）：
+#   bb5600a 那版扫的是**整个** staged diff（含 '-' 删除行）→ 后果：
+#   任何「把真名从公开仓删掉」的 commit 必然命中删除行 → **永远无法提交删除动作**。
+#   实测：squash 沙坑公开仓时提交被卡（命中 2 处 REMOVED 行）。
+#   修法：**diff-only 只扫新增行（+）**——与 mentors-rules.md ⑥ 的口径一致
+#   （发布/推送门禁只查新增行；存量命中不追溯、不卡 push）。
+#   判据：`git diff --cached --no-color | grep -E '^\+'`（排除 '+++' 文件头）。
+#   ⚠️ 文件名本身若含真名，`+++ b/<file>` 行不查 → 靠「文件名不进仓」另行处理。
 PATTERNS="$(dirname "$0")/commit-msg-patterns"
 [ -f "$PATTERNS" ] || exit 0
+
+# 待扫描内容 = commit message 文件 + 暂存区 diff 的**新增行**
+SCAN=""
+SCAN="$(cat "$1" 2>/dev/null)"
+# 只取新增行（排除 '+++ b/...' 文件头行），删除行不查 —— 否则无法提交「删除真名」的动作
+DIFF_ADDED="$(git diff --cached --no-color 2>/dev/null | grep -E '^\+' | grep -vE '^\+\+\+ ')"
+SCAN="${SCAN}
+${DIFF_ADDED}"
+
 while IFS= read -r p; do
   [ -z "$p" ] && continue
-  if grep -qF -- "$p" "$1"; then
-    echo "❌ commit message 含红线称呼——改用 ThawPaw / Tree / 猴哥 等白名单称呼后重试"
+  if printf '%s' "$SCAN" | grep -qF -- "$p"; then
+    echo "❌ commit message 或暂存区新增行含红线称呼——改用 ThawPaw / Tree / 猴哥 等白名单称呼后重试"
     exit 1
   fi
 done < "$PATTERNS"

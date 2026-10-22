@@ -8,3 +8,12 @@ mentors-log/
 
 __pycache__/
 .githooks/commit-msg-patterns
+
+# 个人草稿类二进制（docx 等）不入公开仓 —— 仓根随手丢的 .docx 可能含真实学员 ID / 昵称，
+# 公开仓一旦被 commit + push 即为公开泄露，且 git history 不可撤回。
+# 如确需入库，先脱敏并与 owner 确认，再单独放行该扩展名。
+*.docx
+*.doc
+*.xlsx
+*.pptx
+
