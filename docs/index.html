@@ -15,7 +15,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="沙坑训练场">
-<script>var BUILD_TIME="20261012-0724"
+<script>var BUILD_TIME="20261020-2330"
 if('serviceWorker' in navigator){addEventListener('load',()=>navigator.serviceWorker.register('sw.js').catch(()=>{}))}</script>
 <style>
 :root{--bg:#0f1420;--card:#171e2e;--card2:#1e2740;--border:#2a3550;--text:#e8ecf4;--text2:#8b96ad;--accent:#5b9dff;--accent2:#7c6cff;--ok:#3ecf8e;--warn:#ffb454}
@@ -152,7 +152,7 @@ footer{text-align:center;color:var(--text2);font-size:.75rem;margin-top:30px}
     <!-- 登录 -->
     <div id="pane-login">
       <label class="lg-label" for="lg-id">8 位数字 ID</label>
-      <input class="lg-input mono" id="lg-id" inputmode="numeric" maxlength="8" placeholder="24602243" autocomplete="off">
+      <input class="lg-input mono" id="lg-id" inputmode="numeric" maxlength="8" placeholder="8 位数字" autocomplete="off">
       <label class="lg-label" for="lg-nick">昵称（= 密码）</label>
       <input class="lg-input" id="lg-nick" placeholder="输入这个号的名字" autocomplete="off">
       <button class="lg-btn" id="lg-login-btn" onclick="doLogin()">🔑 登录</button>
@@ -161,13 +161,13 @@ footer{text-align:center;color:var(--text2);font-size:.75rem;margin-top:30px}
     <!-- 注册 -->
     <div id="pane-reg" style="display:none">
       <label class="lg-label" for="rg-id">8 位数字 ID</label>
-      <input class="lg-input mono" id="rg-id" inputmode="numeric" maxlength="8" placeholder="24602243" autocomplete="off">
+      <input class="lg-input mono" id="rg-id" inputmode="numeric" maxlength="8" placeholder="8 位数字" autocomplete="off">
       <div class="row" style="display:flex;gap:8px;margin-top:8px">
         <button class="lg-btn ghost" style="margin-top:0;flex:1" onclick="fillRandomId()">🎲 随机一个</button>
         <button class="lg-btn ghost" style="margin-top:0;flex:1" onclick="fillRandomId()">✋ 自己填</button>
       </div>
       <label class="lg-label" for="rg-nick">名字（留空 = 学员XXXXXXXX）</label>
-      <input class="lg-input" id="rg-nick" placeholder="比如 Kaia" autocomplete="off">
+      <input class="lg-input" id="rg-nick" placeholder="比如 ThawPaw" autocomplete="off">
       <button class="lg-btn" id="lg-reg-btn" onclick="doRegister()">✨ 注册并进入</button>
     </div>
     <div class="lg-msg" id="lg-msg"></div>
@@ -216,8 +216,10 @@ function posResolve(){const p=posGet();if(!p||!weeksData.length)return null;cons
 // 滚到上次停留的课（lesson 级恢复）：复用侧边栏 lesson-link 同款 scrollIntoView 模式，元素不存在时 no-op
 function _scrollToLesson(lid){setTimeout(()=>{const t=document.querySelector('#content .md[data-lid="'+lid+'"]');if(t)t.scrollIntoView({behavior:'smooth',block:'start'})},80)}
 function raceJSON(path,timeout){
-  // 只用自定义域名：workers.dev 的 AAAA 记录被 DNS 污染，实测 100% 不可达
-  const bases=[API];
+  // 10/20 23:4x 修正：恢复双域备援（主域 thawflow，备域 workers.dev）。
+  // 上一版因「本机 workers.dev 不可达」把备域整个删掉 = 把单机网络现象写成全局口径
+  // （龙井 BW 机实测 workers.dev 3/3 HTTP 200）。串行竞速：任一域先成功即返回。
+  const bases=[API].concat(CF_BASES.filter(b=>b!==API));
   return new Promise((res,rej)=>{
     let pend=bases.length,won=false;
     for(const b of bases){
@@ -457,11 +459,14 @@ $('#bt').textContent=BUILD_TIME==='DEV'?'DEV build':'v'+BUILD_TIME;
 // ════════════════════════════════════════════════
 // ── 登录 / 注册：一人一号（游戏 ID = 学习 ID 绑定一起）──
 // ────────────────────────────────────────────────
-// 注意：tpg-hq.icepaw.workers.dev 的 AAAA 记录被 DNS 污染（指向非 CF 网段），
-// 实测 100% 不可达 → 只用自定义域名。
-// CF Worker 冷启动实测随机 3-35s（连 /test 这种不碰 KV 的路由也一样挂），
-// 所以超时放宽到 40s，失败重试 2 次（总预算 ~2 分钟）。
-const CF_BASES=['https://tpg-hq.thawflow.com'];
+// 注意（10/20 23:4x 冰爪修正，认龙井 22:53 的 BW 机实测）：
+//   上一版 bd0dbf1 把 workers.dev 整个删掉，理由是「DNS 污染 → 100% 不可达」。
+//   那是我这一台机器的**网络视角**（本地 DNS 把 A/AAAA 解析到污染 IP + SNI 被阻断），
+//   不是域名本身的属性 —— 龙井 BW 机（Win11）实测 workers.dev 3/3 HTTP 200、0.86-1.45s。
+//   → 结论：**不能把单机网络现象写成全局口径**。沙坑面向全家/学员用户，
+//   不同网络出口对两个域名的可达性不同 → 保留双域，主域失败时切备域（串行，不竞速）。
+//   （竞速的前提是两个域名都验证过可用；本机 workers.dev 不可用时竞速只会白等）
+const CF_BASES=['https://tpg-hq.thawflow.com','https://tpg-hq.icepaw.workers.dev'];
 const ACTIVE_KEY='thawpawActiveId';   // 与游戏小窝同一套 localStorage key
 const PLAYERS_KEY='thawpawPlayers';   // { id: {nickname, role, lastSeen} }
 const LEARN_KEY='learning-id';        // 沙坑课程进度用（与游戏 ID 同值）
@@ -486,22 +491,24 @@ function switchTab(which){
 }
 function fillRandomId(){$('#rg-id').value=randId();}
 async function cfPost(path,body){
-  // 单域名串行重试（CF Worker 冷启动随机 3-35s，见 CF_BASES 注释）
+  // 串行重试：每轮先试主域，主域失败再试备域（10/20 23:4x 修正 —— 恢复 workers.dev 备域）
   let lastErr=null;
   for(let attempt=0;attempt<3;attempt++){
-    try{
-      const ctl=new AbortController();
-      const timer=setTimeout(()=>ctl.abort(),40000);
+    for(const base of CF_BASES){
       try{
-        const res=await fetch(CF_BASES[0]+path,{
-          method:'POST',headers:{'Content-Type':'application/json'},
-          body:JSON.stringify(body),signal:ctl.signal
-        }).then(r=>r.json());
-        if(res&&res.ok!==false)return res;
-        lastErr=new Error((res&&res.error)||'bad response');
-      }finally{clearTimeout(timer);}
-    }catch(e){
-      lastErr=e;
+        const ctl=new AbortController();
+        const timer=setTimeout(()=>ctl.abort(),40000);
+        try{
+          const res=await fetch(base+path,{
+            method:'POST',headers:{'Content-Type':'application/json'},
+            body:JSON.stringify(body),signal:ctl.signal
+          }).then(r=>r.json());
+          if(res&&res.ok!==false)return res;
+          lastErr=new Error((res&&res.error)||'bad response');
+        }finally{clearTimeout(timer);}
+      }catch(e){
+        lastErr=e;
+      }
     }
     if(attempt<2)await new Promise(r=>setTimeout(r,1000*(attempt+1)));
   }
@@ -510,16 +517,18 @@ async function cfPost(path,body){
 async function cfGet(path){
   let lastErr=null;
   for(let attempt=0;attempt<3;attempt++){
-    try{
-      const ctl=new AbortController();
-      const timer=setTimeout(()=>ctl.abort(),40000);
+    for(const base of CF_BASES){
       try{
-        const res=await fetch(CF_BASES[0]+path,{signal:ctl.signal}).then(r=>r.json());
-        if(res&&res.ok!==false)return res;
-        lastErr=new Error((res&&res.error)||'bad response');
-      }finally{clearTimeout(timer);}
-    }catch(e){
-      lastErr=e;
+        const ctl=new AbortController();
+        const timer=setTimeout(()=>ctl.abort(),40000);
+        try{
+          const res=await fetch(base+path,{signal:ctl.signal}).then(r=>r.json());
+          if(res&&res.ok!==false)return res;
+          lastErr=new Error((res&&res.error)||'bad response');
+        }finally{clearTimeout(timer);}
+      }catch(e){
+        lastErr=e;
+      }
     }
     if(attempt<2)await new Promise(r=>setTimeout(r,1000*(attempt+1)));
   }

@@ -17,7 +17,7 @@ description: "沙坑课程W1X文件批量加块（胶囊/边栏/新周课稿）�
    - 自查勾选项：append 到 `- [ ] 🚀` 行之后；weekend 文件无自查清单结构，跳过勾选不算失败
 4. **编号序列**按修业路径顺序排（含加餐挂点位，如加餐①=W13 文件挂 W08 后）；跨文件重编号用 sed 全量替换。
 5. **验证**：抽 2-3 个文件 grep 新块标题 + `git diff --stat` 核对改动面；SYLLABUS 若有机制变化同步更新。
-6. **交付**：commit `[小马] course: <猴哥指示摘要>`，push 走 SOUL #18（苗苗 OR 猴哥任一明确批准）+ chatroom @如意 async review（v1.8 异步链）——挂点调整权在苗苗/猴哥，Tree 终审节点写进 DM。
+6. **交付**：commit `[小马] course: <猴哥指示摘要>`，push 走 SOUL #18（ThawPaw OR Tree 任一明确批准）+ chatroom @如意 async review（v1.8 异步链）——挂点调整权在 ThawPaw/Tree，Tree 终审节点写进 DM。
 
 ## 已知地形
 
